@@ -1,4 +1,5 @@
 // Libraris, functions, etc.
+import React from "react";
 import { useEffect, useState } from "react";
 
 // Styled components
@@ -25,7 +26,7 @@ import Login from "./Login.jsx";
  * @param {boolean} setIsAuthorized - If the user sends in matching email and password, isAuthorized is set to true.
  */
 
-export default function Welcome({ setIsAuthorized }) {
+const Welcome = ({ setIsAuthorized }) => {
   const [signUpVisible, setSignUpVisible] = useState(false);
   const [loginVisible, setLoginVisible] = useState(false);
   const [hasSignedUp, setHasSignedUp] = useState(false);
@@ -110,4 +111,6 @@ export default function Welcome({ setIsAuthorized }) {
       {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
     </>
   );
-}
+};
+
+export default Welcome;

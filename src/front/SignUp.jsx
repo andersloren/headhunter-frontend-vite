@@ -142,7 +142,7 @@ export default function SignUp({
    */
 
   // TODO - Skip this step, instead have handleSignUp deal with setLoginVisible and setSignUpVisible.
-  function handleClick(e) {
+  function handleClick() {
     handleSignUp();
     setLoginVisible(true);
     setSignUpVisible(false);
