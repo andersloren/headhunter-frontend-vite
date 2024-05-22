@@ -1,14 +1,13 @@
 // Libraries, functions, etc.
 import { useEffect, useState } from "react";
-import { authorize } from "./security/authorize.jsx";
+// import authorize from "./security/authorize.jsx";
 import { extractRolesFromToken } from "./security/token/extractRolesFromToken.jsx";
 
 // Front page
 import Welcome from "./front/Welcome.jsx";
 
 // Sidebar
-// import Sidebar from "./sidebar/Sidebar.jsx";
-
+import Sidebar from "./sidebar/Sidebar.jsx";
 import { S_Main } from "./utils/styledGlobal.jsx";
 
 /**
@@ -49,7 +48,7 @@ export default function App() {
     return (
       <>
         <S_Main>
-          {/* <Sidebar roles={roles} setIsAuthorized={setIsAuthorized} /> */}
+          <Sidebar roles={roles} setIsAuthorized={setIsAuthorized} />
         </S_Main>
       </>
     );
