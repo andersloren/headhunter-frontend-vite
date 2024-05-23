@@ -16,6 +16,7 @@ import {
   S_AddSvg,
   S_DeleteSvg,
 } from "./styledComponents/styledUserGlobal.jsx";
+
 import {
   S_Preview,
   S_JobList_Box,
@@ -44,8 +45,6 @@ export default function MyJobs() {
   const [isChange, setIsChange] = useState(false);
   const [refreshAdTabs, setRefreshAdTabs] = useState(false);
   const [adsExist, setAdsExist] = useState(false);
-
-  console.log(isPinned);
 
   /**
    * If a job is being successfully added, updated, or deleted, refreshTable triggers the fetching of an updated array of jobs.
