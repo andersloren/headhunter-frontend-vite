@@ -25,15 +25,11 @@ export default function App() {
    * If isAuthorized changes, and if the value is false, it's being checked. If there is a JWT stored in the browser and it hasn't expired, isAuthorized is set to true. Otherwise, it remains false.
    */
 
-  {
-    /*
-  useEffect(() => {
-    if (!isAuthorized) {
-      setIsAuthorized(authorize());
-    }
-  }, [isAuthorized]);
-*/
-  }
+  // useEffect(() => {
+  //   if (!isAuthorized) {
+  //     setIsAuthorized(authorize());
+  //   }
+  // }, [isAuthorized]);
 
   useEffect(() => {
     if (isAuthorized) {

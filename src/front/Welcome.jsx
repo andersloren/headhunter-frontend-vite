@@ -56,6 +56,8 @@ const Welcome = ({ setIsAuthorized }) => {
     setSignUpVisible(false);
   }
 
+  console.log("Welcome, mounted");
+
   return (
     <>
       {/**
