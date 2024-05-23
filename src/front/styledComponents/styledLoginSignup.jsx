@@ -1,6 +1,6 @@
 import styled from "styled-components";
 // import { CheckSvg } from "src/utils/icons/check.svg";
-import CheckSvg from "../../utils/icons/check.svg";
+import CheckSvg from "../../utils/svg-components/CheckSvg";
 
 import {
   brightest,

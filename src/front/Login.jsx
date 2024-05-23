@@ -83,12 +83,14 @@ export default function Login({ setIsAuthorized }) {
 
   // TODO - Change myPage to whatever is more suitable
   function handleAuthentication(token) {
+    console.log("Login, handleAuthentication()");
     localStorage.setItem("headhunter-token", token);
     navigate("/myPage");
   }
 
   // TODO - This can probably be removed, instead just go directly for handleLogin and pass email and password instead of e.
   function handleClick(e) {
+    console.log("Login, handleClick()");
     e.preventDefault();
     handleLogin(e);
   }
