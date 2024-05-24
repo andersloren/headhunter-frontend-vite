@@ -49,7 +49,6 @@ export default function JobEdit({
   // States related to functionality
   const [job, setJob] = useState({}); // TODO - Either use it or remove it.
   const [active, setActive] = useState(1);
-  const [activeButton, setActiveButton] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
   // States related to job
