@@ -1,23 +1,11 @@
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 import react from "@vitejs/plugin-react";
-import NodeGlobalsPolyfillPlugin from "@esbuild-plugins/node-globals-polyfill";
-import NodeModulesPolyfillPlugin from "vite-plugin-node-polyfills";
+import rollupNodePolyFill from "rollup-plugin-polyfill-node";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    svgr(),
-
-    // Understand why everything below is needed in order for the app to work.
-
-    NodeGlobalsPolyfillPlugin({
-      process: true,
-      buffer: true,
-    }),
-    NodeModulesPolyfillPlugin(),
-  ],
+  plugins: [react(), svgr()],
   resolve: {
     alias: {
       process: "process/browser",
@@ -28,5 +16,10 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ["buffer", "process"],
+  },
+  build: {
+    rollupOptions: {
+      plugins: [rollupNodePolyFill()],
+    },
   },
 });

@@ -1,7 +1,7 @@
-import AddSvg from "../../utils/icons/add.svg";
-import DeleteSvg from "../../utils/icons/delete.svg";
-import UpdateSvg from "../../utils/icons/update.svg";
-import GenerateSvg from "../../utils/icons/generate.svg";
+import AddSvg from "../../utils/svg-components/AddSvg.jsx";
+import DeleteSvg from "../../utils/svg-components/DeleteSvg.jsx";
+import UpdateSvg from "../../utils/svg-components/UpdateSvg.jsx";
+import GenerateSvg from "../../utils/svg-components/GenerateSvg.jsx";
 
 import PinSvg from "../../utils/icons/pin.svg";
 import UnpinSvg from "../../utils/icons/unpin.svg";

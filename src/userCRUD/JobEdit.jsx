@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { updateJob } from "./jobFunctions/updateJob.jsx";
 import { getJobById } from "./jobFunctions/getJobById.jsx";
 import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
+import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
 // Styled Components
 import { S_Main } from "../utils/styledGlobal.jsx";
@@ -40,10 +41,9 @@ import {
  */
 
 export default function JobEdit({
-  handleJobCRUDSuccess,
   jobId,
   setIsChange,
-  setJobVisible,
+  handleJobCRUDSuccess,
   handleAdCRUDSuccess,
 }) {
   // States related to functionality
@@ -65,7 +65,10 @@ export default function JobEdit({
 
   useEffect(() => {
     getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
+    handleAdCRUDSuccess();
   }, [jobId]);
+
+  useEffect(() => {}, []);
 
   /**
    * When clicking the button for generating an ad, a window confirm alert will show to prevent unwanted credit usage and time consuming events.
@@ -106,11 +109,6 @@ export default function JobEdit({
   // TODO - Maybe just put setIsChange where it is supposed to happen instead of pointing to this function.
   function handleIsChange() {
     setIsChange(false);
-  }
-
-  // TODO - Maybe just put setActiveButton at the buttons instead of handling it here.
-  function handleActiveButton(buttonId) {
-    setActiveButton(buttonId);
   }
 
   return (

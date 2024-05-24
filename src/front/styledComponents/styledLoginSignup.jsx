@@ -19,7 +19,7 @@ import {
 
 const border_radius = "15px";
 const inputfield_width = 300;
-const inputfield_translateX = (inputfield_width / 2) * -1;
+// const inputfield_translateX = (inputfield_width / 2) * -1;
 
 export const S_LoginError = styled.div`
   background-color: red;

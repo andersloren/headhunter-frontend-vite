@@ -1,7 +1,6 @@
 // Libraries, functions, etc.
 import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.jsx";
-import { getAllMyJobs } from "./jobFunctions/getAllMyJobs.jsx";
 import { getJobsTitleAndId } from "./jobFunctions/getJobsTitleAndId.jsx";
 import { deleteJob } from "./jobFunctions/deleteJob.jsx";
 
@@ -16,12 +15,14 @@ import {
   S_AddSvg,
   S_DeleteSvg,
 } from "./styledComponents/styledUserGlobal.jsx";
+
 import {
   S_Preview,
   S_JobList_Box,
   S_JobList,
 } from "./styledComponents/styledMyJobs.jsx";
 import { S_WindowSplit } from "../sidebar/styledComponents/styledSidebar.jsx";
+import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
 /**
  *
@@ -42,10 +43,18 @@ export default function MyJobs() {
   const [refreshTable, setRefreshTable] = useState(false);
   const [jobVisible, setJobVisible] = useState(false);
   const [isChange, setIsChange] = useState(false);
-  const [refreshAdTabs, setRefreshAdTabs] = useState(false);
-  const [adsExist, setAdsExist] = useState(false);
+  const [numberOfAds, setNumberOfAds] = useState(0);
 
-  console.log(isPinned);
+  console.log("MyJobs", jobId);
+
+  /**
+   * When the component mounts, all the jobs belonging to the user is being fetched from the backend.
+   */
+
+  useEffect(() => {
+    // getAllMyJobs(setJobList);
+    getJobsTitleAndId(setJobList);
+  }, []);
 
   /**
    * If a job is being successfully added, updated, or deleted, refreshTable triggers the fetching of an updated array of jobs.
@@ -56,14 +65,7 @@ export default function MyJobs() {
     getJobsTitleAndId(setJobList);
   }, [refreshTable]);
 
-  /**
-   * When the component mounts, all the jobs belonging to the user is being fetched from the backend.
-   */
-
-  useEffect(() => {
-    // getAllMyJobs(setJobList);
-    getJobsTitleAndId(setJobList);
-  }, []);
+  useEffect(() => {}, [jobId]);
 
   // TODO - Skip the handle-part and just put addJob() where the function should be invoked?
   function handleAddJob() {
@@ -125,12 +127,16 @@ export default function MyJobs() {
    * When a new job is selected, the ads related to that job needs to be shown in the ad UI.
    */
 
-  function handleAdCRUDSuccess() {
-    setRefreshAdTabs((refresh) => !refresh);
-    setRefreshTable((refresh) => !refresh);
+  async function handleAdCRUDSuccess() {
+    console.log("MyJobs, handleAdCRUDSuccess called");
+
+    const adsCount = await getNumberOfAds(jobId);
+    if (adsCount !== undefined) {
+      setNumberOfAds(adsCount);
+    }
   }
 
-  console.log("MyJobs", jobList);
+  console.log("MyJobs, numberOfAds", numberOfAds);
 
   return (
     <>
@@ -197,16 +203,16 @@ export default function MyJobs() {
                   jobId={jobId}
                   setIsChange={setIsChange}
                   setJobVisible={setJobVisible}
-                  setRefreshAdTabs={setRefreshAdTabs}
                   handleAdCRUDSuccess={handleAdCRUDSuccess}
                 />
                 {/**
                  * Only if the selected job has one or more ads will the ad UI show.
                  */}
-                {adsExist && (
+                {numberOfAds > 0 && (
                   <Ad
+                    numberOfAds={numberOfAds}
+                    setNumberOfAds={setNumberOfAds}
                     jobId={jobId}
-                    refreshAdTabs={refreshAdTabs}
                     handleAdCRUDSuccess={handleAdCRUDSuccess}
                   />
                 )}
