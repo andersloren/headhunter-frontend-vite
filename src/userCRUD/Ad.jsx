@@ -28,16 +28,21 @@ import {
  * - 'adId': The String identifier for the ad.
  * - 'activeAd': The ad that is currently being shown in the UI.
  * @param {number} jobId - The number identifier for the Job object that the adList belongs to.
- * @param {function} refreshAdTabs - When a new Job object is being clicked in the parent component, the ads related to that ad should be shown to the user.
  * @param {function} handleAdCRUDSuccess - When front-end caused changes in the Ad database happens, the clickable tabs in the UI that allows the user to inspect different ads should update to show the available ads.
  */
 
-export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
+export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
   // TODO - Change adList to adArray?
   const [adList, setAdList] = useState([]);
   const [htmlCode, setHtmlCode] = useState("");
   const [adId, setAdId] = useState(0);
   const [activeAd, setActiveAd] = useState(null);
+
+  useEffect(() => {
+    if (numberOfAds > 0 && jobId !== undefined) {
+      findAllAdsByJobId(jobId, setAdList);
+    }
+  }, [jobId, numberOfAds]);
 
   /**
    * When the length of the adList changes, the current loaded HTML-code should be emptied to prevent that HTML-code from a deleted Ad object is being shown.
@@ -56,7 +61,7 @@ export default function Ad({ jobId, refreshAdTabs, handleAdCRUDSuccess }) {
 
   useEffect(() => {
     findAllAdsByJobId(jobId, setAdList);
-  }, [refreshAdTabs, jobId]);
+  }, [jobId]);
 
   /**
    * TODO - Write a comment for this useEffect
