@@ -1,8 +1,7 @@
-# React + Vite
+# Headhunter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the new (!) frontend part of the internship project Headhunter created by [Anders Lorén](https://github.com/andersloren) and [Mikael Engvall](https://github.com/mikaelengvall).
 
-Currently, two official plugins are available:
+The ![previous frontend](https://github.com/andersloren/headhunter-frontend) was based on create-react-app. An unexpected webpack update caused me enough trouble to try out a Vite build instead.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The backend can be found [here](https://github.com/andersloren/headhunter).
