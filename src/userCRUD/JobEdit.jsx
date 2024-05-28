@@ -8,7 +8,7 @@ import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 // Styled Components
 import { S_Main } from "../utils/styledGlobal.jsx";
 import {
-  S_JobEdit_And_Ad_Box,
+  S_JobList_Job_Ad_Container,
   S_Header,
   S_PreviewBox,
   S_FunctionalityButton_Box,
@@ -112,7 +112,7 @@ export default function JobEdit({
 
   return (
     <S_Main>
-      <S_JobEdit_And_Ad_Box>
+      <S_JobList_Job_Ad_Container>
         {
           // Title input field
         }
@@ -211,7 +211,7 @@ export default function JobEdit({
             onChange={(e) => setInstruction(e.target.value)}
           ></S_TextArea>
         </S_PreviewBox> */}
-      </S_JobEdit_And_Ad_Box>
+      </S_JobList_Job_Ad_Container>
     </S_Main>
   );
 }

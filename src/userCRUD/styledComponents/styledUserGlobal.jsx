@@ -39,8 +39,11 @@ export const S_FunctionalityButton = styled.button`
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
 
-export const S_JobEdit_And_Ad_Box = styled.div`
+export const S_JobList_Job_Ad_Container = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-left: 20px;
+  gap: 20px;
 `;
 
 export const S_PreviewBox = styled.div`
@@ -48,8 +51,6 @@ export const S_PreviewBox = styled.div`
 `;
 
 export const S_Header = styled.div`
-  margin-top: 15px;
-  margin-bottom: 15px;
   font-size: ${big};
   color: ${brightest};
 `;

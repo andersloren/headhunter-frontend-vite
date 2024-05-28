@@ -17,7 +17,7 @@ import {
 
 const border_radius = "15px";
 
-export const S_MainContainer = styled.div`
+export const S_FrontContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

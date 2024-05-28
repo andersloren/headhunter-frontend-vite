@@ -10,6 +10,7 @@ import Ad from "./Ad.jsx";
 
 // CSS
 import {
+  S_JobList_Job_Ad_Container,
   S_FunctionalityButton_Box,
   S_Header,
   S_AddSvg,
@@ -18,7 +19,7 @@ import {
 
 import {
   S_Preview,
-  S_JobList_Box,
+  S_JobList_Container,
   S_JobList,
 } from "./styledComponents/styledMyJobs.jsx";
 import { S_WindowSplit } from "../sidebar/styledComponents/styledSidebar.jsx";
@@ -140,31 +141,35 @@ export default function MyJobs() {
   return (
     <>
       <S_WindowSplit>
-        <S_JobList_Box>
+        <S_JobList_Job_Ad_Container>
           {
             // Joblist
           }
 
           <S_Header>Jobs</S_Header>
-          {jobList.map((job) => (
-            <S_JobList
-              key={job.id}
-              onClick={() => {
-                isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
-              }}
-              /**
-               * The selected job is highlighted in the list of jobs in the job UI.
-               */
-              $active={jobId === job.id ? "true" : "false"}
-            >
-              {/**
-               * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
-               */}
-              {job.title.length > 20
-                ? job.title.slice(0, 20) + "..."
-                : job.title}
-            </S_JobList>
-          ))}
+          <S_JobList_Container>
+            {jobList.map((job) => (
+              <S_JobList
+                key={job.id}
+                onClick={() => {
+                  isChange
+                    ? handleUnsavedChanges(job.id)
+                    : handlePreview(job.id);
+                }}
+                /**
+                 * The selected job is highlighted in the list of jobs in the job UI.
+                 */
+                $active={jobId === job.id ? "true" : "false"}
+              >
+                {/**
+                 * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
+                 */}
+                {job.title.length > 20
+                  ? job.title.slice(0, 20) + "..."
+                  : job.title}
+              </S_JobList>
+            ))}
+          </S_JobList_Container>
 
           <S_FunctionalityButton_Box>
             {
@@ -184,7 +189,7 @@ export default function MyJobs() {
               alt="delete"
             />
           </S_FunctionalityButton_Box>
-        </S_JobList_Box>
+        </S_JobList_Job_Ad_Container>
         {
           // Job and Ad components
         }

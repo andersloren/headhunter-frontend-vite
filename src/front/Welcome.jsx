@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // Styled components
 import {
-  S_MainContainer,
+  S_FrontContainer,
   S_HeadingBox_Welcome,
   S_Title_Welcome,
   S_Subtitle_Welcome,
@@ -64,7 +64,7 @@ const Welcome = ({ setIsAuthorized }) => {
       {/**
        * App title
        */}
-      <S_MainContainer>
+      <S_FrontContainer>
         <S_HeadingBox_Welcome>
           <S_Title_Welcome>Headhunter</S_Title_Welcome>
           <S_Subtitle_Welcome>Intelligent recruiting</S_Subtitle_Welcome>
@@ -112,7 +112,7 @@ const Welcome = ({ setIsAuthorized }) => {
          * Login component
          */}
         {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
-      </S_MainContainer>
+      </S_FrontContainer>
     </>
   );
 };
