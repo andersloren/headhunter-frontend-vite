@@ -19,9 +19,16 @@ const topButtonsHeight = "34px";
 const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
 
+export const S_IframeAndButtons_Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* gap: 20px; */
+`;
+
 export const S_TopButtons_Box = styled.div`
   height: ${topButtonsHeight};
 `;
+
 export const S_Buttons_Edit = styled.button`
   height: ${topButtonsHeight};
   font-size: ${medium};

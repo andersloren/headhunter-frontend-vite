@@ -24,6 +24,8 @@ const sidebar_collapsed = "80px";
 
 export const S_WindowSplit = styled.div`
   display: flex;
+  margin-top: 20px;
+  gap: 20px;
 `;
 
 export const S_SidebarBox = styled.div`
