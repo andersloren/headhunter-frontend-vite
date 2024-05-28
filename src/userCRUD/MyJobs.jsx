@@ -33,7 +33,6 @@ import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
  * - 'refreshTable': When a change is made to the jobList, this function triggers the fetching of an updated list of jobs from the backend.
  * - 'jobVisible': If a job is being selected, it shows in the child component that deals with job UI.
  * - 'isChange': If a different job is being selected while there are unsaved changes in the text area of the child component that handles the job UI, a window confirm alert sets off that asks the user if it wants to proceed without saving.
- * - 'refreshAdTabs' - When a new Job object is being clicked, the ads related to that ad should be shown to the user in child component that handles the ad UI.
  * - 'adsExist' - Sets to true if the job has a number of ad objects being more than 0.
  */
 

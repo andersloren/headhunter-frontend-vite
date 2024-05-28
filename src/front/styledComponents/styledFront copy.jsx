@@ -16,15 +16,12 @@ import {
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
-
-export const S_MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-`;
+const margin_between_buttons = "20px";
+const inputfield_width = 300;
+const inputfield_translateX = (inputfield_width / 2) * -1;
 
 export const S_HeadingBox_Welcome = styled.div`
+  padding-top: 150px;
   font-family: Merriweather, sans-serif;
   text-transform: uppercase;
 `;
@@ -41,18 +38,20 @@ export const S_Title_Welcome = styled.h1`
   vertical-align: text-bottom;
 `;
 
-export const S_Subtitle_Welcome = styled.h2`
-  font-size: ${big};
-  color: ${brightest};
+export const S_Subtitle_Welcome = styled(S_Title_Welcome)`
+  font-size: ${bigger};
   font-weight: 400;
-  letter-spacing: 5px;
-  text-align: center;
-  vertical-align: text-bottom;
+  letter-spacing: 10.5px;
 `;
 
 export const S_ButtonBox_Welcome = styled.div`
   display: flex;
-  gap: 40px;
+  position: relative;
+  justify-content: space-between;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 60px;
+  width: 250px;
 `;
 
 export const S_Button = styled.button`
