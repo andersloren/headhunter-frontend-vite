@@ -11,9 +11,9 @@ import {
   // S_Check,
   // S_EmailIsNotAvailable,
   // S_SignUpFeedbackBox,
-  // S_InputFeedbackBox,
-  // S_InputFeedback,
-  // S_CheckSvg,
+  S_InputFeedbackBox,
+  S_InputFeedback,
+  S_CheckSvg,
 } from "./styledComponents/styledLoginSignup.jsx";
 import { S_Button } from "./styledComponents/styledFront.jsx";
 
@@ -151,6 +151,29 @@ export default function SignUp({
   return (
     <>
       <S_FormBox>
+        <S_InputFeedbackBox>
+          <S_InputFeedback>
+            {emailStatus < 1 ? (
+              emailStatus < 0 ? (
+                "Email is already registered"
+              ) : (
+                ""
+              )
+            ) : (
+              <S_CheckSvg src="/google-icons/check.svg" alt="check" />
+            )}
+          </S_InputFeedback>
+          <S_InputFeedback>
+            {username && (
+              <S_CheckSvg src="/google-icons/check.svg" alt="check" />
+            )}
+          </S_InputFeedback>
+          <S_InputFeedback>
+            {isPasswordOk && (
+              <S_CheckSvg src="/google-icons/check.svg" alt="check" />
+            )}
+          </S_InputFeedback>
+        </S_InputFeedbackBox>
         <form onSubmit={handleClick}>
           {/**
            * Input field for email
@@ -179,6 +202,10 @@ export default function SignUp({
             value={password}
             onChange={(e) => handlePasswordChange(e.target.value)}
           />
+
+          {/**
+           * Green check sign that appears if isPasswordOk is true, which it will be only if the password meets the regex criteria.
+           */}
           {/**
            * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
            */}

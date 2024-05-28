@@ -1,5 +1,5 @@
 // Libraris, functions, etc
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { authorize } from "../security/authorize.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -44,19 +44,6 @@ export default function Login({ setIsAuthorized }) {
    * @async
    * @param {Event} e - Email and password from the input forms that used for authentication in backend.
    */
-
-  console.log("Login, email", email);
-  console.log("Login, password", password);
-  console.log("Login, loginError", loginError);
-
-  useEffect(() => {
-    if (loginError) setEmail("");
-    setPassword("");
-  }, [loginError]);
-
-  useEffect(() => {
-    if (email != "" || password != "") setLoginError(false);
-  }, [email, password]);
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -109,7 +96,7 @@ export default function Login({ setIsAuthorized }) {
   }
 
   return (
-    <>
+    <div style={{ display: "flex" }}>
       <S_FormBox>
         <form onSubmit={handleClick}>
           {/**
@@ -141,8 +128,8 @@ export default function Login({ setIsAuthorized }) {
             </S_ButtonBox_Submit>
           )}
         </form>
-        {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
       </S_FormBox>
-    </>
+      {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
+    </div>
   );
 }

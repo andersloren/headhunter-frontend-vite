@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 // Styled components
 import {
-  S_MainContainer,
   S_HeadingBox_Welcome,
   S_Title_Welcome,
   S_Subtitle_Welcome,
@@ -64,55 +63,53 @@ const Welcome = ({ setIsAuthorized }) => {
       {/**
        * App title
        */}
-      <S_MainContainer>
-        <S_HeadingBox_Welcome>
-          <S_Title_Welcome>Headhunter</S_Title_Welcome>
-          <S_Subtitle_Welcome>Intelligent recruiting</S_Subtitle_Welcome>
-          {/**
-           * Open AI badge, must follow brand guidelines. Read more here: https://openai.com/brand
-           */}
-          <S_OpenAI_Box>
-            <S_OpenAI_Badge
-              src="../static/powered-by-openai-badge-outlined-on-dark.svg"
-              alt="Open AI Logo"
-            />
-          </S_OpenAI_Box>
-        </S_HeadingBox_Welcome>
-
+      <S_HeadingBox_Welcome>
+        <S_Title_Welcome>Headhunter</S_Title_Welcome>
+        <S_Subtitle_Welcome>Intelligent recruiting</S_Subtitle_Welcome>
         {/**
-         * Buttons for toggle the sign up component and the login component respectively.
+         * Open AI badge, must follow brand guidelines. Read more here: https://openai.com/brand
          */}
-        <S_ButtonBox_Welcome>
-          <S_Button
-            key={1}
-            onClick={() => handleSignUp()}
-            $active={signUpVisible ? "true" : "false"}
-          >
-            Sign Up
-          </S_Button>
-          <S_Button
-            key={2}
-            onClick={() => handleLogin()}
-            $active={loginVisible ? "true" : "false"}
-          >
-            Log In
-          </S_Button>
-        </S_ButtonBox_Welcome>
-        {/**
-         * Sign up component
-         */}
-        {signUpVisible && (
-          <SignUp
-            setLoginVisible={setLoginVisible}
-            setSignUpVisible={setSignUpVisible}
-            setHasSignedUp={setHasSignedUp}
+        <S_OpenAI_Box>
+          <S_OpenAI_Badge
+            src="../static/powered-by-openai-badge-outlined-on-dark.svg"
+            alt="Open AI Logo"
           />
-        )}
-        {/**
-         * Login component
-         */}
-        {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
-      </S_MainContainer>
+        </S_OpenAI_Box>
+      </S_HeadingBox_Welcome>
+
+      {/**
+       * Buttons for toggle the sign up component and the login component respectively.
+       */}
+      <S_ButtonBox_Welcome>
+        <S_Button
+          key={1}
+          onClick={() => handleSignUp()}
+          $active={signUpVisible ? "true" : "false"}
+        >
+          Sign Up
+        </S_Button>
+        <S_Button
+          key={2}
+          onClick={() => handleLogin()}
+          $active={loginVisible ? "true" : "false"}
+        >
+          Log In
+        </S_Button>
+      </S_ButtonBox_Welcome>
+      {/**
+       * Sign up component
+       */}
+      {signUpVisible && (
+        <SignUp
+          setLoginVisible={setLoginVisible}
+          setSignUpVisible={setSignUpVisible}
+          setHasSignedUp={setHasSignedUp}
+        />
+      )}
+      {/**
+       * Login component
+       */}
+      {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
     </>
   );
 };

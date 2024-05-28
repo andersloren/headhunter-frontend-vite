@@ -13,6 +13,6 @@ export const darkest = darken(baseColor, 0.75); // 75% darker
 
 export const biggest = "70px"; // Used for Title on Welcome, be cautious before you change this value
 export const bigger = "35px"; // Used for subtitle on Welcome, be cautious before you change this value
-export const big = "35px";
+export const big = "30px";
 export const medium = "20px";
 export const small = "12px";
