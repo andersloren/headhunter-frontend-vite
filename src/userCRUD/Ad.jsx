@@ -121,6 +121,7 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
                   setHtmlCode(ad.htmlCode);
                   setActiveAd(index);
                   setAdId(ad.id);
+                  setInstruction(instruction);
                 }}
                 $active={activeAd === index ? "true" : "false"}
               >
