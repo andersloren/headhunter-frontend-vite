@@ -136,7 +136,7 @@ export default function MyJobs() {
     }
   }
 
-  console.log("MyJobs, numberOfAds", numberOfAds);
+  // console.log("MyJobs, numberOfAds", numberOfAds);
 
   return (
     <>
