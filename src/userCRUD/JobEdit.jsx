@@ -12,15 +12,17 @@ import {
   S_Header,
   S_PreviewBox,
   S_FunctionalityButton_Box,
+} from "./styledComponents/styledUserGlobal.jsx";
+import {
   S_UpdateSvg,
   S_GenerateSvg,
-} from "./styledComponents/styledUserGlobal.jsx";
+  S_Decision_HtmlSvg,
+} from "./styledComponents/styledSvg.jsx";
 import {
   S_Title_Input,
   S_TextArea,
   S_Animation_Text,
   S_Animation_Rotate,
-  S_Decision_HtmlSvg,
   S_HourglassBottom,
 } from "./styledComponents/styledJobEdit.jsx";
 
@@ -131,8 +133,7 @@ export default function JobEdit({
         <S_Header>Format</S_Header>
         <S_FunctionalityButton_Box>
           <S_Decision_HtmlSvg
-            $active={true} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
-            src="/google-icons/html.svg"
+            $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
             alt="html"
           />
         </S_FunctionalityButton_Box>

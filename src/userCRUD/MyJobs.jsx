@@ -13,9 +13,9 @@ import {
   S_JobList_Job_Ad_Container,
   S_FunctionalityButton_Box,
   S_Header,
-  S_AddSvg,
-  S_DeleteSvg,
 } from "./styledComponents/styledUserGlobal.jsx";
+
+import { S_AddSvg, S_DeleteSvg } from "./styledComponents/styledSvg.jsx";
 
 import {
   S_Preview,
