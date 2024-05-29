@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { updateJob } from "./jobFunctions/updateJob.jsx";
 import { getJobById } from "./jobFunctions/getJobById.jsx";
 import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
-import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
 // Styled Components
 import { S_Main } from "../utils/styledGlobal.jsx";
@@ -65,9 +64,9 @@ export default function JobEdit({
    */
 
   useEffect(() => {
-    getJobById(jobId, setJob, setTitle, setDescription, setInstruction);
+    getJobById(jobId, setTitle, setDescription);
     handleAdCRUDSuccess();
-  }, [jobId]);
+  }, [jobId, handleAdCRUDSuccess]);
 
   useEffect(() => {}, []);
 
@@ -111,6 +110,9 @@ export default function JobEdit({
   function handleIsChange() {
     setIsChange(false);
   }
+
+  console.log("MyJobs, title", title);
+  console.log("MyJobs, description", description);
 
   return (
     <S_Main>

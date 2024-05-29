@@ -28,19 +28,6 @@ export const S_Title_Input = styled.input`
   font-size: ${medium};
 `;
 
-/**
- * Decision button constants
- */
-
-const decision_border = `1px solid ${brighter}`;
-const decision_border_radius = "10px";
-const decision_width = "75px";
-const decision_height = "50px";
-const decision_fill = `${brightest}`;
-const decision_hover_background_color = `${brightest}`;
-const decision_hover_fill = `${darker}`;
-const decision_hover_cursor = "pointer";
-
 export const S_TextArea = styled.textarea`
   margin-bottom: 10px;
   background-color: ${brightest};
