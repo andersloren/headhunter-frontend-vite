@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { findAllAdsByJobId } from "./adFunctions/findAllAdsByJobId";
 import { deleteAd } from "./adFunctions/deleteAd";
+import { downloadFile } from "./adFunctions/downloadFile.jsx";
 
 // Styled Components
 import { S_Main } from "../utils/styledGlobal";
@@ -12,7 +13,7 @@ import {
   S_JobList_Job_Ad_Container,
   S_PreviewBox,
 } from "./styledComponents/styledUserGlobal";
-import { S_DeleteSvg } from "./styledComponents/styledSvg.jsx";
+import { S_DeleteSvg, S_DownloadSvg } from "./styledComponents/styledSvg.jsx";
 import {
   S_TopButtons_Box,
   S_Buttons_Edit,
@@ -140,10 +141,13 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
           {
             // Delete Ad button
           }
-          <S_DeleteSvg
-            onClick={() => handleDeleteAd(adId)}
-            src="/google-icons/delete.svg"
-            alt="delete"
+          <S_DeleteSvg onClick={() => handleDeleteAd(adId)} alt="delete" />
+          {
+            // Download Ad button
+          }
+          <S_DownloadSvg
+            onClick={() => downloadFile(htmlCode)}
+            alt="download html file"
           />
           {/* </S_FunctionalityButton> */}
         </S_FunctionalityButton_Box>

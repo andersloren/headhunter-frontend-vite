@@ -7,6 +7,8 @@ import HtmlSvg from "../../utils/svg-components/HtmlSvg.jsx";
 import HourglassTopSvg from "../../utils/svg-components/HourglassTopSvg.jsx";
 import HourglassBottomSvg from "../../utils/svg-components/HourglassBottomSvg.jsx";
 
+import DownloadSvg from "../../utils/svg-components/DownloadSvg.jsx";
+
 import PinSvg from "../../utils/icons/pin.svg";
 import UnpinSvg from "../../utils/icons/unpin.svg";
 import { styled } from "styled-components";
@@ -118,6 +120,23 @@ export const S_UnpinSvg = styled(UnpinSvg)`
 `;
 
 export const S_Decision_HtmlSvg = styled(HtmlSvg)`
+  border: ${border};
+  border-radius: ${decision_border_radius};
+  width: ${decision_width};
+  height: ${decision_height};
+  fill: ${fill};
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
+  fill: ${(props) =>
+    props.$active === "true" ? `${darkest}` : `${brightest}`};
+  &:hover {
+    background-color: ${hover_background_color};
+    fill: ${hover_fill};
+    cursor: ${hover_cursor};
+  }
+`;
+
+export const S_DownloadSvg = styled(DownloadSvg)`
   border: ${border};
   border-radius: ${decision_border_radius};
   width: ${decision_width};
