@@ -39,7 +39,7 @@ export const S_JobList = styled.div`
   padding: 5px;
   border-radius: ${border_radius};
   background-color: ${(props) =>
-    props.$active === "true" ? `${brighter}` : `${neutral}`};
+    props.$active === "true" ? `${brightest}` : `${bright}`};
   color: ${(props) => (props.$active === "true" ? `${darkest}` : `${darkest}`)};
   width: ${(props) =>
     props.$active === "true" ? `${expanded_joblist}` : `${compact_joblist}`};

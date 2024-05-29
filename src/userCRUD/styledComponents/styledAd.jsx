@@ -26,6 +26,7 @@ export const S_IframeAndButtons_Container = styled.div`
 `;
 
 export const S_TopButtons_Box = styled.div`
+  display: flex;
   height: ${topButtonsHeight};
 `;
 
@@ -33,13 +34,15 @@ export const S_Buttons_Edit = styled.button`
   height: ${topButtonsHeight};
   font-size: ${medium};
   width: auto;
-  background-color: ${(props) =>
-    // props.$active === "true" ? `${bright}` : `${dark}`};
-    props.$active === "true" ? `${brighter}` : `${neutral}`};
-  line-height: ${(props) => (props.$active === "true" ? "3rem" : "")};
   border-radius: ${border_radius};
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
+  fill: ${(props) =>
+    props.$active === "true" ? `${darkest}` : `${brightest}`};
   &:hover {
-    background: radial-gradient(at 50% 50%, ${bright}, ${darker});
+    background-color: ${brightest};
+    fill: ${darker};
+    cursor: "pointer";
   }
 `;
 

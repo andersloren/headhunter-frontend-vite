@@ -41,22 +41,6 @@ const decision_hover_background_color = `${brightest}`;
 const decision_hover_fill = `${darker}`;
 const decision_hover_cursor = "pointer";
 
-export const S_Decision_HtmlSvg = styled(HtmlSvg)`
-  border: ${decision_border};
-  border-radius: ${decision_border_radius};
-  width: ${decision_width};
-  height: ${decision_height};
-  fill: ${decision_fill};
-  &:hover {
-    background-color: ${decision_hover_background_color};
-    fill: ${decision_hover_fill};
-    cursor: ${decision_hover_cursor};
-  }
-  background-color: ${(props) =>
-    props.$active === "true" ? `${brightest}` : `${neutral}`};
-  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
-`;
-
 export const S_TextArea = styled.textarea`
   margin-bottom: 10px;
   background-color: ${brightest};

@@ -10,9 +10,9 @@ import {
   S_FunctionalityButton_Box,
   S_Header,
   S_JobList_Job_Ad_Container,
-  S_DeleteSvg,
   S_PreviewBox,
 } from "./styledComponents/styledUserGlobal";
+import { S_DeleteSvg } from "./styledComponents/styledSvg.jsx";
 import {
   S_TopButtons_Box,
   S_Buttons_Edit,
