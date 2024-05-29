@@ -42,7 +42,7 @@ export const S_Buttons_Edit = styled.button`
   &:hover {
     background-color: ${brightest};
     fill: ${darker};
-    cursor: ${hover_cursor};
+    cursor: "pointer";
   }
 `;
 
