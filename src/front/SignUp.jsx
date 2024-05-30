@@ -106,6 +106,7 @@ export default function SignUp({
   console.log("SignUp isEmailOk:", isEmailOk);
   console.log("SignUp emailStatus:", emailStatus);
   console.log("Signup Username: ", username);
+  console.log("Signup Password: ", password);
   console.log("SignUp isPasswordOk ", isPasswordOk);
 
   useEffect(() => {
