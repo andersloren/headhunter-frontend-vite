@@ -6,7 +6,7 @@ A quick demo of what Headhunter does.
 
 Ps. Generating the ad takes about 10 seconds
 
-![demo](demo/quick_demo_core_functions.gif)
+![demo](demo/headhunter_quick_demo.gif)
 
 ## About
 
