@@ -42,7 +42,12 @@ export const S_FunctionalityButton = styled.button`
 export const S_JobList_Job_Ad_Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  margin-top: 20px;
+  gap: 20px;
+`;
+
+export const S_JobEdit_Ad_Container = styled.div`
+  display: flex;
   gap: 20px;
 `;
 

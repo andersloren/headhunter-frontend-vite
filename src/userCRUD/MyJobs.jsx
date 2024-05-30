@@ -13,6 +13,7 @@ import {
   S_JobList_Job_Ad_Container,
   S_FunctionalityButton_Box,
   S_Header,
+  S_JobEdit_Ad_Container,
 } from "./styledComponents/styledUserGlobal.jsx";
 
 import { S_AddSvg, S_DeleteSvg } from "./styledComponents/styledSvg.jsx";
@@ -22,7 +23,6 @@ import {
   S_JobList_Container,
   S_JobList,
 } from "./styledComponents/styledMyJobs.jsx";
-import { S_WindowSplit } from "../sidebar/styledComponents/styledSidebar.jsx";
 import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
 /**
@@ -136,71 +136,67 @@ export default function MyJobs() {
     }
   }
 
-  // console.log("MyJobs, numberOfAds", numberOfAds);
-
   return (
     <>
-      <S_WindowSplit>
-        <S_JobList_Job_Ad_Container>
-          {
-            // Joblist
-          }
-
-          <S_Header>Jobs</S_Header>
-          <S_JobList_Container>
-            {jobList.map((job) => (
-              <S_JobList
-                key={job.id}
-                onClick={() => {
-                  isChange
-                    ? handleUnsavedChanges(job.id)
-                    : handlePreview(job.id);
-                }}
-                /**
-                 * The selected job is highlighted in the list of jobs in the job UI.
-                 */
-                $active={jobId === job.id ? "true" : "false"}
-              >
-                {/**
-                 * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
-                 */}
-                {job.title.length > 20
-                  ? job.title.slice(0, 20) + "..."
-                  : job.title}
-              </S_JobList>
-            ))}
-          </S_JobList_Container>
-
-          <S_FunctionalityButton_Box>
-            {
-              // Add New Job button
-            }
-            <S_AddSvg
-              onClick={handleAddJob}
-              src="/google-icons/add.svg"
-              alt="add"
-            />
-            {
-              // Delete Job button
-            }
-            <S_DeleteSvg
-              onClick={() => handleDeleteJob(jobId)}
-              src="/google-icons/delete.svg"
-              alt="delete"
-            />
-          </S_FunctionalityButton_Box>
-        </S_JobList_Job_Ad_Container>
+      <S_JobList_Job_Ad_Container>
         {
-          // Job and Ad components
+          // Joblist
         }
-        <>
-          {/* TODO - See if it's possible to remove S_Preview */}
-          <S_Preview>
-            {/**
-             * Only if a job is selected will the job UI show.
-             */}
-            {jobVisible && (
-              <>
+
+        <S_Header>Jobs</S_Header>
+        <S_JobList_Container>
+          {jobList.map((job) => (
+            <S_JobList
+              key={job.id}
+              onClick={() => {
+                isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
+              }}
+              /**
+               * The selected job is highlighted in the list of jobs in the job UI.
+               */
+              $active={jobId === job.id ? "true" : "false"}
+            >
+              {/**
+               * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
+               */}
+              {job.title.length > 20
+                ? job.title.slice(0, 20) + "..."
+                : job.title}
+            </S_JobList>
+          ))}
+        </S_JobList_Container>
+
+        <S_FunctionalityButton_Box>
+          {
+            // Add New Job button
+          }
+          <S_AddSvg
+            onClick={handleAddJob}
+            src="/google-icons/add.svg"
+            alt="add"
+          />
+          {
+            // Delete Job button
+          }
+          <S_DeleteSvg
+            onClick={() => handleDeleteJob(jobId)}
+            src="/google-icons/delete.svg"
+            alt="delete"
+          />
+        </S_FunctionalityButton_Box>
+      </S_JobList_Job_Ad_Container>
+      {
+        // Job and Ad components
+      }
+      <>
+        {/* TODO - See if it's possible to remove S_Preview */}
+        <S_Preview>
+          {/**
+           * Only if a job is selected will the job UI show.
+           */}
+          {jobVisible && (
+            <>
+              <S_JobEdit_Ad_Container>
                 <JobEdit
                   key={jobId}
                   handleJobCRUDSuccess={handleJobCRUDSuccess}
@@ -220,11 +216,11 @@ export default function MyJobs() {
                     handleAdCRUDSuccess={handleAdCRUDSuccess}
                   />
                 )}
-              </>
-            )}
-          </S_Preview>
-        </>
-      </S_WindowSplit>
+              </S_JobEdit_Ad_Container>
+            </>
+          )}
+        </S_Preview>
+      </>
     </>
   );
 }

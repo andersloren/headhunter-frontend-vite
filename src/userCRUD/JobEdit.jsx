@@ -48,14 +48,14 @@ export default function JobEdit({
   handleAdCRUDSuccess,
 }) {
   // States related to functionality
-  const [job, setJob] = useState({}); // TODO - Either use it or remove it.
-  const [active, setActive] = useState(1);
   const [isGenerating, setIsGenerating] = useState(false);
 
   // States related to job
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [instruction, setInstruction] = useState(defaultInstructions);
+  const [instruction] = useState(defaultInstructionsEnglish);
+
+  console.log("JobEdit, isGenerating", isGenerating);
 
   /**
    * If jobId changes, that new job is being fetched from the backend.
@@ -113,6 +113,7 @@ export default function JobEdit({
 
   console.log("MyJobs, title", title);
   console.log("MyJobs, description", description);
+  console.log("MyJobs, instruction", instruction);
 
   return (
     <S_Main>
@@ -176,7 +177,6 @@ export default function JobEdit({
             alt="generate ad"
             $blur={isGenerating === true ? "true" : "false"}
             onClick={() => {
-              setIsGenerating(true);
               handleUpdate();
               handleGenerate(jobId);
             }}
@@ -196,7 +196,9 @@ export default function JobEdit({
             >
               <S_HourglassBottom />
             </S_Animation_Rotate>
-            <S_Animation_Text>Generating ad...</S_Animation_Text>
+            <S_Animation_Text>
+              Ad is being generated. Please wait...
+            </S_Animation_Text>
           </>
         )}
         {
@@ -214,8 +216,14 @@ export default function JobEdit({
   );
 }
 
-const defaultInstructions =
+const defaultInstructionsSvenska =
   "Du ska skapa en jobbannons på svenska i HTML-format med en professionell CSS styling. För att omarbeta en arbetsbeskrivning till en jobbannons, börja med att läsa igenom arbetsbeskrivningen noggrant för att förstå de huvudsakliga arbetsuppgifterna, nödvändiga kompetenser och kvalifikationer. Sedan, översätt denna information till en mer engagerande och tilltalande form som lockar potentiella kandidater. Det är viktigt att framhäva företagets kultur och de unika fördelarna med att arbeta där. Börja annonsen med en kort introduktion till företaget, följt av en översikt av jobbrollen. Använd en positiv och inkluderande ton, och undvik jargong. Gör klart vilka huvudsakliga ansvarsområden rollen innefattar och vilka färdigheter och erfarenheter som är önskvärda. Inkludera även information om eventuella förmåner eller möjligheter till personlig och professionell utveckling. Avsluta med hur man ansöker till tjänsten, inklusive viktiga datum och kontaktinformation. Kom ihåg att vara tydlig och koncis för att hålla potentiella kandidaters uppmärksamhet. En välformulerad jobbannons ska inte bara informera utan också inspirera och locka rätt talanger till att söka.";
 
-const defaultDescription =
+const defaultInstructionsEnglish =
+  "You are to create a job advertisement in Swedish in HTML format with professional CSS styling. To convert a job description into a job advertisement, start by reading the job description carefully to understand the main duties, necessary skills, and qualifications. Then, translate this information into a more engaging and appealing form that attracts potential candidates. It is important to highlight the company's culture and the unique benefits of working there. Begin the advertisement with a short introduction to the company, followed by an overview of the job role. Use a positive and inclusive tone, and avoid jargon. Clearly state the main responsibilities of the role and the skills and experiences that are desirable. Also include information about any benefits or opportunities for personal and professional development. Conclude with how to apply for the position, including important dates and contact information. Remember to be clear and concise to maintain the attention of potential candidates. A well-written job advertisement should not only inform but also inspire and attract the right talents to apply.";
+
+const defaultDescriptionSvenska =
   "Tjänsten omfattar en utvecklare som behärskar frontend, backend och databashantering. I frontend används React för att skapa en interaktiv web applikation. Användaren lotsas runt med hjälp av React Router. Även DOMPurify, Bootstrap 5, CSS och Styled Components används för att lösa olika utmaningar. I backend används Java, Spring Boot, Spring Security och en koppling mot ett AI API. Databasen hanteras av MySQL. Azure används som molnplattform för projektet. Utvecklaren arbetar både indivuduellt och i tillsammans med teamet. Nya libraries och frameworks kan komma att introduceras. Projektet beräknas ha passerat utvecklingsfasen om 2 år.";
+
+const defaultDescriptionEnglish =
+  "The position involves a developer proficient in frontend, backend, and database management. For the frontend, React is used to create an interactive web application. Users are navigated using React Router. Additionally, DOMPurify, Bootstrap 5, CSS, and Styled Components are utilized to address various challenges. The backend involves Java, Spring Boot, Spring Security, and a connection to an AI API. The database is managed by MySQL. Azure is used as the cloud platform for the project. The developer works both individually and collaboratively with the team. New libraries and frameworks may be introduced. The project is expected to have passed the development phase in 2 years.";

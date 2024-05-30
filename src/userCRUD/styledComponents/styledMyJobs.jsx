@@ -15,7 +15,7 @@ import {
 
 const border_radius = "5px";
 
-const compact_joblist = "150px";
+const compact_joblist = "auto";
 const expanded_joblist = "auto";
 
 export const S_JobList_Container = styled.div`

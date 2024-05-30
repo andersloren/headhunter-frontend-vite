@@ -23,7 +23,7 @@ const border_preview_border_radius = "5px 0px 0px 5px";
 export const S_Title_Input = styled.input`
   border-radius: ${border_radius};
   padding: 9px;
-  width: 100%;
+  width: auto;
   background-color: ${brightest};
   font-size: ${medium};
 `;
