@@ -61,16 +61,7 @@ export default function Sidebar({ setIsAuthorized }) {
                 setIsActive("2");
                 setIsAccountVisible(false);
                 setIsAdminVisible(true);
-                setIsJobsVisible(false);
-              }}
-            />
-            <S_ListSvg
-              $active={isActive === "3" ? "true" : "false"}
-              onClick={() => {
-                setIsActive("3");
-                setIsAccountVisible(false);
-                setIsAdminVisible(false);
-                setIsJobsVisible(true);
+                // setIsJobsVisible(false);
               }}
             />
           </>
