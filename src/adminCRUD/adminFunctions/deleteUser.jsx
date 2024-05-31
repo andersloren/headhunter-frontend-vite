@@ -10,7 +10,7 @@ import axios from "axios";
  * @param {String} email - The email of the user to be deleted.
  */
 
-export async function deleteUser(email) {
+export async function deleteUser(email, handleUserCRUDSuccess) {
   const url = `http://localhost:8080/api/v1/users/delete/${email}`;
 
   try {
@@ -21,6 +21,7 @@ export async function deleteUser(email) {
       },
     });
     console.log("User Delete Success");
+    handleUserCRUDSuccess();
   } catch (error) {
     console.error("Error delete user by email", error);
   }

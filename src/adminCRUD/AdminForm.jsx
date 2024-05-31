@@ -1,15 +1,15 @@
 // Functions, libraries, etc
 import { updateUser } from "./adminFunctions/updateUser";
-import { findUserByEmail } from "./adminFunctions/findUserByEmail";
+import { getUserByEmail } from "./adminFunctions/getUserByEmail";
 
 // Styled components
 import {
   S_Form_FloatingDiv,
-  S_Form_Header,
-  S_Form_Button,
   S_Form_Input,
-  S_Form_Button_Box,
+  S_Form_Select,
 } from "./styledComponents/styledAdminForm";
+import { S_UpdateSvg, S_CancelSvg } from "../utils/styledSVG";
+import { S_FunctionalityButton_Box, S_Header } from "../utils/styledGlobal";
 import { useEffect, useState } from "react";
 
 /**
@@ -33,14 +33,21 @@ export default function AdminForm({
 }) {
   const [username, setUsername] = useState("");
   const [roles, setRoles] = useState("");
+  const [numberOfJobs, setNumberOfJobs] = useState("");
 
   /**
    * When the component mounts, findUserByEmail searches the user object and sets the current username and roles.
    */
 
   useEffect(() => {
-    findUserByEmail(email, setUsername, setRoles);
+    // findUserByEmail(email, setUsername, setRoles);
+    getUserByEmail(email, setUsername, setRoles, setNumberOfJobs);
   }, [email]);
+
+  console.log("AdminForm, email", email);
+  console.log("AdminForm, username", username);
+  console.log("AdminForm, roles", roles);
+  console.log("AdminForm, number of jobs", numberOfJobs);
 
   /**
    * When the save button is pressed, this function sends a request to the backend to save
@@ -55,6 +62,10 @@ export default function AdminForm({
     updateUser(email, username, roles, handleUserCRUDSuccess, setIsBlur);
   }
 
+  const handleRoles = (e) => {
+    setRoles(e.target.value);
+  };
+
   return (
     <>
       <S_Form_FloatingDiv
@@ -64,44 +75,45 @@ export default function AdminForm({
         {/**
          * Shows the email of the user being updated. The email cannot be changed.
          */}
-        <S_Form_Header>Update User</S_Form_Header>
-        Email
-        <S_Form_Input value={email} readOnly></S_Form_Input>
+        <S_Header>Update User</S_Header>
+        <strong>Email</strong>
+        <S_Form_Input value={email} readOnly $readOnly={"true"}></S_Form_Input>
         {/**
          * Shows the username of the user being updated. The username can be changed.
          */}
-        Username
+        <strong>Username</strong>
         <S_Form_Input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        ></S_Form_Input>
+        />
         {/**
          * Shows the roles of the user being updated. The roles can be changed.
          */}
-        Roles
-        <S_Form_Input
-          type="text"
+        <strong>Roles</strong>
+
+        <S_Form_Select
+          name="roles"
+          id="roles-select"
           value={roles}
-          onChange={(e) => setRoles(e.target.value)}
-        ></S_Form_Input>
-        <S_Form_Button_Box>
-          {/**
-           * The save button for updating the user object.
-           */}
-          <S_Form_Button
+          onChange={handleRoles}
+        >
+          <option value="admin">admin</option>
+          <option value="user">user</option>
+        </S_Form_Select>
+
+        <strong>Number of Jobs</strong>
+        <S_Form_Input value={numberOfJobs} readOnly $readOnly={"true"} />
+        <S_FunctionalityButton_Box>
+          <S_UpdateSvg
             onClick={() => handleUpdateUser(username, roles, email)}
             $right={"true"}
-          >
-            💾
-          </S_Form_Button>
-          {/**
-           * The back button for returning to the parent component without updating the user object.
-           */}
-          <S_Form_Button onClick={() => setIsBlur(false)} $left={"true"}>
-            🔙
-          </S_Form_Button>
-        </S_Form_Button_Box>
+          ></S_UpdateSvg>
+          <S_CancelSvg
+            onClick={() => setIsBlur(false)}
+            $left={"true"}
+          ></S_CancelSvg>
+        </S_FunctionalityButton_Box>
       </S_Form_FloatingDiv>
     </>
   );

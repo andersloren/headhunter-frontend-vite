@@ -1,6 +1,5 @@
 import { styled, keyframes } from "styled-components";
 
-import HtmlSvg from "../../utils/svg-components/HtmlSvg.jsx";
 import HourglassTopSvg from "../../utils/svg-components/HourglassTopSvg.jsx";
 import HourglassBottomSvg from "../../utils/svg-components/HourglassBottomSvg.jsx";
 import {
@@ -64,24 +63,6 @@ export const S_Animation_Text = styled.div`
   color: ${brightest};
 `;
 
-const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(90deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(270deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
 export const S_Animation_Rotate = styled.div`
   display: flex;
   align-items: center;
@@ -89,24 +70,4 @@ export const S_Animation_Rotate = styled.div`
   margin-top: 30px;
   right: 50%;
   font-size: 50px;
-`;
-
-export const S_HourglassBottom = styled(HourglassBottomSvg)`
-  animation: ${rotate} 5s linear infinite;
-  height: 70px;
-  width: 70px;
-  fill: ${brightest};
-`;
-
-export const S_HourglassTop = styled(HourglassTopSvg)`
-  border: 1px solid ${brighter};
-  border-radius: 5px;
-  width: 50px;
-  height: 50px;
-  fill: ${brightest};
-  &:hover {
-    background-color: ${brightest};
-    fill: ${darker};
-    cursor: pointer;
-  }
 `;

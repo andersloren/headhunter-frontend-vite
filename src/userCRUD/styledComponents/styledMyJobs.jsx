@@ -23,12 +23,6 @@ export const S_JobList_Container = styled.div`
   flex-direction: column;
 `;
 
-// export const S_JobList_Heading_MyJobs = styled.div`
-//   font-size: 30px;
-//   padding-bottom: 10px;
-//   font-weight: bold;
-// `;
-
 export const S_JobList = styled.div`
   font-size: ${medium};
   &:hover {
@@ -48,6 +42,6 @@ export const S_JobList = styled.div`
 // All Preview
 export const S_Preview = styled.div`
   /* /* margin-top: 10px; */
-  display: flex; */
+  display: flex;
   /* width: 80%; */
 `;

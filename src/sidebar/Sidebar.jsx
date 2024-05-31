@@ -2,16 +2,19 @@
 
 import { useEffect, useState } from "react";
 import { extractRolesFromToken } from "../security/token/extractRolesFromToken";
+
 import {
+  S_HeadhunterLogoBox,
   S_WindowSplit,
   S_SidebarBox,
-  S_HeadhunterLogoBox,
+} from "./styledComponents/styledSidebar.jsx";
+import {
   S_LogoutSvg,
   S_AdminSvg,
   S_AccountSvg,
   S_ListSvg,
   S_HeadhunterSvg,
-} from "./styledComponents/styledSidebar";
+} from "../utils/styledSVG.jsx";
 
 import MyJobs from "../userCRUD/MyJobs";
 import Admin from "../adminCRUD/Admin";
@@ -61,16 +64,7 @@ export default function Sidebar({ setIsAuthorized }) {
                 setIsActive("2");
                 setIsAccountVisible(false);
                 setIsAdminVisible(true);
-                setIsJobsVisible(false);
-              }}
-            />
-            <S_ListSvg
-              $active={isActive === "3" ? "true" : "false"}
-              onClick={() => {
-                setIsActive("3");
-                setIsAccountVisible(false);
-                setIsAdminVisible(false);
-                setIsJobsVisible(true);
+                // setIsJobsVisible(false);
               }}
             />
           </>
