@@ -19,7 +19,7 @@ import { extractUsernameFromToken } from "../security/token/extractUsernameFromT
  * @param {function} setPassword - When the component loads, the password should immediately be retrieved from the database.
  */
 
-export default function Account() {
+export default function UserInfo() {
   const [username] = useState(extractUsernameFromToken);
   const [email] = useState(extractEmailFromToken);
 
