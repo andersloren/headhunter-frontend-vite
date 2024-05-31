@@ -13,14 +13,14 @@ import {
   small,
 } from "../../utils/styledComponentsConstants";
 
-// Border radius for small buttons.
-const border_radius_functionality = "5px";
-
 /**
  * Box that creates margin for the child elements to S_Main
  */
 export const S_User_Box = styled.div`
+  display: flex;
+  flex-direction: column;
   position: relative;
+  gap: 20px;
   margin-top: 50px;
   left: 100px;
 `;
@@ -30,32 +30,24 @@ export const S_User_Box = styled.div`
  */
 export const S_Userlist_Table = styled.table`
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
-  left: 10%;
-`;
-
-export const S_UserList_Row = styled.tr`
-  margin-top: 30px;
+  border-spacing: 0px 0rem;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const S_th = styled.th`
   width: auto;
   padding-right: 100px;
+  color: ${darker};
+  font-size: ${medium};
 `;
 
-export const S_Userlist_Data = styled.td``;
+export const S_UserList_Row = styled.tr`
+  background-color: ${(props) =>
+    props.$even === "true" ? `${dark}` : `${bright}`};
+`;
+
+export const S_Userlist_Data = styled.td`
+  color: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  font-weight: bold;
+`;
 export const S_Button_Box = styled.div``;
-
-/**
- * Update and Delete buttons for the user table
- */
-export const S_Table_Button = styled.button`
-  font-size: ${small};
-  color: ${bright};
-  height: 35px;
-  width: 35px;
-  border-radius: ${border_radius_functionality};
-  background-color: ${bright};
-  &:hover {
-    background: radial-gradient(at 50% 50%, ${bright}, ${dark});
-  }
-`;

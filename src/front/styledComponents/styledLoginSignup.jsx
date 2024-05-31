@@ -1,6 +1,4 @@
 import styled from "styled-components";
-// import { CheckSvg } from "src/utils/icons/check.svg";
-import CheckSvg from "../../utils/svg-components/CheckSvg";
 
 import {
   brightest,
@@ -19,7 +17,6 @@ import {
 
 const border_radius = "15px";
 const inputfield_width = 300;
-// const inputfield_translateX = (inputfield_width / 2) * -1;
 
 export const S_FormBox = styled.div`
   display: flex;
@@ -55,45 +52,3 @@ export const S_LoginError = styled.div`
   font-weight: bold;
   justify-content: center;
 `;
-
-// export const S_InputFeedbackBox = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// export const S_InputFeedback = styled.div`
-//   position: absolute;
-//   height: 58px;
-//   right: ${inputfield_width};
-//   margin: 0px auto 15px 0px;
-//   color: ${brightest};
-// `;
-
-// export const S_CheckSvg = styled(CheckSvg)`
-//   width: 100%;
-//   height: 100%;
-//   /* margin: 0px auto 15px 0px; */
-//   fill: ${brightest};
-// `;
-
-// export const S_EmailIsNotAvailable = styled.div`
-//   display: flex;
-//   align-items: center;
-//   position: absolute;
-//   height: 50px;
-//   width: 400px;
-//   transform: translateY(10%);
-//   margin-left: 10px;
-//   font-size: ${medium};
-//   color: ${brightest};
-// `;
-
-// export const S_Check = styled.div`
-//   display: flex;
-//   position: absolute;
-//   align-self: center;
-//   transform: translateY(10%);
-//   margin-left: 10px;
-//   font-size: 40px;
-//   color: ${brightest};
-// `;

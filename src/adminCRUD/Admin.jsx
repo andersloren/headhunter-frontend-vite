@@ -4,15 +4,16 @@ import { deleteUser } from "./adminFunctions/deleteUser";
 import { findAllUsers } from "./adminFunctions/findAllUsers";
 
 // Styled components
-import { S_Main, S_HeadingBox, S_Title } from "../utils/styledGlobal";
+import { S_Header, S_FunctionalityButton_Box } from "../utils/styledGlobal.jsx";
 import {
   S_Userlist_Table,
   S_UserList_Row,
   S_Userlist_Data,
   S_th,
-  S_Table_Button,
   S_User_Box,
 } from "./styledComponents/styledAdmin";
+import { S_EditSvg, S_DeleteSvg } from "../utils/styledSVG.jsx";
+
 import AdminForm from "./AdminForm";
 
 /**
@@ -50,8 +51,10 @@ export default function Admin() {
   }, [refreshUserTable]);
 
   function handleDelete(email) {
-    deleteUser(email);
+    deleteUser(email, handleUserCRUDSuccess);
   }
+
+  console.log(refreshUserTable);
 
   /**
    * If updating or deleting a user is successful, the handleUserCRUDSuccess is being toggled, which then triggers the useEffect aboce.
@@ -63,72 +66,71 @@ export default function Admin() {
 
   return (
     <>
-      <S_Main>
-        <S_User_Box>
-          <S_HeadingBox>
-            <S_Title>Admin</S_Title>
-          </S_HeadingBox>
-          <S_Userlist_Table $blur={isBlur === true ? "true" : "false"}>
-            <thead>
-              <S_UserList_Row>
-                <S_th>Functionality</S_th>
-                <S_th>Email</S_th>
-                <S_th>Username</S_th>
-                <S_th>Roles</S_th>
+      <S_User_Box>
+        <S_Header>Accounts</S_Header>
+        <S_Userlist_Table $blur={isBlur === true ? "true" : "false"}>
+          <thead>
+            <S_UserList_Row $background={"neutral"}>
+              <S_th>Functionality</S_th>
+              <S_th>Email</S_th>
+              <S_th>Username</S_th>
+              <S_th>Roles</S_th>
+            </S_UserList_Row>
+          </thead>
+          <tbody>
+            {/**
+             * The array of all users are mapped here.
+             */}
+            {userList.map((user, index) => (
+              <S_UserList_Row
+                key={index}
+                $even={index % 2 === 0 ? "true" : "false"}
+              >
+                {/**
+                 * Button for updating the user. Displays a child component and blurs the background.
+                 */}
+                <S_FunctionalityButton_Box $admin={"true"}>
+                  <S_EditSvg
+                    $even={index % 2 === 0 ? "true" : "false"}
+                    $admin={"true"}
+                    onClick={() => {
+                      if (!isBlur) {
+                        setIsBlur(true);
+                        setUserEmail(user.email);
+                      }
+                    }}
+                  />
+                  <S_DeleteSvg
+                    $even={index % 2 === 0 ? "true" : "false"}
+                    onClick={() => (isBlur ? "" : handleDelete(user.email))}
+                    $admin={"true"}
+                  />
+                </S_FunctionalityButton_Box>
+                <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
+                  {user.email}
+                </S_Userlist_Data>
+                <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
+                  {user.username}
+                </S_Userlist_Data>
+                <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
+                  {user.roles}
+                </S_Userlist_Data>
               </S_UserList_Row>
-            </thead>
-            <tbody>
-              {/**
-               * The array of all users are mapped here.
-               */}
-              {userList.map((user, index) => (
-                <S_UserList_Row key={index}>
-                  <S_Userlist_Data>
-                    {/**
-                     * Button for updating the user. Displays a child component and blurs the background.
-                     */}
-                    <S_Table_Button
-                      onClick={() => {
-                        if (!isBlur) {
-                          setIsBlur(true);
-                          setUserEmail(user.email);
-                        }
-                      }}
-                    >
-                      📝
-                    </S_Table_Button>
-                    {/**
-                   * Button for deleting the user.
-                   * 
-                   * TODO - Add functionality to this button so that it
-                    actually deletes the user!
-                   */}
-                    <S_Table_Button
-                      onClick={() => (isBlur ? "" : handleDelete(user.email))}
-                    >
-                      ❌
-                    </S_Table_Button>
-                  </S_Userlist_Data>
-                  <S_Userlist_Data>{user.email}</S_Userlist_Data>
-                  <S_Userlist_Data>{user.username}</S_Userlist_Data>
-                  <S_Userlist_Data>{user.roles}</S_Userlist_Data>
-                </S_UserList_Row>
-              ))}
-            </tbody>
-          </S_Userlist_Table>
-          {/**
-           * If the update button is being pressed, a new component show up on top and blurs the background.
-           */}
-          {isBlur && (
-            <AdminForm
-              email={userEmail}
-              isBlur={isBlur}
-              setIsBlur={setIsBlur}
-              handleUserCRUDSuccess={handleUserCRUDSuccess}
-            />
-          )}
-        </S_User_Box>
-      </S_Main>
+            ))}
+          </tbody>
+        </S_Userlist_Table>
+        {/**
+         * If the update button is being pressed, a new component show up on top and blurs the background.
+         */}
+        {isBlur && (
+          <AdminForm
+            email={userEmail}
+            isBlur={isBlur}
+            setIsBlur={setIsBlur}
+            handleUserCRUDSuccess={handleUserCRUDSuccess}
+          />
+        )}
+      </S_User_Box>
     </>
   );
 }

@@ -18,6 +18,9 @@ const border_radius_form = "15px";
 const margin_between_buttons = "20px";
 const border_radius_functionality = "5px";
 
+const border = `1px solid ${brighter}`;
+const border_radius = "15px";
+
 /**
  * Box that centers puts itself cenetered horizontally when the update button is clicked in the parent component.
  *
@@ -25,27 +28,16 @@ const border_radius_functionality = "5px";
  */
 export const S_Form_FloatingDiv = styled.div`
   display: flex;
+  position: absolute;
   flex-direction: column;
-  position: relative;
-  width: 20%;
-  font-size: ${medium};
-  z-index: 1;
-  top: 50%;
+  align-items: center;
+  gap: 20px;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -20%);
-  opacity: ${(props) => (props.$blur === "true" ? "1" : "0")};
   padding: 20px;
-  border: 4px solid;
-  border-color: ${neutral};
-  border-radius: ${border_radius_form};
-`;
-
-export const S_Form_Header = styled.div`
-  font-size: ${big};
-  padding-bottom: 10px;
-  font-weight: bold;
-  text-align: center;
-  color: ${bright};
+  border: ${border};
+  border-radius: ${border_radius};
+  background-color: ${dark};
 `;
 
 export const S_Form_Input = styled.input`
@@ -55,6 +47,17 @@ export const S_Form_Input = styled.input`
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: 12px;
+  color: ${(props) =>
+    props.$readOnly === "true" ? `${neutral}` : `${darkest}`};
+  font-weight: bold;
+`;
+
+export const S_Form_Select = styled.select`
+  color: ${darkest};
+  font-size: ${medium};
+  background: ${brighter};
+  padding: 5px;
+  border-radius: 15px;
 `;
 
 export const S_Form_Button_Box = styled.div`

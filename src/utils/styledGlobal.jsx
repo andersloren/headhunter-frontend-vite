@@ -13,7 +13,8 @@ import {
   small,
 } from "./styledComponentsConstants";
 
-const margin_left_from_screen = "30px";
+const width = "20px";
+const admin_width = "10px";
 
 // Main
 export const S_MainBase = styled.div`
@@ -28,17 +29,14 @@ export const S_Main = styled.div`
   background: ${neutral};
 `;
 
-// All Heading
-export const S_HeadingBox = styled.h1`
-  margin-bottom: 40px;
+export const S_Header = styled.div`
+  font-size: ${big};
+  color: ${brightest};
 `;
 
-export const S_Title = styled.div`
-  font-size: 35px;
-  font-weight: 400;
-  margin-left: ${margin_left_from_screen};
-  letter-spacing: 4px;
-  color: ${bright};
+export const S_FunctionalityButton_Box = styled.div`
+  display: flex;
+  gap: ${(props) => (props.$admin === "true" ? `${admin_width}` : `${width}`)};
 `;
 
 export const S_OpenAI_Box = styled.div`

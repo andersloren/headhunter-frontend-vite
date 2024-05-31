@@ -16,7 +16,7 @@ import {
   S_JobEdit_Ad_Container,
 } from "./styledComponents/styledUserGlobal.jsx";
 
-import { S_AddSvg, S_DeleteSvg } from "./styledComponents/styledSvg.jsx";
+import { S_AddSvg, S_DeleteSvg } from "../utils/styledSVG.jsx";
 
 import {
   S_Preview,
@@ -81,7 +81,7 @@ export default function MyJobs() {
    */
 
   function handleDeleteJob(jobId) {
-    if (window.confirm("Are you sure you want to delete this job ?")) {
+    if (window.confirm("Are you sure you want to delete this job?")) {
       deleteJob(jobId, handleJobCRUDSuccess);
       setJobVisible(false);
     } else {

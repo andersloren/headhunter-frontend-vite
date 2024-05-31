@@ -16,13 +16,13 @@ import {
   S_UpdateSvg,
   S_GenerateSvg,
   S_Decision_HtmlSvg,
-} from "./styledComponents/styledSvg.jsx";
+  S_HourglassBottom,
+} from "../utils/styledSVG.jsx";
 import {
   S_Title_Input,
   S_TextArea,
   S_Animation_Text,
   S_Animation_Rotate,
-  S_HourglassBottom,
 } from "./styledComponents/styledJobEdit.jsx";
 
 /**

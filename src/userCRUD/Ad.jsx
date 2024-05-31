@@ -7,13 +7,12 @@ import { downloadFile } from "./adFunctions/downloadFile.jsx";
 // Styled Components
 import { S_Main } from "../utils/styledGlobal";
 import {
-  // S_FunctionalityButton,
   S_FunctionalityButton_Box,
   S_Header,
   S_JobList_Job_Ad_Container,
   S_PreviewBox,
 } from "./styledComponents/styledUserGlobal";
-import { S_DeleteSvg, S_DownloadSvg } from "./styledComponents/styledSvg.jsx";
+import { S_DeleteSvg, S_DownloadSvg } from "../utils/styledSVG.jsx";
 import {
   S_TopButtons_Box,
   S_Buttons_Edit,
@@ -94,7 +93,7 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
    */
 
   function handleDeleteAd(adId) {
-    if (window.confirm("Are you sure you want to delete this ad ?")) {
+    if (window.confirm("Are you sure you want to delete this ad?")) {
       deleteAd(adId, handleAdCRUDSuccess);
     } else {
       console.log("User cancelled delete");
