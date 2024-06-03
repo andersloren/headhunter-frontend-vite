@@ -18,7 +18,7 @@ import {
 
 import MyJobs from "../userCRUD/MyJobs";
 import Admin from "../adminCRUD/Admin";
-import Account from "../userInfo/Account";
+import UserInfo from "../userInfo/UserInfo.jsx";
 
 // TODO: Add comments to this component
 
@@ -47,15 +47,6 @@ export default function Sidebar({ setIsAuthorized }) {
         <S_HeadhunterLogoBox>
           <S_HeadhunterSvg />
         </S_HeadhunterLogoBox>
-        <S_AccountSvg
-          $active={isActive === "1" ? "true" : "false"}
-          onClick={() => {
-            setIsActive("1");
-            setIsAccountVisible(true);
-            setIsAdminVisible(false);
-            setIsJobsVisible(false);
-          }}
-        />
         {roles.includes("admin") && (
           <>
             <S_AdminSvg
@@ -64,27 +55,37 @@ export default function Sidebar({ setIsAuthorized }) {
                 setIsActive("2");
                 setIsAccountVisible(false);
                 setIsAdminVisible(true);
-                // setIsJobsVisible(false);
               }}
             />
           </>
         )}
-        {roles.includes("user") && !roles.includes("admin") && (
-          <S_ListSvg
-            $active={isActive === "4" ? "true" : "false"}
-            onClick={() => {
-              setIsActive("4");
-              setIsAccountVisible(false);
-              setIsAdminVisible(false);
-              setIsJobsVisible(true);
-            }}
-          />
+        {roles.includes("user") && (
+          <>
+            <S_AccountSvg
+              $active={isActive === "1" ? "true" : "false"}
+              onClick={() => {
+                setIsActive("1");
+                setIsAccountVisible(true);
+                setIsAdminVisible(false);
+                setIsJobsVisible(false);
+              }}
+            />
+            <S_ListSvg
+              $active={isActive === "4" ? "true" : "false"}
+              onClick={() => {
+                setIsActive("4");
+                setIsAccountVisible(false);
+                setIsAdminVisible(false);
+                setIsJobsVisible(true);
+              }}
+            />
+          </>
         )}
         <S_LogoutSvg onClick={handleLogout} />
       </S_SidebarBox>
       {isAdminVisible && <Admin />}
       {isJobsVisible && <MyJobs />}
-      {isAccountVisible && <Account />}
+      {isAccountVisible && <UserInfo />}
     </S_WindowSplit>
   );
 }

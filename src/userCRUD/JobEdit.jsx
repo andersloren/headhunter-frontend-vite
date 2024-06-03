@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { updateJob } from "./jobFunctions/updateJob.jsx";
 import { getJobById } from "./jobFunctions/getJobById.jsx";
 import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
+import { finalizeInstruction } from "./jobFunctions/finalizeInstruction.jsx";
 
 // Styled Components
 import { S_Main } from "../utils/styledGlobal.jsx";
@@ -19,7 +20,8 @@ import {
   S_HourglassBottom,
 } from "../utils/styledSVG.jsx";
 import {
-  S_Title_Input,
+  S_JobEdit_Container,
+  S_Input,
   S_TextArea,
   S_Animation_Text,
   S_Animation_Rotate,
@@ -53,9 +55,33 @@ export default function JobEdit({
   // States related to job
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [instruction] = useState(defaultInstructionsEnglish);
 
-  console.log("JobEdit, isGenerating", isGenerating);
+  const [recruiterName, setRecruiteName] = useState("");
+  const [adCompany, setAdCompany] = useState("");
+  const [adEmail, setAdEmail] = useState("");
+  const [adPhone, setAdPhone] = useState("");
+  const [applicationDeadline, setApplicationDeadline] = useState("");
+
+  const [instruction, setInstruction] = useState("");
+
+  useEffect(() => {
+    setInstruction(
+      finalizeInstruction(
+        recruiterName,
+        adCompany,
+        adEmail,
+        adPhone,
+        applicationDeadline
+      )
+    );
+  }, [
+    recruiterName,
+    adCompany,
+    adEmail,
+    adPhone,
+    applicationDeadline,
+    setInstruction,
+  ]);
 
   /**
    * If jobId changes, that new job is being fetched from the backend.
@@ -67,8 +93,6 @@ export default function JobEdit({
     getJobById(jobId, setTitle, setDescription);
     handleAdCRUDSuccess();
   }, [jobId, handleAdCRUDSuccess]);
-
-  useEffect(() => {}, []);
 
   /**
    * When clicking the button for generating an ad, a window confirm alert will show to prevent unwanted credit usage and time consuming events.
@@ -114,116 +138,124 @@ export default function JobEdit({
   console.log("MyJobs, title", title);
   console.log("MyJobs, description", description);
   console.log("MyJobs, instruction", instruction);
+  console.log("MyJobs recruiterName", recruiterName);
+  console.log("MyJobs company", adCompany);
+  console.log("MyJobs adEmail", adEmail);
+  console.log("MyJobs adPhone", adPhone);
+  console.log("JobEdit applicationDeadline", applicationDeadline);
 
   return (
     <S_Main>
-      <S_JobList_Job_Ad_Container>
-        {
-          // Title input field
-        }
-
-        <S_Header>Title</S_Header>
-        <S_Title_Input
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></S_Title_Input>
-
-        {
-          // Format decision buttons
-          // As of right now, the only format option is HTML. The button is kept for the sake of clearity.
-        }
-
-        <S_Header>Format</S_Header>
-        <S_FunctionalityButton_Box>
-          <S_Decision_HtmlSvg
-            $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
-            alt="html"
-          />
-        </S_FunctionalityButton_Box>
-        {
-          // Description text area
-        }
-
-        <S_Header>Description</S_Header>
-        <S_PreviewBox>
-          <S_TextArea
-            value={description}
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          ></S_TextArea>
-        </S_PreviewBox>
-
-        {
-          // Functionality buttons
-        }
-
-        {
-          // Save Job button
-        }
-        <S_FunctionalityButton_Box>
-          {" "}
-          <S_UpdateSvg
-            alt="save job"
-            $blur={isGenerating === true ? "true" : "false"}
-            onClick={() => {
-              handleUpdate();
-            }}
-          />
+      <S_JobEdit_Container>
+        <S_JobList_Job_Ad_Container>
           {
-            // Generate Ad button
+            // Title input field
           }
-          <S_GenerateSvg
-            alt="generate ad"
-            $blur={isGenerating === true ? "true" : "false"}
-            onClick={() => {
-              handleUpdate();
-              handleGenerate(jobId);
-            }}
-          />
-          {
-            // Delete Job button
-          }
-        </S_FunctionalityButton_Box>
 
-        {
-          // Generate loader animation
-        }
-        {isGenerating && (
-          <>
-            <S_Animation_Rotate
+          <S_Header>Title</S_Header>
+          <S_Input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          ></S_Input>
+
+          {
+            // Format decision buttons
+            // As of right now, the only format option is HTML. The button is kept for the sake of clearity.
+          }
+
+          <S_Header>Format</S_Header>
+          <S_FunctionalityButton_Box>
+            <S_Decision_HtmlSvg
+              $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
+              alt="html"
+            />
+          </S_FunctionalityButton_Box>
+          {
+            // Description text area
+          }
+
+          <S_Header>Description</S_Header>
+          <S_PreviewBox>
+            <S_TextArea
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            ></S_TextArea>
+          </S_PreviewBox>
+        </S_JobList_Job_Ad_Container>
+        <S_JobList_Job_Ad_Container>
+          <S_Header>Contact Information</S_Header>
+          <S_Input
+            placeholder={"Name of recruiter"}
+            value={recruiterName}
+            onChange={(e) => setRecruiteName(e.target.value)}
+          ></S_Input>
+          <S_Input
+            placeholder={"Name of the company"}
+            value={adCompany}
+            onChange={(e) => setAdCompany(e.target.value)}
+          ></S_Input>
+          <S_Input
+            type="email"
+            placeholder={"Contact email"}
+            value={adEmail}
+            onChange={(e) => setAdEmail(e.target.value)}
+          ></S_Input>
+          <S_Input
+            type="tel"
+            placeholder={"Contact phone number"}
+            value={adPhone}
+            onChange={(e) => setAdPhone(e.target.value)}
+          ></S_Input>
+          <S_Header>Job application deadline</S_Header>
+          <S_Input
+            type="date"
+            value={applicationDeadline}
+            onChange={(e) => setApplicationDeadline(e.target.value)}
+          ></S_Input>
+          {
+            // Save Job button
+          }
+          <S_FunctionalityButton_Box>
+            {" "}
+            <S_UpdateSvg
+              alt="save job"
               $blur={isGenerating === true ? "true" : "false"}
-            >
-              <S_HourglassBottom />
-            </S_Animation_Rotate>
-            <S_Animation_Text>
-              Ad is being generated. Please wait...
-            </S_Animation_Text>
-          </>
-        )}
-        {
-          // Instructions (for developing purposeses)
-        }
-        {/* <S_Header>Instructions</S_Header>
-        <S_PreviewBox>
-          <S_TextArea
-            value={instruction}
-            onChange={(e) => setInstruction(e.target.value)}
-          ></S_TextArea>
-        </S_PreviewBox> */}
-      </S_JobList_Job_Ad_Container>
+              onClick={() => {
+                handleUpdate();
+              }}
+            />
+            {
+              // Generate Ad button
+            }
+            <S_GenerateSvg
+              alt="generate ad"
+              $blur={isGenerating === true ? "true" : "false"}
+              onClick={() => {
+                handleUpdate();
+                handleGenerate(jobId);
+              }}
+            />
+          </S_FunctionalityButton_Box>
+
+          {
+            // Generate loader animation
+          }
+          {isGenerating && (
+            <>
+              <S_Animation_Rotate
+                $blur={isGenerating === true ? "true" : "false"}
+              >
+                <S_HourglassBottom />
+              </S_Animation_Rotate>
+              <S_Animation_Text>
+                Ad is being generated. Please wait...
+              </S_Animation_Text>
+            </>
+          )}
+        </S_JobList_Job_Ad_Container>
+      </S_JobEdit_Container>
     </S_Main>
   );
 }
-
-const defaultInstructionsSvenska =
-  "Du ska skapa en jobbannons på svenska i HTML-format med en professionell CSS styling. För att omarbeta en arbetsbeskrivning till en jobbannons, börja med att läsa igenom arbetsbeskrivningen noggrant för att förstå de huvudsakliga arbetsuppgifterna, nödvändiga kompetenser och kvalifikationer. Sedan, översätt denna information till en mer engagerande och tilltalande form som lockar potentiella kandidater. Det är viktigt att framhäva företagets kultur och de unika fördelarna med att arbeta där. Börja annonsen med en kort introduktion till företaget, följt av en översikt av jobbrollen. Använd en positiv och inkluderande ton, och undvik jargong. Gör klart vilka huvudsakliga ansvarsområden rollen innefattar och vilka färdigheter och erfarenheter som är önskvärda. Inkludera även information om eventuella förmåner eller möjligheter till personlig och professionell utveckling. Avsluta med hur man ansöker till tjänsten, inklusive viktiga datum och kontaktinformation. Kom ihåg att vara tydlig och koncis för att hålla potentiella kandidaters uppmärksamhet. En välformulerad jobbannons ska inte bara informera utan också inspirera och locka rätt talanger till att söka.";
-
-const defaultInstructionsEnglish =
-  "You are to create a job advertisement in Swedish in HTML format with professional CSS styling. The styling should make the ad noticable but yet the impression should not be overwhelming. To convert a job description into a job advertisement, start by reading the job description carefully to understand the main duties, necessary skills, and qualifications. Then, translate this information into a more engaging and appealing form that attracts potential candidates. It is important to highlight the company's culture and the unique benefits of working there. Begin the advertisement with a short introduction to the company, followed by an overview of the job role. Use a positive and inclusive tone, and avoid jargon. Clearly state the main responsibilities of the role and the skills and experiences that are desirable. Also include information about any benefits or opportunities for personal and professional development. Conclude with how to apply for the position, including important dates and contact information. Remember to be clear and concise to maintain the attention of potential candidates. A well-written job advertisement should not only inform but also inspire and attract the right talents to apply.";
-
-const defaultDescriptionSvenska =
-  "Tjänsten omfattar en utvecklare som behärskar frontend, backend och databashantering. I frontend används React för att skapa en interaktiv web applikation. Användaren lotsas runt med hjälp av React Router. Även DOMPurify, Bootstrap 5, CSS och Styled Components används för att lösa olika utmaningar. I backend används Java, Spring Boot, Spring Security och en koppling mot ett AI API. Databasen hanteras av MySQL. Azure används som molnplattform för projektet. Utvecklaren arbetar både indivuduellt och i tillsammans med teamet. Nya libraries och frameworks kan komma att introduceras. Projektet beräknas ha passerat utvecklingsfasen om 2 år.";
-
-const defaultDescriptionEnglish =
-  "The position involves a developer proficient in frontend, backend, and database management. For the frontend, React is used to create an interactive web application. Users are navigated using React Router. Additionally, DOMPurify, Bootstrap 5, CSS, and Styled Components are utilized to address various challenges. The backend involves Java, Spring Boot, Spring Security, and a connection to an AI API. The database is managed by MySQL. Azure is used as the cloud platform for the project. The developer works both individually and collaboratively with the team. New libraries and frameworks may be introduced. The project is expected to have passed the development phase in 2 years.";
