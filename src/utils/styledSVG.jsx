@@ -64,10 +64,16 @@ const decision_height = "50px";
 
 export const S_AddSvg = styled(AddSvg)`
   border: ${border};
-  border-radius: ${border_radius};
-  width: ${width};
-  height: ${height};
-  fill: ${fill};
+  width: ${(props) =>
+    props.$admin === "true" ? `${admin_width}` : `${width}`};
+  height: ${(props) =>
+    props.$admin === "true" ? `${admin_height}` : `${height}`};
+  fill: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  border: ${(props) =>
+    props.$even === "true" ? `${border}` : `${admin_border}`};
+  margin: ${(props) => (props.$admin === "true" ? "10px" : "")};
+  background-color: ${(props) =>
+    props.$even === "true" ? `${darkest}` : `${brighter}`};
   &:hover {
     background-color: ${brightest};
     fill: ${darker};
@@ -116,10 +122,16 @@ export const S_EditSvg = styled(EditSvg)`
 
 export const S_UpdateSvg = styled(UpdateSvg)`
   border: ${border};
-  border-radius: ${border_radius};
-  width: ${width};
-  height: ${height};
-  fill: ${fill};
+  width: ${(props) =>
+    props.$admin === "true" ? `${admin_width}` : `${width}`};
+  height: ${(props) =>
+    props.$admin === "true" ? `${admin_height}` : `${height}`};
+  fill: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  border: ${(props) =>
+    props.$even === "true" ? `${border}` : `${admin_border}`};
+  margin: ${(props) => (props.$admin === "true" ? "10px" : "")};
+  background-color: ${(props) =>
+    props.$even === "true" ? `${darkest}` : `${brighter}`};
   &:hover {
     background-color: ${brightest};
     fill: ${darker};
@@ -134,10 +146,16 @@ export const S_UpdateSvg = styled(UpdateSvg)`
 
 export const S_GenerateSvg = styled(GenerateSvg)`
   border: ${border};
-  border-radius: ${border_radius};
-  width: ${width};
-  height: ${height};
-  fill: ${fill};
+  width: ${(props) =>
+    props.$admin === "true" ? `${admin_width}` : `${width}`};
+  height: ${(props) =>
+    props.$admin === "true" ? `${admin_height}` : `${height}`};
+  fill: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  border: ${(props) =>
+    props.$even === "true" ? `${border}` : `${admin_border}`};
+  margin: ${(props) => (props.$admin === "true" ? "10px" : "")};
+  background-color: ${(props) =>
+    props.$even === "true" ? `${darkest}` : `${brighter}`};
   &:hover {
     background-color: ${brightest};
     fill: ${darker};
@@ -165,14 +183,15 @@ export const S_Decision_HtmlSvg = styled(HtmlSvg)`
 
 export const S_DownloadSvg = styled(DownloadSvg)`
   border: ${border};
-  border-radius: ${decision_border_radius};
-  width: ${decision_width};
-  height: ${decision_height};
-  fill: ${fill};
+  width: 70px;
+  height: ${(props) =>
+    props.$admin === "true" ? `${admin_height}` : `${height}`};
+  fill: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  border: ${(props) =>
+    props.$even === "true" ? `${border}` : `${admin_border}`};
+  margin: ${(props) => (props.$admin === "true" ? "10px" : "")};
   background-color: ${(props) =>
-    props.$active === "true" ? `${brightest}` : `${neutral}`};
-  fill: ${(props) =>
-    props.$active === "true" ? `${darkest}` : `${brightest}`};
+    props.$even === "true" ? `${darkest}` : `${brighter}`};
   &:hover {
     background-color: ${hover_background_color};
     fill: ${hover_fill};

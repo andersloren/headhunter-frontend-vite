@@ -91,7 +91,7 @@ export default function Admin() {
                  */}
                 <S_FunctionalityButton_Box $admin={"true"}>
                   <S_EditSvg
-                    $even={index % 2 === 0 ? "true" : "false"}
+                    // $even={index % 2 === 0 ? "true" : "false"}
                     $admin={"true"}
                     onClick={() => {
                       if (!isBlur) {
@@ -101,7 +101,7 @@ export default function Admin() {
                     }}
                   />
                   <S_DeleteSvg
-                    $even={index % 2 === 0 ? "true" : "false"}
+                    // $even={index % 2 === 0 ? "true" : "false"}
                     onClick={() => (isBlur ? "" : handleDelete(user.email))}
                     $admin={"true"}
                   />
