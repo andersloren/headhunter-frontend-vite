@@ -19,24 +19,18 @@ const border_radius_form = "15px";
 const border = `1px solid ${brighter}`;
 const border_radius = "15px";
 
-export const S_UserInfo_Box = styled.div`
-  display: flex;
-  position: relative;
-  gap: 20px;
-  margin: 40px 0px 0px 20px;
-`;
-
 export const S_UserInfo_Column = styled.div`
   display: flex;
-  position: relative;
+  position: absolute;
   flex-direction: column;
-  /* align-items: center; */
-  height: auto;
   gap: 20px;
   border: ${border};
   border-radius: ${border_radius};
   background-color: ${dark};
+  left: 10%;
+  top: 5%;
   padding: 20px;
+  margin: 20px 0px 20px 0px;
 `;
 
 export const S_Label = styled.label`
