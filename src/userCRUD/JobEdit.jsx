@@ -126,7 +126,11 @@ export default function JobEdit({
       title,
       description,
       instruction,
-      handleIsChange
+      recruiterName,
+      adCompany,
+      adEmail,
+      adPhone,
+      applicationDeadline
     );
   }
 
