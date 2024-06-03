@@ -4,7 +4,6 @@ import { getUserByEmail } from "../adminCRUD/adminFunctions/getUserByEmail";
 import { getUserInfo } from "./userFunctions/getUserInfo";
 import { updateUserInfo } from "./userFunctions/updateUserInfo";
 import {
-  S_UserInfo_Box,
   S_UserInfo_Column,
   S_UserInfo_Input,
   S_Label,
@@ -42,35 +41,30 @@ export default function UserInfo() {
 
   return (
     <>
-      <S_UserInfo_Box>
-        <S_UserInfo_Column>
-          <S_Header>Account Details</S_Header>
-          <S_Label>Email</S_Label>
-          <S_UserInfo_Input
-            value={email}
-            disabled="true"
-            readOnly
-            $readOnly={"true"}
-          />
-          <S_Label>Roles</S_Label>
-          <S_UserInfo_Input
-            value={roles}
-            disabled="true"
-            readOnly
-            $readOnly={"true"}
-          />
-          <S_Label>Number of jobs</S_Label>
-          <S_UserInfo_Input
-            value={numberOfJobs}
-            disabled="true"
-            readOnly
-            $readOnly={"true"}
-          />
-          <S_FunctionalityButton_Box>
-            <S_UpdateSvg onClick={() => handleUpdateUserInfo()}></S_UpdateSvg>
-          </S_FunctionalityButton_Box>
-        </S_UserInfo_Column>
-      </S_UserInfo_Box>
+      <S_UserInfo_Column>
+        <S_Header>Account Details</S_Header>
+        <S_Label>Email</S_Label>
+        <S_UserInfo_Input
+          value={email}
+          disabled="true"
+          readOnly
+          $readOnly={"true"}
+        />
+        <S_Label>Roles</S_Label>
+        <S_UserInfo_Input
+          value={roles}
+          disabled="true"
+          readOnly
+          $readOnly={"true"}
+        />
+        <S_Label>Number of jobs</S_Label>
+        <S_UserInfo_Input
+          value={numberOfJobs}
+          disabled="true"
+          readOnly
+          $readOnly={"true"}
+        />
+      </S_UserInfo_Column>
     </>
   );
 }
