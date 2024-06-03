@@ -1,1 +1,7 @@
+Svenska
+
 Tjänsten omfattar en utvecklare som behärskar frontend, backend och databashantering. I frontend används React för att skapa en interaktiv web applikation. Användaren lotsas runt med hjälp av React Router. Även DOMPurify, Bootstrap 5, CSS och Styled Components används för att lösa olika utmaningar. I backend används Java, Spring Boot, Spring Security och en koppling mot ett AI API. Databasen hanteras av MySQL. Azure används som molnplattform för projektet. Utvecklaren arbetar både indivuduellt och i tillsammans med teamet. Nya libraries och frameworks kan komma att introduceras. Projektet beräknas ha passerat utvecklingsfasen om 2 år.
+
+Engelska
+
+The service involves a developer proficient in frontend, backend, and database management. React is used in the frontend to create an interactive web application. The user is guided through the application with the help of React Router. Additionally, DOMPurify, Bootstrap 5, CSS, and Styled Components are used to solve various challenges. In the backend, Java, Spring Boot, Spring Security, and a connection to an AI API are utilized. The database is managed by MySQL. Azure is used as the cloud platform for the project. The developer works both individually and as part of a team. New libraries and frameworks may be introduced. The project is expected to have completed the development phase in 2 years.

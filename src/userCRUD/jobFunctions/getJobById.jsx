@@ -14,7 +14,16 @@ import axios from "axios";
  * @param {function} setDescription - Sets the description of the Job object. The description is later what the AI API will use as guidelines
  */
 
-export async function getJobById(jobId, setTitle, setDescription) {
+export async function getJobById(
+  jobId,
+  setTitle,
+  setDescription,
+  setRecruiteName,
+  setAdCompany,
+  setAdEmail,
+  setAdPhone,
+  setApplicationDeadline
+) {
   const url = `http://localhost:8080/api/v1/jobs/getJobById/${jobId}`;
 
   try {
@@ -28,6 +37,11 @@ export async function getJobById(jobId, setTitle, setDescription) {
     console.log("getJobById, response.data", response.data);
     setTitle(response.data.data.title);
     setDescription(response.data.data.description);
+    setRecruiteName(response.data.data.recruiterName);
+    setAdCompany(response.data.data.adCompany);
+    setAdEmail(response.data.data.adEmail);
+    setAdPhone(response.data.data.adPhone);
+    setApplicationDeadline(response.data.data.applicationDeadline);
   } catch (error) {
     console.error("Error getting job by id", error);
   }
