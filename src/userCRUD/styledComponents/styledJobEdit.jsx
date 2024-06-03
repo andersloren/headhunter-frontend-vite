@@ -19,7 +19,12 @@ const border_radius = "5px";
 const border_preview_border = "2px solid";
 const border_preview_border_radius = "5px 0px 0px 5px";
 
-export const S_Title_Input = styled.input`
+export const S_JobEdit_Container = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+export const S_Input = styled.input`
   border-radius: ${border_radius};
   padding: 9px;
   width: auto;

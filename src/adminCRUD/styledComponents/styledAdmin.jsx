@@ -43,11 +43,12 @@ export const S_th = styled.th`
 
 export const S_UserList_Row = styled.tr`
   background-color: ${(props) =>
-    props.$even === "true" ? `${dark}` : `${bright}`};
+    props.$even === "true" ? `${brighter}` : `${bright}`};
+  color: ${darkest};
 `;
 
 export const S_Userlist_Data = styled.td`
-  color: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  color: ${darkest};
   font-weight: bold;
 `;
 export const S_Button_Box = styled.div``;

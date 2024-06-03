@@ -58,6 +58,7 @@ export const S_Form_Select = styled.select`
   background: ${brighter};
   padding: 5px;
   border-radius: 15px;
+  margin-bottom: 60px;
 `;
 
 export const S_Form_Button_Box = styled.div`

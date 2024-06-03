@@ -71,10 +71,10 @@ export default function Admin() {
         <S_Userlist_Table $blur={isBlur === true ? "true" : "false"}>
           <thead>
             <S_UserList_Row $background={"neutral"}>
-              <S_th>Functionality</S_th>
+              <S_th>Actions</S_th>
               <S_th>Email</S_th>
-              <S_th>Username</S_th>
               <S_th>Roles</S_th>
+              <S_th>Number of jobs</S_th>
             </S_UserList_Row>
           </thead>
           <tbody>
@@ -110,10 +110,10 @@ export default function Admin() {
                   {user.email}
                 </S_Userlist_Data>
                 <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
-                  {user.username}
+                  {user.roles}
                 </S_Userlist_Data>
                 <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
-                  {user.roles}
+                  {user.number_of_jobs}
                 </S_Userlist_Data>
               </S_UserList_Row>
             ))}

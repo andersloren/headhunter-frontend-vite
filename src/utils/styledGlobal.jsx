@@ -36,6 +36,7 @@ export const S_Header = styled.div`
 
 export const S_FunctionalityButton_Box = styled.div`
   display: flex;
+  justify-content: center;
   gap: ${(props) => (props.$admin === "true" ? `${admin_width}` : `${width}`)};
 `;
 

@@ -40,7 +40,6 @@ export default function AdminForm({
    */
 
   useEffect(() => {
-    // findUserByEmail(email, setUsername, setRoles);
     getUserByEmail(email, setUsername, setRoles, setNumberOfJobs);
   }, [email]);
 
@@ -102,8 +101,6 @@ export default function AdminForm({
           <option value="user">user</option>
         </S_Form_Select>
 
-        <strong>Number of Jobs</strong>
-        <S_Form_Input value={numberOfJobs} readOnly $readOnly={"true"} />
         <S_FunctionalityButton_Box>
           <S_UpdateSvg
             onClick={() => handleUpdateUser(username, roles, email)}

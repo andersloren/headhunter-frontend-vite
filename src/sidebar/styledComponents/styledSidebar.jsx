@@ -10,7 +10,6 @@ import {
   darkest,
 } from "../../utils/styledComponentsConstants";
 
-const border_radius = "15px";
 const sidebar_expanded = "150px";
 const sidebar_collapsed = "80px";
 
