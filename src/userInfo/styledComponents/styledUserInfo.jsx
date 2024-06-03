@@ -13,44 +13,53 @@ import {
   small,
 } from "../../utils/styledComponentsConstants";
 
-// Hard copied from styledLoginSignup.js. Make these values global?
+// Border radius for input fields.
+const border_radius_form = "15px";
 
+const border = `1px solid ${brighter}`;
 const border_radius = "15px";
-const margin_between_buttons = "20px";
-const inputfield_width = 300;
-const inputfield_translateX = (inputfield_width / 2) * -1;
 
-export const S_UserDetailsBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-  align-self: center;
-  column-gap: 10px;
-  margin-left: 50px;
-  width: 200px;
-  height: 200px;
+export const S_UserInfo_Box = styled.div`
+  display: flex;
+  position: relative;
+  gap: 20px;
+  margin: 40px 0px 0px 20px;
 `;
 
-export const S_UserDetailsLabel = styled.div`
+export const S_UserInfo_Column = styled.div`
   display: flex;
-  &::placeholder {
-    color: ${dark};
-  }
-  color: ${brightest};
-  font-weight: 500;
-`;
-
-export const S_UserDetailsField = styled.div`
-  display: flex;
-  &::placeholder {
-    color: ${dark};
-  }
-  color: ${darkest};
-  padding: 15px;
-  background: ${brightest};
+  position: relative;
+  flex-direction: column;
+  /* align-items: center; */
+  height: auto;
+  gap: 20px;
+  border: ${border};
   border-radius: ${border_radius};
-  border: 0;
+  background-color: ${dark};
+  padding: 20px;
+`;
+
+export const S_Label = styled.label`
+  margin-left: 5px;
+  font-weight: bold;
+`;
+
+export const S_UserInfo_Input = styled.input`
+  padding: 15px;
+  background: ${brighter};
+  border-radius: ${border_radius_form};
   font-weight: 500;
-  width: ${inputfield_width} "px";
+  margin-top: 5px;
+  margin-bottom: 12px;
+  font-weight: bold;
+  color: ${(props) =>
+    props.$readOnly === "true" ? `${neutral}` : `${darkest}`};
+  &:hover {
+    cursor: ${(props) => (props.$readOnly === "true" ? "not-allowed" : "text")};
+  }
+`;
+
+export const S_Form_Button_Box = styled.div`
+  display: flex;
+  justify-content: center;
 `;

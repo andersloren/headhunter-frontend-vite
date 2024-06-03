@@ -36,7 +36,6 @@ export default function SignUp({
   setHasSignedUp,
 }) {
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailOk, setIsEmailOk] = useState(false);
   /**
@@ -66,7 +65,6 @@ export default function SignUp({
         url,
         {
           email: email,
-          username: username,
           password: password,
           roles: "user",
         },
@@ -105,7 +103,6 @@ export default function SignUp({
   console.log("SignUp email:", email);
   console.log("SignUp isEmailOk:", isEmailOk);
   console.log("SignUp emailStatus:", emailStatus);
-  console.log("Signup Username: ", username);
   console.log("Signup Password: ", password);
   console.log("SignUp isPasswordOk ", isPasswordOk);
 
@@ -161,15 +158,6 @@ export default function SignUp({
             placeholder="Enter Email"
             value={email}
             onChange={(e) => handleEmailChange(e.target.value)}
-          />
-          {/**
-           * Input field for username
-           */}
-          <S_Input
-            type="text"
-            placeholder="Enter Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
           />
           {/**
            * Input field for password

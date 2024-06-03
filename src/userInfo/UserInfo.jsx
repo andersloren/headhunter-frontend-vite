@@ -1,13 +1,18 @@
 // Styled components
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUserByEmail } from "../adminCRUD/adminFunctions/getUserByEmail";
+import { getUserInfo } from "./userFunctions/getUserInfo";
+import { updateUserInfo } from "./userFunctions/updateUserInfo";
 import {
-  S_UserDetailsBox,
-  S_UserDetailsField,
-  S_UserDetailsLabel,
-} from "./styledComponents/styledAccount";
+  S_UserInfo_Box,
+  S_UserInfo_Column,
+  S_UserInfo_Input,
+  S_Label,
+} from "./styledComponents/styledUserInfo";
+import { S_Header, S_FunctionalityButton_Box } from "../utils/styledGlobal";
 
 import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
-import { extractUsernameFromToken } from "../security/token/extractUsernameFromToken";
+import { S_UpdateSvg } from "../utils/styledSVG";
 
 /**
  * When a user clicks the account icon in the sidebar, the user's username and email should appear.
@@ -20,18 +25,52 @@ import { extractUsernameFromToken } from "../security/token/extractUsernameFromT
  */
 
 export default function UserInfo() {
-  const [username] = useState(extractUsernameFromToken);
   const [email] = useState(extractEmailFromToken);
+  const [name, setName] = useState("");
+  const [roles, setRoles] = useState("");
+  const [numberOfJobs, setNumberOfJobs] = useState("");
+  const [organization, setOrganization] = useState("");
+
+  useEffect(() => {
+    getUserByEmail(email, setRoles, setNumberOfJobs);
+    getUserInfo(email, setName, setOrganization);
+  }, [email]);
+
+  function handleUpdateUserInfo() {
+    updateUserInfo(email, name, organization);
+  }
 
   return (
     <>
-      <S_UserDetailsBox>
-        <S_UserDetailsLabel>Username</S_UserDetailsLabel>
-        <S_UserDetailsField>{username}</S_UserDetailsField>
-
-        <S_UserDetailsLabel>Email</S_UserDetailsLabel>
-        <S_UserDetailsField>{email}</S_UserDetailsField>
-      </S_UserDetailsBox>
+      <S_UserInfo_Box>
+        <S_UserInfo_Column>
+          <S_Header>Account Details</S_Header>
+          <S_Label>Email</S_Label>
+          <S_UserInfo_Input
+            value={email}
+            disabled="true"
+            readOnly
+            $readOnly={"true"}
+          />
+          <S_Label>Roles</S_Label>
+          <S_UserInfo_Input
+            value={roles}
+            disabled="true"
+            readOnly
+            $readOnly={"true"}
+          />
+          <S_Label>Number of jobs</S_Label>
+          <S_UserInfo_Input
+            value={numberOfJobs}
+            disabled="true"
+            readOnly
+            $readOnly={"true"}
+          />
+          <S_FunctionalityButton_Box>
+            <S_UpdateSvg onClick={() => handleUpdateUserInfo()}></S_UpdateSvg>
+          </S_FunctionalityButton_Box>
+        </S_UserInfo_Column>
+      </S_UserInfo_Box>
     </>
   );
 }
