@@ -38,14 +38,12 @@ import {
  *
  * @param {function} handleJobCRUDSuccess - Callback function that is invoked upon successful deletion to refresh the UI.
  * @param {number} jobId - The id of the Job object currently being selected by the user.
- * @param {function} setIsChange - When the user makes any changes in the job text area, this state sets to true. If the user clicks on a new job when isChange is true, a window confirm alert shows up asking the user if it wants to proceed before saving.
  * @param {function} handleAdCRUDSuccess - When the user makes any changes in the job text area, this state sets to true. If the user clicks on a new job when isChange is true, a window confirm alert shows up asking the user if it wants to proceed before saving.
  * @param {Function} handleAdCRUDSuccess - Callback function invoked to refresh the list of job ads in the UI upon successful ad generation.
  */
 
 export default function JobEdit({
   jobId,
-  setIsChange,
   handleJobCRUDSuccess,
   handleAdCRUDSuccess,
 }) {
@@ -90,7 +88,16 @@ export default function JobEdit({
    */
 
   useEffect(() => {
-    getJobById(jobId, setTitle, setDescription);
+    getJobById(
+      jobId,
+      setTitle,
+      setDescription,
+      setRecruiteName,
+      setAdCompany,
+      setAdEmail,
+      setAdPhone,
+      setApplicationDeadline
+    );
     handleAdCRUDSuccess();
   }, [jobId, handleAdCRUDSuccess]);
 
@@ -113,10 +120,7 @@ export default function JobEdit({
     }
   }
 
-  /**
-   * At the end of the process of updating a job, the isChange state is being reset by handleIsChange.
-   *
-   * Since the job is already being saved when the job is updated, there is no need for a window confirm alert to show unless the user changes the text areas again.
+  /* Since the job is already being saved when the job is updated, there is no need for a window confirm alert to show unless the user changes the text areas again.
    */
 
   function handleUpdate() {
@@ -126,13 +130,12 @@ export default function JobEdit({
       title,
       description,
       instruction,
-      handleIsChange
+      recruiterName,
+      adCompany,
+      adEmail,
+      adPhone,
+      applicationDeadline
     );
-  }
-
-  // TODO - Maybe just put setIsChange where it is supposed to happen instead of pointing to this function.
-  function handleIsChange() {
-    setIsChange(false);
   }
 
   console.log("MyJobs, title", title);

@@ -24,18 +24,25 @@ export async function updateJob(
   title,
   description,
   instruction,
-  handleIsChange
+  recruiterName,
+  adCompany,
+  adEmail,
+  adPhone,
+  applicationDeadline
 ) {
-  const email = extractEmailFromToken();
   const url = `http://localhost:8080/api/v1/jobs/update/${jobId}`;
   try {
     const response = await axios.put(
       url,
       {
-        email: email,
         title: title,
         description: description,
         instruction: instruction,
+        recruiterName: recruiterName,
+        adCompany: adCompany,
+        adEmail: adEmail,
+        adPhone: adPhone,
+        applicationDeadline: applicationDeadline,
       },
       {
         headers: {
