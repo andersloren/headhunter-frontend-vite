@@ -1,6 +1,6 @@
 import axios from "axios";
 
-async function signUp(email, password, setHasSignedUp) {
+export async function signUp(email, password, setHasSignedUp) {
   const url = "http://localhost:8080/api/v1/users/register";
 
   console.log("signUp before try");
@@ -25,5 +25,3 @@ async function signUp(email, password, setHasSignedUp) {
     console.error("Error signing up", error);
   }
 }
-
-export default signUp;
