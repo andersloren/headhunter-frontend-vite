@@ -8,10 +8,9 @@ import {
   S_UserInfo_Input,
   S_Label,
 } from "./styledComponents/styledUserInfo";
-import { S_Header, S_FunctionalityButton_Box } from "../utils/styledGlobal";
+import { S_Header } from "../utils/styledGlobal";
 
 import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
-import { S_UpdateSvg } from "../utils/styledSVG";
 
 /**
  * When a user clicks the account icon in the sidebar, the user's username and email should appear.
@@ -25,19 +24,12 @@ import { S_UpdateSvg } from "../utils/styledSVG";
 
 export default function UserInfo() {
   const [email] = useState(extractEmailFromToken);
-  const [name, setName] = useState("");
   const [roles, setRoles] = useState("");
   const [numberOfJobs, setNumberOfJobs] = useState("");
-  const [organization, setOrganization] = useState("");
 
   useEffect(() => {
     getUserByEmail(email, setRoles, setNumberOfJobs);
-    getUserInfo(email, setName, setOrganization);
   }, [email]);
-
-  function handleUpdateUserInfo() {
-    updateUserInfo(email, name, organization);
-  }
 
   return (
     <>
