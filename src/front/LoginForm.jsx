@@ -1,8 +1,8 @@
 // Libraris, functions, etc
 import { useEffect, useState } from "react";
-import { authorize } from "../security/authorize.jsx";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { authorize } from "../security/authorize.jsx";
+import { logIn } from "./functions/logIn.jsx";
 
 // Styled Components
 import {
@@ -58,42 +58,6 @@ export default function Login({ setIsAuthorized }) {
     if (email != "" || password != "") setLoginError(false);
   }, [email, password]);
 
-  async function handleLogin(e) {
-    e.preventDefault();
-    const url = "http://localhost:8080/api/v1/users/login";
-
-    const basicAuth = btoa(`${email}:${password}`);
-
-    try {
-      const response = await axios.post(
-        url,
-        {
-          email: email,
-          password: password,
-        },
-        {
-          headers: {
-            Authorization: `Basic ${basicAuth}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log("User Log In Success");
-      handleAuthentication(response.data.data.token);
-      setIsAuthorized(authorize());
-    } catch (error) {
-      console.error("Error logging in", error);
-      setLoginError(true);
-    }
-  }
-
-  /**
-   * HandleAuthentication stores the JWT after the user has been successfully authenticated by the backend and navigates the user to their job list page.
-   *
-   * @function
-   * @param {String} token - A jwt that is stored locally in the browser to be used as authority through out the users session.
-   */
-
   // TODO - Change myPage to whatever is more suitable
   function handleAuthentication(token) {
     console.log("Login, handleAuthentication()");
@@ -102,10 +66,9 @@ export default function Login({ setIsAuthorized }) {
   }
 
   // TODO - This can probably be removed, instead just go directly for handleLogin and pass email and password instead of e.
-  function handleClick(e) {
+  function handleClick() {
     console.log("Login, handleClick()");
-    e.preventDefault();
-    handleLogin(e);
+    logIn(email, password, handleAuthentication, setIsAuthorized, authorize);
   }
 
   return (
@@ -137,7 +100,9 @@ export default function Login({ setIsAuthorized }) {
            */}
           {email !== "" && password !== "" && (
             <S_ButtonBox_Submit>
-              <S_Button onClick={(e) => handleClick(e)}>Submit</S_Button>
+              <S_Button type="button" onClick={() => handleClick()}>
+                Submit
+              </S_Button>
             </S_ButtonBox_Submit>
           )}
         </form>

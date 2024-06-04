@@ -25,5 +25,3 @@ export async function signUp(email, password, setHasSignedUp) {
     console.error("Error signing up", error);
   }
 }
-
-export default signUp;
