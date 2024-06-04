@@ -13,7 +13,7 @@ import {
 import { S_OpenAI_Badge, S_OpenAI_Box } from "../utils/styledGlobal.jsx";
 
 // Components
-import SignUp from "./SignUp.jsx";
+import SignUpForm from "./SignUpForm.jsx";
 import Login from "./Login.jsx";
 
 /**
@@ -102,7 +102,7 @@ const Welcome = ({ setIsAuthorized }) => {
          * Sign up component
          */}
         {signUpVisible && (
-          <SignUp
+          <SignUpForm
             setLoginVisible={setLoginVisible}
             setSignUpVisible={setSignUpVisible}
             setHasSignedUp={setHasSignedUp}
