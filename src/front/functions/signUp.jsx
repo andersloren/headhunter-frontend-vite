@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function signUp(email, password, setHasSignedUp) {
+async function signUp(email, password, setHasSignedUp) {
   const url = "http://localhost:8080/api/v1/users/register";
 
   console.log("signUp before try");
