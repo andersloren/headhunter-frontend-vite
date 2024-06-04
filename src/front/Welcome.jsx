@@ -14,7 +14,7 @@ import { S_OpenAI_Badge, S_OpenAI_Box } from "../utils/styledGlobal.jsx";
 
 // Components
 import SignUpForm from "./SignUpForm.jsx";
-import Login from "./Login.jsx";
+import LoginForm from "./LoginForm.jsx";
 
 /**
  * This is the first component visible to a user. From here, the user can decide to sign up or login.
@@ -111,7 +111,7 @@ const Welcome = ({ setIsAuthorized }) => {
         {/**
          * Login component
          */}
-        {loginVisible && <Login setIsAuthorized={setIsAuthorized} />}
+        {loginVisible && <LoginForm setIsAuthorized={setIsAuthorized} />}
       </S_FrontContainer>
     </>
   );
