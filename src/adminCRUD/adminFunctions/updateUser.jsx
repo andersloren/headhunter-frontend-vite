@@ -29,7 +29,6 @@ export async function updateUser(
     const response = await axios.put(
       url,
       {
-        email: email,
         roles: roles,
       },
       {

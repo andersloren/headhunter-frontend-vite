@@ -90,7 +90,8 @@ export default function SignUpForm({
     setIsPasswordOk(boolean);
   }
 
-  function handleSignUp() {
+  function handleSignUp(e) {
+    e.preventDefault();
     signUp(email, password, setHasSignedUp);
     setLoginVisible(true);
     setSignUpVisible(false);
@@ -123,9 +124,7 @@ export default function SignUpForm({
            */}
           {emailStatus === 1 && isPasswordOk && (
             <S_ButtonBox_Submit>
-              <S_Button type="button" onClick={() => handleSignUp()}>
-                Submit
-              </S_Button>
+              <S_Button type="submit">Submit</S_Button>
             </S_ButtonBox_Submit>
           )}
         </form>

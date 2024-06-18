@@ -66,7 +66,8 @@ export default function Login({ setIsAuthorized }) {
   }
 
   // TODO - This can probably be removed, instead just go directly for handleLogin and pass email and password instead of e.
-  function handleClick() {
+  function handleClick(e) {
+    e.preventDefault();
     console.log("Login, handleClick()");
     logIn(email, password, handleAuthentication, setIsAuthorized, authorize);
   }
@@ -100,7 +101,10 @@ export default function Login({ setIsAuthorized }) {
            */}
           {email !== "" && password !== "" && (
             <S_ButtonBox_Submit>
-              <S_Button type="button" onClick={() => handleClick()}>
+              <S_Button
+                type="submit"
+                // onClick={() => handleClick()}
+              >
                 Submit
               </S_Button>
             </S_ButtonBox_Submit>
