@@ -19,7 +19,6 @@ import axios from "axios";
 
 export async function updateUser(
   email,
-  username,
   roles,
   handleUserCRUDSuccess,
   setIsBlur
@@ -30,7 +29,7 @@ export async function updateUser(
     const response = await axios.put(
       url,
       {
-        username: username,
+        email: email,
         roles: roles,
       },
       {
