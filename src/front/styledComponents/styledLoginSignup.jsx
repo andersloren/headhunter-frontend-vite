@@ -44,11 +44,32 @@ export const S_ButtonBox_Submit = styled.div`
   display: flex;
   position: relative;
   justify-content: center;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 `;
 
 export const S_LoginError = styled.div`
   color: #5c0606;
   font-weight: bold;
   justify-content: center;
+`;
+
+export const S_Button = styled.button`
+  font-size: ${medium};
+  width: 100px;
+  padding: 12px;
+
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brightest}` : `${bright}`};
+  color: ${(props) => (props.$active === "true" ? `${darkest}` : `${dark}`)};
+  border: ${(props) =>
+    props.$active === "true" ? `2px ${darkest} solid` : `2px ${dark} solid`};
+  border-radius: ${border_radius};
+
+  &:hover {
+    /* background: ${brighter};
+    color: ${darkest};
+    border: 2px ${darkest} solid; */
+    cursor: ${(props) =>
+      props.$active === "true" ? "pointer" : "not-allowed"};
+  }
 `;
