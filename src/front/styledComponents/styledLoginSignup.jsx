@@ -59,7 +59,7 @@ export const S_Button = styled.button`
     props.$active === "true" ? `2px ${darkest} solid` : `2px ${dark} solid`};
   border-radius: ${border_radius};
   &:hover {
-    cursor: pointer};
+    cursor: pointer;
   }
 `;
 
