@@ -28,7 +28,7 @@ import LoginForm from "./LoginForm.jsx";
 
 const Welcome = ({ setIsAuthorized }) => {
   const [signUpVisible, setSignUpVisible] = useState(false);
-  const [loginVisible, setLoginVisible] = useState(false);
+  const [loginVisible, setLoginVisible] = useState(true);
   const [hasSignedUp, setHasSignedUp] = useState(false);
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const Welcome = ({ setIsAuthorized }) => {
         {/**
          * Buttons for toggle the sign up component and the login component respectively.
          */}
-        <S_ButtonBox_Welcome>
+        {/* <S_ButtonBox_Welcome>
           <S_Button
             key={1}
             onClick={() => handleSignUp()}
@@ -97,7 +97,7 @@ const Welcome = ({ setIsAuthorized }) => {
           >
             Log In
           </S_Button>
-        </S_ButtonBox_Welcome>
+        </S_ButtonBox_Welcome> */}
         {/**
          * Sign up component
          */}
