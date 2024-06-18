@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
  * On mount, displays email and input forms for the user to be updated. If the save button is being pressed, updateUser() is called. If the back-button is pressed, the component unmounts and the user is returned to the parent component.
  *
  * States:
- * - 'username': The new username for the user object. Sets in the input form for username.
  * - 'roles': The new roles for the user object. Sets in the input form for roles.
  * @param {function} setIsBlur - toggles isBlur.
  * @param {boolean} isBlur     - If true, sets background to blur.
@@ -31,34 +30,31 @@ export default function AdminForm({
   email,
   handleUserCRUDSuccess,
 }) {
-  const [username, setUsername] = useState("");
   const [roles, setRoles] = useState("");
   const [numberOfJobs, setNumberOfJobs] = useState("");
 
   /**
-   * When the component mounts, findUserByEmail searches the user object and sets the current username and roles.
+   * When the component mounts, findUserByEmail searches the user object and sets the roles.
    */
 
   useEffect(() => {
-    getUserByEmail(email, setUsername, setRoles, setNumberOfJobs);
+    getUserByEmail(email, setRoles, setNumberOfJobs);
   }, [email]);
 
   console.log("AdminForm, email", email);
-  console.log("AdminForm, username", username);
   console.log("AdminForm, roles", roles);
   console.log("AdminForm, number of jobs", numberOfJobs);
 
   /**
    * When the save button is pressed, this function sends a request to the backend to save
-   * the updated username and roles. Upon success, it triggers `handleUserCRUDSuccess` to
+   * the roles. Upon success, it triggers `handleUserCRUDSuccess` to
    * refresh the user list in the parent component and toggles `setIsBlur` to false.
    *
-   * @param {String} username - The new username from the input form.
    * @param {String} roles    - The new roles from the input form.
    */
 
-  function handleUpdateUser(username, roles) {
-    updateUser(email, username, roles, handleUserCRUDSuccess, setIsBlur);
+  function handleUpdateUser(roles) {
+    updateUser(email, roles, handleUserCRUDSuccess, setIsBlur);
   }
 
   const handleRoles = (e) => {
@@ -78,15 +74,6 @@ export default function AdminForm({
         <strong>Email</strong>
         <S_Form_Input value={email} readOnly $readOnly={"true"}></S_Form_Input>
         {/**
-         * Shows the username of the user being updated. The username can be changed.
-         */}
-        <strong>Username</strong>
-        <S_Form_Input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        {/**
          * Shows the roles of the user being updated. The roles can be changed.
          */}
         <strong>Roles</strong>
@@ -103,7 +90,7 @@ export default function AdminForm({
 
         <S_FunctionalityButton_Box>
           <S_UpdateSvg
-            onClick={() => handleUpdateUser(username, roles, email)}
+            onClick={() => handleUpdateUser(roles, email)}
             $right={"true"}
           ></S_UpdateSvg>
           <S_CancelSvg
