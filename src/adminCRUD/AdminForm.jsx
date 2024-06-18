@@ -77,7 +77,6 @@ export default function AdminForm({
          * Shows the roles of the user being updated. The roles can be changed.
          */}
         <strong>Roles</strong>
-
         <S_Form_Select
           name="roles"
           id="roles-select"
