@@ -1,5 +1,5 @@
 // Libraris, functions, etc
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authorize } from "../security/authorize.jsx";
 import { logIn } from "./functions/logIn.jsx";
@@ -8,9 +8,8 @@ import { logIn } from "./functions/logIn.jsx";
 import {
   S_FormBox,
   S_Input,
-  S_LoginError,
-  S_ButtonBox_Submit,
   S_Button,
+  S_SignUpLink,
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -22,10 +21,13 @@ import {
  * @param {boolean} setIsAuthorized - If the user sends in matching email and password, isAuthorized is set to true.
  */
 
-export default function Login({ setIsAuthorized }) {
+export default function LoginForm({
+  setIsAuthorized,
+  setLoginVisible,
+  setSignUpVisible,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -47,16 +49,6 @@ export default function Login({ setIsAuthorized }) {
 
   console.log("Login, email", email);
   console.log("Login, password", password);
-  console.log("Login, loginError", loginError);
-
-  useEffect(() => {
-    if (loginError) setEmail("");
-    setPassword("");
-  }, [loginError]);
-
-  useEffect(() => {
-    if (email != "" || password != "") setLoginError(false);
-  }, [email, password]);
 
   // TODO - Change myPage to whatever is more suitable
   function handleAuthentication(token) {
@@ -74,42 +66,44 @@ export default function Login({ setIsAuthorized }) {
 
   return (
     <>
-      <S_FormBox>
-        <form onSubmit={handleClick}>
-          {/**
-           * Input field for the user's email.
-           */}
-          <S_Input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      <S_FormBox onSubmit={handleClick}>
+        {/**
+         * Input field for the user's email.
+         */}
+        <S_Input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          {/**
-           * Input field for the user's password
-           */}
-          <S_Input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        {/**
+         * Input field for the user's password
+         */}
+        <S_Input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          {/**
-           * If the user has entered non-empty values to email and password, the submit button appears.
-           */}
-          <S_ButtonBox_Submit>
-            <S_Button
-              type="submit"
-              $active={email == "" || password == "" ? "false" : "true"}
-              // onClick={() => handleClick()}
-            >
-              Log in
-            </S_Button>
-          </S_ButtonBox_Submit>
-        </form>
-        {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
+        {/**
+         * If the user has entered non-empty values to email and password, the Log in button can be clicked.
+         */}
+        <S_Button
+          type="submit"
+          $active={email != "" && password != "" ? "true" : "false"}
+        >
+          Log in
+        </S_Button>
+        <S_SignUpLink
+          onClick={() => {
+            setLoginVisible(false);
+            setSignUpVisible(true);
+          }}
+        >
+          Don't have any account yet? Click here to sign up!
+        </S_SignUpLink>
       </S_FormBox>
     </>
   );

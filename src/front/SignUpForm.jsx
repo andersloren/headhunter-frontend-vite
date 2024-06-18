@@ -7,9 +7,8 @@ import { signUp } from "./functions/signUp.jsx";
 import {
   S_FormBox,
   S_Input,
-  S_ButtonBox_Submit,
+  S_Button,
 } from "./styledComponents/styledLoginSignup.jsx";
-import { S_Button } from "./styledComponents/styledFront.jsx";
 
 /**
  * When a user tries to sign up, it has to enter a valid email and a valid password.
@@ -23,11 +22,7 @@ import { S_Button } from "./styledComponents/styledFront.jsx";
  * @param {function} setSignUpVisible - When the submit button below the registration form is clicked, setSignUpVisible toggles the value of sinUpVisible and this component becomes invisible.
  */
 
-export default function SignUpForm({
-  setLoginVisible,
-  setSignUpVisible,
-  setHasSignedUp,
-}) {
+export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailOk, setIsEmailOk] = useState(false);
@@ -92,42 +87,41 @@ export default function SignUpForm({
 
   function handleSignUp(e) {
     e.preventDefault();
-    signUp(email, password, setHasSignedUp);
+    signUp(email, password);
     setLoginVisible(true);
     setSignUpVisible(false);
   }
 
   return (
     <>
-      <S_FormBox>
-        <form onSubmit={handleSignUp}>
-          {/**
-           * Input field for email
-           */}
-          <S_Input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => handleEmailChange(e.target.value)}
-          />
-          {/**
-           * Input field for password
-           */}
-          <S_Input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => handlePasswordChange(e.target.value)}
-          />
-          {/**
-           * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
-           */}
-          {emailStatus === 1 && isPasswordOk && (
-            <S_ButtonBox_Submit>
-              <S_Button type="submit">Submit</S_Button>
-            </S_ButtonBox_Submit>
-          )}
-        </form>
+      <S_FormBox onSubmit={handleSignUp}>
+        {/**
+         * Input field for email
+         */}
+        <S_Input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => handleEmailChange(e.target.value)}
+        />
+        {/**
+         * Input field for password
+         */}
+        <S_Input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => handlePasswordChange(e.target.value)}
+        />
+        {/**
+         * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
+         */}
+        <S_Button
+          type="submit"
+          $active={emailStatus === 1 && isPasswordOk ? "true" : "false"}
+        >
+          Sign Up
+        </S_Button>
       </S_FormBox>
     </>
   );
