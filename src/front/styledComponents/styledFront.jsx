@@ -50,33 +50,7 @@ export const S_Subtitle_Welcome = styled.h2`
   vertical-align: text-bottom;
 `;
 
-export const S_ButtonBox_Welcome = styled.div`
-  display: flex;
-  gap: 40px;
-`;
-
-export const S_Button = styled.button`
-  font-size: ${medium};
-  width: 100px;
-  padding: 12px;
-
-  background-color: ${(props) =>
-    props.$active === "true" ? `${brightest}` : `${neutral}`};
-  color: ${(props) =>
-    props.$active === "true" ? `${darkest}` : `${brightest}`};
-
-  border-color: ${(props) =>
-    props.$active === "true" ? `${brightest}` : `${brightest}`};
-  border: ${(props) =>
-    props.$active === "true"
-      ? `2px ${darkest} solid`
-      : `2px ${brightest} solid`};
-  border-radius: ${border_radius};
-
-  &:hover {
-    background: ${brighter};
-    cursor: pointer;
-    color: ${darkest};
-    border: 2px ${darkest} solid;
-  }
-`;
+// export const S_ButtonBox_Welcome = styled.div`
+//   display: flex;
+//   gap: 40px;
+// `;
