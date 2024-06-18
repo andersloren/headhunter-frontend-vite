@@ -10,8 +10,8 @@ import {
   S_Input,
   S_LoginError,
   S_ButtonBox_Submit,
+  S_Button,
 } from "./styledComponents/styledLoginSignup.jsx";
-import { S_Button } from "./styledComponents/styledFront.jsx";
 
 /**
  * When the user tries to log in, it has to enter its email and password. The user can also chose to go back to the parent component.
@@ -99,16 +99,15 @@ export default function Login({ setIsAuthorized }) {
           {/**
            * If the user has entered non-empty values to email and password, the submit button appears.
            */}
-          {email !== "" && password !== "" && (
-            <S_ButtonBox_Submit>
-              <S_Button
-                type="submit"
-                // onClick={() => handleClick()}
-              >
-                Submit
-              </S_Button>
-            </S_ButtonBox_Submit>
-          )}
+          <S_ButtonBox_Submit>
+            <S_Button
+              type="submit"
+              $active={email == "" || password == "" ? "false" : "true"}
+              // onClick={() => handleClick()}
+            >
+              Log in
+            </S_Button>
+          </S_ButtonBox_Submit>
         </form>
         {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
       </S_FormBox>
