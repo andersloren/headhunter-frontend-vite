@@ -28,7 +28,7 @@ export default function AdminForm({
   setIsBlur,
   isBlur,
   email,
-  handleUserCRUDSuccess,
+  handleAccountCRUDSuccess,
 }) {
   const [roles, setRoles] = useState("");
   const [numberOfJobs, setNumberOfJobs] = useState("");

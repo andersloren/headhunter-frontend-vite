@@ -1,5 +1,5 @@
 // Libraris, functions, etc
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authorize } from "../security/authorize.jsx";
 import { logIn } from "./functions/logIn.jsx";
@@ -8,7 +8,6 @@ import { logIn } from "./functions/logIn.jsx";
 import {
   S_FormBox,
   S_Input,
-  S_LoginError,
   S_ButtonBox_Submit,
 } from "./styledComponents/styledLoginSignup.jsx";
 import { S_Button } from "./styledComponents/styledFront.jsx";
@@ -25,7 +24,6 @@ import { S_Button } from "./styledComponents/styledFront.jsx";
 export default function Login({ setIsAuthorized }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -47,16 +45,6 @@ export default function Login({ setIsAuthorized }) {
 
   console.log("Login, email", email);
   console.log("Login, password", password);
-  console.log("Login, loginError", loginError);
-
-  useEffect(() => {
-    if (loginError) setEmail("");
-    setPassword("");
-  }, [loginError]);
-
-  useEffect(() => {
-    if (email != "" || password != "") setLoginError(false);
-  }, [email, password]);
 
   // TODO - Change myPage to whatever is more suitable
   function handleAuthentication(token) {
@@ -110,7 +98,6 @@ export default function Login({ setIsAuthorized }) {
             </S_ButtonBox_Submit>
           )}
         </form>
-        {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
       </S_FormBox>
     </>
   );
