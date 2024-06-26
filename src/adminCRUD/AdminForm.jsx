@@ -1,6 +1,6 @@
 // Functions, libraries, etc
-import { updateUser } from "./adminFunctions/updateUser";
-import { getUserByEmail } from "./adminFunctions/getUserByEmail";
+import { updateAccount } from "./adminFunctions/updateAccount";
+import { getAccountDtoByEmail } from "./adminFunctions/getAccountDtoByEmail";
 
 // Styled components
 import {
@@ -13,14 +13,14 @@ import { S_FunctionalityButton_Box, S_Header } from "../utils/styledGlobal";
 import { useEffect, useState } from "react";
 
 /**
- * On mount, displays email and input forms for the user to be updated. If the save button is being pressed, updateUser() is called. If the back-button is pressed, the component unmounts and the user is returned to the parent component.
+ * On mount, displays email and input forms for the account to be updated. If the save button is being pressed, updateAccount() is called. If the back-button is pressed, the component unmounts and the account is returned to the parent component.
  *
  * States:
- * - 'roles': The new roles for the user object. Sets in the input form for roles.
+ * - 'roles': The new roles for the account object. Sets in the input form for roles.
  * @param {function} setIsBlur - toggles isBlur.
  * @param {boolean} isBlur     - If true, sets background to blur.
- * @param {String} email       - The email for the user object being handled in this component.
- * @param {function} handleUserCRUDSuccess  - Called when the object was successfully updated to update list of users in parent component.
+ * @param {String} email       - The email for the account object being handled in this component.
+ * @param {function} handleAccountCRUDSuccess  - Called when the object was successfully updated to update list of accounts in parent component.
  */
 
 // Component
@@ -34,11 +34,11 @@ export default function AdminForm({
   const [numberOfJobs, setNumberOfJobs] = useState("");
 
   /**
-   * When the component mounts, findUserByEmail searches the user object and sets the roles.
+   * When the component mounts, getAccountDtoByEmail searches the account object and sets the roles.
    */
 
   useEffect(() => {
-    getUserByEmail(email, setRoles, setNumberOfJobs);
+    getAccountDtoByEmail(email, setRoles, setNumberOfJobs);
   }, [email]);
 
   console.log("AdminForm, email", email);
@@ -47,14 +47,14 @@ export default function AdminForm({
 
   /**
    * When the save button is pressed, this function sends a request to the backend to save
-   * the roles. Upon success, it triggers `handleUserCRUDSuccess` to
-   * refresh the user list in the parent component and toggles `setIsBlur` to false.
+   * the roles. Upon success, it triggers `handleAccountCRUDSuccess` to
+   * refresh the account list in the parent component and toggles `setIsBlur` to false.
    *
    * @param {String} roles    - The new roles from the input form.
    */
 
-  function handleUpdateUser(roles) {
-    updateUser(email, roles, handleUserCRUDSuccess, setIsBlur);
+  function handleUpdateAccount(roles) {
+    updateAccount(email, roles, handleAccountCRUDSuccess, setIsBlur);
   }
 
   const handleRoles = (e) => {
@@ -68,13 +68,13 @@ export default function AdminForm({
         type="email"
       >
         {/**
-         * Shows the email of the user being updated. The email cannot be changed.
+         * Shows the email of the account being updated. The email cannot be changed.
          */}
-        <S_Header>Update User</S_Header>
+        <S_Header>Update Account</S_Header>
         <strong>Email</strong>
         <S_Form_Input value={email} readOnly $readOnly={"true"}></S_Form_Input>
         {/**
-         * Shows the roles of the user being updated. The roles can be changed.
+         * Shows the roles of the account being updated. The roles can be changed.
          */}
         <strong>Roles</strong>
         <S_Form_Select
@@ -89,7 +89,7 @@ export default function AdminForm({
 
         <S_FunctionalityButton_Box>
           <S_UpdateSvg
-            onClick={() => handleUpdateUser(roles, email)}
+            onClick={() => handleUpdateAccount(roles, email)}
             $right={"true"}
           ></S_UpdateSvg>
           <S_CancelSvg

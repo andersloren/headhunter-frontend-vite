@@ -1,8 +1,6 @@
 // Styled components
 import { useEffect, useState } from "react";
-import { getUserByEmail } from "../adminCRUD/adminFunctions/getUserByEmail";
-import { getUserInfo } from "./userFunctions/getUserInfo";
-import { updateUserInfo } from "./userFunctions/updateUserInfo";
+import { getAccountDtoByEmail } from "../adminCRUD/adminFunctions/getAccountDtoByEmail";
 import {
   S_UserInfo_Column,
   S_UserInfo_Input,
@@ -13,7 +11,7 @@ import { S_Header } from "../utils/styledGlobal";
 import { extractEmailFromToken } from "../security/token/extractEmailFromToken";
 
 /**
- * When a user clicks the account icon in the sidebar, the user's username and email should appear.
+ * When an account clicks the account icon in the sidebar, the account's username and email should appear.
  *
  * States:
  * - 'username': The username that the backend retrieves from the database.
@@ -28,7 +26,7 @@ export default function UserInfo() {
   const [numberOfJobs, setNumberOfJobs] = useState("");
 
   useEffect(() => {
-    getUserByEmail(email, setRoles, setNumberOfJobs);
+    getAccountDtoByEmail(email, setRoles, setNumberOfJobs);
   }, [email]);
 
   return (

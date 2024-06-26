@@ -1,29 +1,29 @@
 import axios from "axios";
 
 /**
- * Updates a user object's username and roles in the database based on its email.
- * This operation is intended for use by admin users, as dictated by server-side authorization.
+ * Updates a account object's username and roles in the database based on its email.
+ * This operation is intended for use by admin accounts, as dictated by server-side authorization.
  *
  * On success: Logs a success message in the console.
  * On failure:
  *
  * @function
  * @async
- * @param {String} email - The email of the user to be updated.
+ * @param {String} email - The email of the account to be updated.
  * @param {String} username - The new username to be updated.
  * @param {String} roles - The new roles to be updated.
- * @param {handleUserCRUDSuccess} function - Triggers an update on the displayed list of users so it includes the newly updated fields of the user object.
+ * @param {handleAccountCRUDSuccess} function - Triggers an update on the displayed list of accounts so it includes the newly updated fields of the account object.
  * @param {setIsBlur} boolean - Makes the background component to stop being blurred when the update is finished.
  * @return
  */
 
-export async function updateUser(
+export async function updateAccount(
   email,
   roles,
-  handleUserCRUDSuccess,
+  handleAccountCRUDSuccess,
   setIsBlur
 ) {
-  const url = `http://localhost:8080/api/v1/users/update/${email}`;
+  const url = `http://localhost:8080/api/v1/account/update/${email}`;
 
   try {
     const response = await axios.put(
@@ -38,10 +38,10 @@ export async function updateUser(
         },
       }
     );
-    console.log("Update Successful");
-    handleUserCRUDSuccess();
+    console.log("Update Account Successful");
+    handleAccountCRUDSuccess();
     setIsBlur(false);
   } catch (error) {
-    console.error("Error updating user by email", error);
+    console.error("Error updating account by email", error);
   }
 }

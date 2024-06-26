@@ -25,7 +25,7 @@ export async function logIn(
         },
       }
     );
-    console.log("User Log In Success");
+    console.log("Account Log In Success");
     handleAuthentication(response.data.data.token);
     setIsAuthorized(authorize());
   } catch (error) {
