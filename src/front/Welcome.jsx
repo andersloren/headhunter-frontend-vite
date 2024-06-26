@@ -1,5 +1,5 @@
 // Libraris, functions, etc.
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // Styled components
 import {
@@ -7,8 +7,6 @@ import {
   S_HeadingBox_Welcome,
   S_Title_Welcome,
   S_Subtitle_Welcome,
-  S_Button,
-  S_ButtonBox_Welcome,
 } from "./styledComponents/styledFront.jsx";
 import { S_OpenAI_Badge, S_OpenAI_Box } from "../utils/styledGlobal.jsx";
 
@@ -22,29 +20,12 @@ import LoginForm from "./LoginForm.jsx";
  * States:
  * - 'signUpVisible': If true, child component shows below where user can sign up.
  * - 'loginVisible': If true, child component shows below where user can login.
- * - 'hasSignedUp': If true, the signup components turns invisible and the login components shows instead.
  * @param {boolean} setIsAuthorized - If the user sends in matching email and password, isAuthorized is set to true.
  */
 
 const Welcome = ({ setIsAuthorized }) => {
   const [signUpVisible, setSignUpVisible] = useState(false);
-  const [loginVisible, setLoginVisible] = useState(false);
-  const [hasSignedUp, setHasSignedUp] = useState(false);
-
-  useEffect(() => {
-    if (hasSignedUp === true) handleLogin();
-  }, [hasSignedUp]);
-
-  /**
-   * If the user clicks the button for signing up, signUpVisible becomes true and forms for signing up becomes visible.
-   *
-   * @function
-   */
-
-  function handleSignUp() {
-    setSignUpVisible((vis) => !vis);
-    setLoginVisible(false);
-  }
+  const [loginVisible, setLoginVisible] = useState(true);
 
   /**
    * If the user clicks the button for signing up, loginVisible becomes true and forms for logging in becomes visible.
@@ -52,12 +33,9 @@ const Welcome = ({ setIsAuthorized }) => {
    * @function
    */
 
-  function handleLogin() {
-    setLoginVisible((vis) => !vis);
-    setSignUpVisible(false);
-  }
-
   console.log("Welcome, mounted");
+  console.log("Welcome, signup", signUpVisible);
+  console.log("Welcome, login", loginVisible);
 
   return (
     <>
@@ -78,26 +56,6 @@ const Welcome = ({ setIsAuthorized }) => {
             />
           </S_OpenAI_Box>
         </S_HeadingBox_Welcome>
-
-        {/**
-         * Buttons for toggle the sign up component and the login component respectively.
-         */}
-        <S_ButtonBox_Welcome>
-          <S_Button
-            key={1}
-            onClick={() => handleSignUp()}
-            $active={signUpVisible ? "true" : "false"}
-          >
-            Sign Up
-          </S_Button>
-          <S_Button
-            key={2}
-            onClick={() => handleLogin()}
-            $active={loginVisible ? "true" : "false"}
-          >
-            Log In
-          </S_Button>
-        </S_ButtonBox_Welcome>
         {/**
          * Sign up component
          */}
@@ -105,13 +63,18 @@ const Welcome = ({ setIsAuthorized }) => {
           <SignUpForm
             setLoginVisible={setLoginVisible}
             setSignUpVisible={setSignUpVisible}
-            setHasSignedUp={setHasSignedUp}
           />
         )}
         {/**
          * Login component
          */}
-        {loginVisible && <LoginForm setIsAuthorized={setIsAuthorized} />}
+        {loginVisible && (
+          <LoginForm
+            setIsAuthorized={setIsAuthorized}
+            setLoginVisible={setLoginVisible}
+            setSignUpVisible={setSignUpVisible}
+          />
+        )}
       </S_FrontContainer>
     </>
   );

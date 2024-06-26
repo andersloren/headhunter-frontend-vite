@@ -8,9 +8,11 @@ import { logIn } from "./functions/logIn.jsx";
 import {
   S_FormBox,
   S_Input,
-  S_ButtonBox_Submit,
+andersloren-42-style-Welcome.jsx
+  S_Button,
+  S_SignUpLink,
+
 } from "./styledComponents/styledLoginSignup.jsx";
-import { S_Button } from "./styledComponents/styledFront.jsx";
 
 /**
  * When the account tries to log in, it has to enter its email and password. The account can also chose to go back to the parent component.
@@ -21,7 +23,11 @@ import { S_Button } from "./styledComponents/styledFront.jsx";
  * @param {boolean} setIsAuthorized - If the account sends in matching email and password, isAuthorized is set to true.
  */
 
-export default function Login({ setIsAuthorized }) {
+export default function LoginForm({
+  setIsAuthorized,
+  setLoginVisible,
+  setSignUpVisible,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -62,42 +68,44 @@ export default function Login({ setIsAuthorized }) {
 
   return (
     <>
-      <S_FormBox>
-        <form onSubmit={handleClick}>
-          {/**
-           * Input field for the account's email.
-           */}
-          <S_Input
-            type="email"
-            placeholder="Enter Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      <S_FormBox onSubmit={handleClick}>
+        {/**
+         * Input field for the user's email.
+         */}
+        <S_Input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          {/**
-           * Input field for the account's password
-           */}
-          <S_Input
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        {/**
+         * Input field for the user's password
+         */}
+        <S_Input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          {/**
-           * If the account has entered non-empty values to email and password, the submit button appears.
-           */}
-          {email !== "" && password !== "" && (
-            <S_ButtonBox_Submit>
-              <S_Button
-                type="submit"
-                // onClick={() => handleClick()}
-              >
-                Submit
-              </S_Button>
-            </S_ButtonBox_Submit>
-          )}
-        </form>
+        {/**
+         * If the user has entered non-empty values to email and password, the Log in button can be clicked.
+         */}
+        <S_Button
+          type="submit"
+          $active={email != "" && password != "" ? "true" : "false"}
+        >
+          Log in
+        </S_Button>
+        <S_SignUpLink
+          onClick={() => {
+            setLoginVisible(false);
+            setSignUpVisible(true);
+          }}
+        >
+          Don't have any account yet? Click here to sign up!
+        </S_SignUpLink>
       </S_FormBox>
     </>
   );

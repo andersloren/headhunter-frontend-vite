@@ -18,7 +18,7 @@ import {
 const border_radius = "15px";
 const inputfield_width = 300;
 
-export const S_FormBox = styled.div`
+export const S_FormBox = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,6 +49,8 @@ export const S_ButtonBox_Submit = styled.div`
 
 export const S_Button = styled.button`
   pointer-events: ${(props) => (props.$active === "true" ? "auto" : "none")};
+  /* pointer-events: none; */
+
   font-size: ${medium};
   width: 100px;
   padding: 12px;
@@ -59,7 +61,7 @@ export const S_Button = styled.button`
     props.$active === "true" ? `2px ${darkest} solid` : `2px ${dark} solid`};
   border-radius: ${border_radius};
   &:hover {
-    cursor: pointer;
+    cursor: pointer};
   }
 `;
 
