@@ -16,7 +16,7 @@ import {
 /**
  * Box that creates margin for the child elements to S_Main
  */
-export const S_User_Box = styled.div`
+export const S_Account_Box = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -28,7 +28,7 @@ export const S_User_Box = styled.div`
 /**
  * Table for all users retrieved from the backend
  */
-export const S_Userlist_Table = styled.table`
+export const S_Accountlist_Table = styled.table`
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
   border-spacing: 0px 0rem;
   font-family: Arial, Helvetica, sans-serif;
@@ -41,13 +41,13 @@ export const S_th = styled.th`
   font-size: ${medium};
 `;
 
-export const S_UserList_Row = styled.tr`
+export const S_AccountList_Row = styled.tr`
   background-color: ${(props) =>
     props.$even === "true" ? `${brighter}` : `${bright}`};
   color: ${darkest};
 `;
 
-export const S_Userlist_Data = styled.td`
+export const S_Accountlist_Data = styled.td`
   color: ${darkest};
   font-weight: bold;
 `;

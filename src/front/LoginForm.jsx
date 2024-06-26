@@ -1,5 +1,5 @@
 // Libraris, functions, etc
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authorize } from "../security/authorize.jsx";
 import { logIn } from "./functions/logIn.jsx";
@@ -8,34 +8,32 @@ import { logIn } from "./functions/logIn.jsx";
 import {
   S_FormBox,
   S_Input,
-  S_LoginError,
   S_ButtonBox_Submit,
 } from "./styledComponents/styledLoginSignup.jsx";
 import { S_Button } from "./styledComponents/styledFront.jsx";
 
 /**
- * When the user tries to log in, it has to enter its email and password. The user can also chose to go back to the parent component.
+ * When the account tries to log in, it has to enter its email and password. The account can also chose to go back to the parent component.
  *
  * States:
- * - 'email': The email that the user enters.
- * - 'password': The password that the user enters.
- * @param {boolean} setIsAuthorized - If the user sends in matching email and password, isAuthorized is set to true.
+ * - 'email': The email that the account enters.
+ * - 'password': The password that the account enters.
+ * @param {boolean} setIsAuthorized - If the account sends in matching email and password, isAuthorized is set to true.
  */
 
 export default function Login({ setIsAuthorized }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setLoginError] = useState(false);
 
   const navigate = useNavigate();
 
   /**
-   * When trying to log in, an HTTP request with email and password is being sent to the backend to authenticate the user.
+   * When trying to log in, an HTTP request with email and password is being sent to the backend to authenticate the account.
    *
    * On success:
    * - Logs a success message in the console.
    * - Stores the token locally in the browser.
-   * - Sets isAuthorized to true, which enables the user to access different parts of the app.
+   * - Sets isAuthorized to true, which enables the account to access different parts of the app.
    *
    * On failure:
    * - Logs an error to the console.
@@ -47,16 +45,6 @@ export default function Login({ setIsAuthorized }) {
 
   console.log("Login, email", email);
   console.log("Login, password", password);
-  console.log("Login, loginError", loginError);
-
-  useEffect(() => {
-    if (loginError) setEmail("");
-    setPassword("");
-  }, [loginError]);
-
-  useEffect(() => {
-    if (email != "" || password != "") setLoginError(false);
-  }, [email, password]);
 
   // TODO - Change myPage to whatever is more suitable
   function handleAuthentication(token) {
@@ -77,7 +65,7 @@ export default function Login({ setIsAuthorized }) {
       <S_FormBox>
         <form onSubmit={handleClick}>
           {/**
-           * Input field for the user's email.
+           * Input field for the account's email.
            */}
           <S_Input
             type="email"
@@ -87,7 +75,7 @@ export default function Login({ setIsAuthorized }) {
           />
 
           {/**
-           * Input field for the user's password
+           * Input field for the account's password
            */}
           <S_Input
             type="password"
@@ -97,7 +85,7 @@ export default function Login({ setIsAuthorized }) {
           />
 
           {/**
-           * If the user has entered non-empty values to email and password, the submit button appears.
+           * If the account has entered non-empty values to email and password, the submit button appears.
            */}
           {email !== "" && password !== "" && (
             <S_ButtonBox_Submit>
@@ -110,7 +98,6 @@ export default function Login({ setIsAuthorized }) {
             </S_ButtonBox_Submit>
           )}
         </form>
-        {loginError && <S_LoginError>Invalid email or password</S_LoginError>}
       </S_FormBox>
     </>
   );

@@ -7,7 +7,7 @@ export async function logIn(
   setIsAuthorized,
   authorize
 ) {
-  const url = "http://localhost:8080/api/v1/users/login";
+  const url = "http://localhost:8080/api/v1/account/login";
 
   const basicAuth = btoa(`${email}:${password}`);
 
@@ -25,7 +25,7 @@ export async function logIn(
         },
       }
     );
-    console.log("User Log In Success");
+    console.log("Account Log In Success");
     handleAuthentication(response.data.data.token);
     setIsAuthorized(authorize());
   } catch (error) {

@@ -18,7 +18,7 @@ import {
 const border_radius = "15px";
 const inputfield_width = 300;
 
-export const S_FormBox = styled.form`
+export const S_FormBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
