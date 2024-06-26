@@ -1,6 +1,6 @@
 // Libraris, functions, etc
 import { useEffect, useState } from "react";
-import { findUserByEmail } from "./functions/findUserByEmail.jsx";
+import { isEmailAvailable } from "./functions/isEmailAvailable.jsx";
 import { signUp } from "./functions/signUp.jsx";
 
 // Styled Components
@@ -11,11 +11,11 @@ import {
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
- * When a user tries to sign up, it has to enter a valid email and a valid password.
+ * When a account tries to sign up, it has to enter a valid email and a valid password.
  *
  * States:
- * - 'email': The email that the user enters.
- * - 'password': The password that the user enters.
+ * - 'email': The email that the account enters.
+ * - 'password': The password that the account enters.
  * - 'isEmailOk': Becomes true if email meets regex criteria.
  * - 'isPasswordOk': Becomes true if password meets regex criteria.
  * @param {function} setLoginVisible - When the submit button below the registration form is clicked, setLoginVisible toggles the boolean value of loginVisible and the login form invisible.
@@ -36,7 +36,7 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
   const [isPasswordOk, setIsPasswordOk] = useState(false);
 
   /**
-   * When the user enters an email in the input field, the value will be checked if it passes the regex criteria in this function.
+   * When the account enters an email in the input field, the value will be checked if it passes the regex criteria in this function.
    *
    * If the criteria is met, isEmailOk sets to true and a check sign turns visible on the right hand side of the input field.
    *
@@ -61,15 +61,15 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
   console.log("SignUpForm isPasswordOk ", isPasswordOk);
 
   useEffect(() => {
-    if (isEmailOk) {
-      findUserByEmail(email, setIsEmailStatus);
+    if (isEmailOk && isPasswordOk) {
+      isEmailAvailable(email, setIsEmailStatus);
     } else {
       setIsEmailStatus(0);
     }
-  }, [email, isEmailOk]);
+  }, [email, isEmailOk, isPasswordOk]);
 
   /**
-   * When the user enters a password in the input field, the value will be checked if it passes the regex criteria in this function.
+   * When the account enters a password in the input field, the value will be checked if it passes the regex criteria in this function.
    *
    * If the criteria is met, isPasswordOk sets to true and a check sign turns visible on the right hand side of the input field.
    *

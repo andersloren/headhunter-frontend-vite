@@ -1,93 +1,93 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
-import { deleteUser } from "./adminFunctions/deleteUser";
-import { findAllUsers } from "./adminFunctions/findAllUsers";
+import { deleteAccount } from "./adminFunctions/deleteAccount.jsx";
+import { getAllAccountDtoViews } from "./adminFunctions/getAllAccountDtoViews.jsx";
 
 // Styled components
 import { S_Header, S_FunctionalityButton_Box } from "../utils/styledGlobal.jsx";
 import {
-  S_Userlist_Table,
-  S_UserList_Row,
-  S_Userlist_Data,
+  S_Accountlist_Table,
+  S_AccountList_Row,
+  S_Accountlist_Data,
   S_th,
-  S_User_Box,
+  S_Account_Box,
 } from "./styledComponents/styledAdmin";
 import { S_EditSvg, S_DeleteSvg } from "../utils/styledSVG.jsx";
 
 import AdminForm from "./AdminForm";
 
 /**
- * Admin component for managing users.
+ * Admin component for managing accounts.
  *
- * On mount, displays full list of users and buttons for editing and deleting each user.
+ * On mount, displays full list of accounts and buttons for editing and deleting each account.
  *
  * States:
- * - 'userList':          An array of all user objects retrieved from the database.
+ * - 'accountList':          An array of all account objects retrieved from the database.
  * - 'isBlur':            A boolean that controls the blurring effect of the background during editing.
- * - 'userEmail':         The email of the user being edited, used to prefill the AdminForm.
- * - 'refreshUserTable':  A boolean that triggers a refresh of the user list when toggled.
+ * - 'accountEmail':         The email of the account being edited, used to prefill the AdminForm.
+ * - 'refreshAccountTable':  A boolean that triggers a refresh of the account list when toggled.
  */
 
 export default function Admin() {
-  const [userList, setUserList] = useState([]);
+  const [accountList, setAccountList] = useState([]);
   const [isBlur, setIsBlur] = useState(false);
-  const [userEmail, setUserEmail] = useState(null);
-  const [refreshUserTable, setRefreshUserTable] = useState(false);
+  const [accountEmail, setAccountEmail] = useState(null);
+  const [refreshAccountTable, setRefreshAccountTable] = useState(false);
 
   /**
-   * On mount, all users are being set to userList so they can be displayed.
+   * On mount, all accounts are being set to accountList so they can be displayed.
    */
 
   useEffect(() => {
-    findAllUsers(setUserList);
+    getAllAccountDtoViews(setAccountList);
   }, []);
 
   /**
-   * When a user has been updated or deleted, all user are being set again so they can be displayed.
+   * When a account has been updated or deleted, all account are being set again so they can be displayed.
    */
 
   useEffect(() => {
-    findAllUsers(setUserList);
-  }, [refreshUserTable]);
+    getAllAccountDtoViews(setAccountList);
+  }, [refreshAccountTable]);
 
   function handleDelete(email) {
-    deleteUser(email, handleUserCRUDSuccess);
+    deleteAccount(email, handleAccountCRUDSuccess);
   }
 
-  console.log(refreshUserTable);
+  console.log(refreshAccountTable);
 
   /**
-   * If updating or deleting a user is successful, the handleUserCRUDSuccess is being toggled, which then triggers the useEffect aboce.
+   * If updating or deleting a account is successful, the handleAccountCRUDSuccess is being toggled, which then triggers the useEffect aboce.
    */
 
-  function handleUserCRUDSuccess() {
-    setRefreshUserTable((refresh) => !refresh);
+  function handleAccountCRUDSuccess() {
+    setRefreshAccountTable((refresh) => !refresh);
   }
 
   return (
     <>
-      <S_User_Box>
+      <S_Account_Box>
         <S_Header>Accounts</S_Header>
-        <S_Userlist_Table $blur={isBlur === true ? "true" : "false"}>
+        <S_Accountlist_Table $blur={isBlur === true ? "true" : "false"}>
           <thead>
-            <S_UserList_Row $background={"neutral"}>
+            <S_AccountList_Row $background={"neutral"}>
               <S_th>Actions</S_th>
               <S_th>Email</S_th>
               <S_th>Roles</S_th>
               <S_th>Number of jobs</S_th>
-            </S_UserList_Row>
+            </S_AccountList_Row>
           </thead>
           <tbody>
             {/**
-             * The array of all users are mapped here.
+             * The array of all accounts are mapped here.
              */}
-            {userList.map((user, index) => (
-              <S_UserList_Row
+            {accountList.map((account, index) => (
+              <S_AccountList_Row
                 key={index}
                 $even={index % 2 === 0 ? "true" : "false"}
               >
                 {/**
-                 * Button for updating the user. Displays a child component and blurs the background.
+                 * Button for updating the account. Displays a child component and blurs the background.
                  */}
                 <S_FunctionalityButton_Box $admin={"true"}>
                   <S_EditSvg
@@ -96,41 +96,41 @@ export default function Admin() {
                     onClick={() => {
                       if (!isBlur) {
                         setIsBlur(true);
-                        setUserEmail(user.email);
+                        setAccountEmail(account.email);
                       }
                     }}
                   />
                   <S_DeleteSvg
                     // $even={index % 2 === 0 ? "true" : "false"}
-                    onClick={() => (isBlur ? "" : handleDelete(user.email))}
+                    onClick={() => (isBlur ? "" : handleDelete(account.email))}
                     $admin={"true"}
                   />
                 </S_FunctionalityButton_Box>
-                <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
-                  {user.email}
-                </S_Userlist_Data>
-                <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
-                  {user.roles}
-                </S_Userlist_Data>
-                <S_Userlist_Data $even={index % 2 === 0 ? "true" : "false"}>
-                  {user.number_of_jobs}
-                </S_Userlist_Data>
-              </S_UserList_Row>
+                <S_Accountlist_Data $even={index % 2 === 0 ? "true" : "false"}>
+                  {account.email}
+                </S_Accountlist_Data>
+                <S_Accountlist_Data $even={index % 2 === 0 ? "true" : "false"}>
+                  {account.roles}
+                </S_Accountlist_Data>
+                <S_Accountlist_Data $even={index % 2 === 0 ? "true" : "false"}>
+                  {account.number_of_jobs}
+                </S_Accountlist_Data>
+              </S_AccountList_Row>
             ))}
           </tbody>
-        </S_Userlist_Table>
+        </S_Accountlist_Table>
         {/**
          * If the update button is being pressed, a new component show up on top and blurs the background.
          */}
         {isBlur && (
           <AdminForm
-            email={userEmail}
+            email={accountEmail}
             isBlur={isBlur}
             setIsBlur={setIsBlur}
-            handleUserCRUDSuccess={handleUserCRUDSuccess}
+            handleAccountCRUDSuccess={handleAccountCRUDSuccess}
           />
         )}
-      </S_User_Box>
+      </S_Account_Box>
     </>
   );
 }

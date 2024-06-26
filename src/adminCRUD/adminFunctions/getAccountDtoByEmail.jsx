@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export async function getUserByEmail(email, setRoles, setNumberOfJobs) {
-  const url = `http://localhost:8080/api/v1/users/getUserByEmail/${email}`;
+export async function getAccountDtoByEmail(email, setRoles, setNumberOfJobs) {
+  const url = `http://localhost:8080/api/v1/account/getAccountDtoByEmail/${email}`;
 
   try {
     const response = await axios.get(url, {
@@ -10,10 +10,10 @@ export async function getUserByEmail(email, setRoles, setNumberOfJobs) {
         "Content-Type": "application/json",
       },
     });
-    console.log("User Found Success");
+    console.log("Account Found Success");
     setRoles(response.data.data.roles);
     setNumberOfJobs(response.data.data.number_of_jobs);
   } catch (error) {
-    console.error("Error get user by email", error);
+    console.error("Error get account by email", error);
   }
 }

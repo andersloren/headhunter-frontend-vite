@@ -50,6 +50,7 @@ export const S_ButtonBox_Submit = styled.div`
 export const S_Button = styled.button`
   pointer-events: ${(props) => (props.$active === "true" ? "auto" : "none")};
   /* pointer-events: none; */
+
   font-size: ${medium};
   width: 100px;
   padding: 12px;

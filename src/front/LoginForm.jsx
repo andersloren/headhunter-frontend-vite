@@ -8,17 +8,19 @@ import { logIn } from "./functions/logIn.jsx";
 import {
   S_FormBox,
   S_Input,
+andersloren-42-style-Welcome.jsx
   S_Button,
   S_SignUpLink,
+
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
- * When the user tries to log in, it has to enter its email and password. The user can also chose to go back to the parent component.
+ * When the account tries to log in, it has to enter its email and password. The account can also chose to go back to the parent component.
  *
  * States:
- * - 'email': The email that the user enters.
- * - 'password': The password that the user enters.
- * @param {boolean} setIsAuthorized - If the user sends in matching email and password, isAuthorized is set to true.
+ * - 'email': The email that the account enters.
+ * - 'password': The password that the account enters.
+ * @param {boolean} setIsAuthorized - If the account sends in matching email and password, isAuthorized is set to true.
  */
 
 export default function LoginForm({
@@ -32,12 +34,12 @@ export default function LoginForm({
   const navigate = useNavigate();
 
   /**
-   * When trying to log in, an HTTP request with email and password is being sent to the backend to authenticate the user.
+   * When trying to log in, an HTTP request with email and password is being sent to the backend to authenticate the account.
    *
    * On success:
    * - Logs a success message in the console.
    * - Stores the token locally in the browser.
-   * - Sets isAuthorized to true, which enables the user to access different parts of the app.
+   * - Sets isAuthorized to true, which enables the account to access different parts of the app.
    *
    * On failure:
    * - Logs an error to the console.
