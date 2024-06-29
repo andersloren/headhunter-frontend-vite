@@ -24,7 +24,7 @@ export async function getJobById(
   setAdPhone,
   setApplicationDeadline
 ) {
-  const url = `http://localhost:8080/api/v1/jobs/getJobById/${jobId}`;
+  const url = `http://localhost:8080/api/v1/job/getJobById/${jobId}`;
 
   try {
     const response = await axios.get(url, {

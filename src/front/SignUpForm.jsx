@@ -127,7 +127,7 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
             type="submit"
             $active={isSubmitReady === true ? "true" : "false"}
           >
-            Sign Up
+            Sign up
           </S_Button>
         )}
       </S_FormBox>

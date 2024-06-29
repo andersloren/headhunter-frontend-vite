@@ -30,6 +30,11 @@ export const S_Input = styled.input`
   width: auto;
   background-color: ${brightest};
   font-size: ${medium};
+  border: 0;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 7px ${darkest};
+  }
 `;
 
 export const S_TextArea = styled.textarea`
@@ -38,9 +43,12 @@ export const S_TextArea = styled.textarea`
   color: ${darkest};
   font-size: ${medium};
   border-radius: ${border_preview_border_radius};
-  border: ${border_preview_border};
   min-width: 400px;
   min-height: 350px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 7px ${darkest};
+  }
 `;
 
 export const S_Tooltip_FunctionalityButton = styled.div`

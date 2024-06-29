@@ -31,7 +31,6 @@ export const S_Account_Box = styled.div`
 export const S_Accountlist_Table = styled.table`
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
   border-spacing: 0px 0rem;
-  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const S_th = styled.th`
@@ -43,12 +42,14 @@ export const S_th = styled.th`
 
 export const S_AccountList_Row = styled.tr`
   background-color: ${(props) =>
-    props.$even === "true" ? `${brighter}` : `${bright}`};
+    props.$even === "true" ? `${dark}` : `${bright}`};
   color: ${darkest};
 `;
 
 export const S_Accountlist_Data = styled.td`
   color: ${darkest};
   font-weight: bold;
+  /* background-color: ${(props) =>
+    props.$even === "true" ? `${neutral}` : `${bright}`}; */
+  background-color: transparent;
 `;
-export const S_Button_Box = styled.div``;

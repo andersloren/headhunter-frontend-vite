@@ -51,7 +51,7 @@ const Welcome = ({ setIsAuthorized }) => {
            */}
           <S_OpenAI_Box>
             <S_OpenAI_Badge
-              src="../static/powered-by-openai-badge-outlined-on-light.svg"
+              src="../static/powered-by-openai-badge-outlined-on-dark.svg"
               alt="Open AI Logo"
             />
           </S_OpenAI_Box>

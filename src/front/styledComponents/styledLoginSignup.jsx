@@ -38,7 +38,7 @@ export const S_FormBox = styled.form`
 
 export const S_RegisterLabel = styled.div`
   padding: 15px;
-  color: ${darker};
+  color: ${bright};
   font-family: Aptos, sans-serif;
   letter-spacing: 2px;
   font-size: ${mediumSmall};
@@ -58,10 +58,10 @@ export const S_Input = styled.input`
   font-weight: 500;
   margin: 0px 0px 15px 0px;
   width: ${inputfield_width} "px";
-  /* textarea: focus; */
-  /* input:focus {
+  &:focus {
     outline: none;
-  } */
+    box-shadow: 0 0 7px ${darkest};
+  }
 `;
 
 export const S_ButtonBox_Submit = styled.div`
@@ -72,21 +72,16 @@ export const S_ButtonBox_Submit = styled.div`
 
 export const S_Button = styled.button`
   pointer-events: ${(props) => (props.$active === "true" ? "auto" : "none")};
-  /* pointer-events: none; */
-
-  font-size: ${medium};
-  width: 100px;
+  font-size: ${small};
   padding: 12px;
-  background-color: ${(props) =>
-    props.$active === "true" ? `${brightest}` : `${bright}`};
-  color: ${(props) => (props.$active === "true" ? `${darkest}` : `${dark}`)};
-  border: ${(props) =>
-    props.$active === "true"
-      ? `${button_border} ${darkest} solid`
-      : `${button_border} ${dark} solid`};
+  background-color: transparent;
+  color: ${bright};
+  border: ${button_border} ${bright} solid;
   border-radius: ${border_radius};
   &:hover {
-    cursor: pointer};
+    cursor: pointer;
+    background-color: ${neutral};
+    color: ${dark};
   }
 `;
 
@@ -95,7 +90,7 @@ export const S_SignUpLink = styled.div`
   margin-top: 10px;
   text-decoration-line: underline;
   font-family: Aptos, sans-serif;
-  color: ${darker};
+  color: ${bright};
   &:hover {
     cursor: pointer;
   }

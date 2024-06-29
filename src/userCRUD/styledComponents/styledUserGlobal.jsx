@@ -55,11 +55,6 @@ export const S_PreviewBox = styled.div`
   display: flex;
 `;
 
-export const S_Header = styled.div`
-  font-size: ${big};
-  color: ${brightest};
-`;
-
 export const S_AddSvg = styled(AddSvg)`
   border: 1px solid ${brighter};
   border-radius: 5px;

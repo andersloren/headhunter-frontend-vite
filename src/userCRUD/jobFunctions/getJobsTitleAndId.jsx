@@ -5,7 +5,7 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
 export async function getJobsTitleAndId(setJobList) {
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/jobs/getJobsTitleAndId/${email}`;
+  const url = `http://localhost:8080/api/v1/job/getAllJobIdAndTitlesDtosByEmail/${email}`;
 
   console.log("getJobsTitleAndId is loading");
 

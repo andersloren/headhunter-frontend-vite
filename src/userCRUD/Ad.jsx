@@ -5,10 +5,9 @@ import { deleteAd } from "./adFunctions/deleteAd";
 import { downloadFile } from "./adFunctions/downloadFile.jsx";
 
 // Styled Components
-import { S_Main } from "../utils/styledGlobal";
+import { S_Main, S_Header } from "../utils/styledGlobal";
 import {
   S_FunctionalityButton_Box,
-  S_Header,
   S_JobList_Job_Ad_Container,
   S_PreviewBox,
 } from "./styledComponents/styledUserGlobal";

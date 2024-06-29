@@ -248,10 +248,10 @@ export const S_HourglassTop = styled(HourglassTopSvg)`
 export const S_AccountSvg = styled(AccountSvg)`
   width: 50px;
   height: 50px;
-  fill: ${brightest};
+  fill: ${dark};
   &:hover {
     background: ${brightest};
-    fill: ${darker};
+    fill: ${darkest};
     cursor: pointer;
   }
   border-radius: ${border_radius};
@@ -259,16 +259,15 @@ export const S_AccountSvg = styled(AccountSvg)`
   margin: 10px;
   background-color: ${(props) =>
     props.$active === "true" ? `${brightest}` : `${bright}`};
-  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
 `;
 
 export const S_AdminSvg = styled(AdminSvg)`
   width: 50px;
   height: 50px;
-  fill: ${brightest};
+  fill: ${dark};
   &:hover {
     background: ${brightest};
-    fill: ${darker};
+    fill: ${darkest};
     cursor: pointer;
   }
   border-radius: ${border_radius};
@@ -276,16 +275,15 @@ export const S_AdminSvg = styled(AdminSvg)`
   margin: 10px;
   background-color: ${(props) =>
     props.$active === "true" ? `${brightest}` : `${bright}`};
-  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
 `;
 
 export const S_ListSvg = styled(ListSvg)`
   width: 50px;
   height: 50px;
-  fill: ${brightest};
+  fill: ${dark};
   &:hover {
     background: ${brightest};
-    fill: ${darker};
+    fill: ${darkest};
     cursor: pointer;
   }
   border-radius: ${border_radius};
@@ -293,16 +291,15 @@ export const S_ListSvg = styled(ListSvg)`
   margin: 10px;
   background-color: ${(props) =>
     props.$active === "true" ? `${brightest}` : `${bright}`};
-  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
 `;
 
 export const S_LogoutSvg = styled(LogoutSvg)`
   width: 50px;
   height: 50px;
-  fill: ${brightest};
+  fill: ${dark};
   &:hover {
     background: ${brightest};
-    fill: ${darker};
+    fill: ${darkest};
     cursor: pointer;
   }
   border-radius: ${border_radius};
