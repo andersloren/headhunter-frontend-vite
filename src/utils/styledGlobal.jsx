@@ -52,4 +52,5 @@ export const S_OpenAI_Badge = styled.img`
   margin-right: auto;
   /* margin: 32px; */
   height: 32px;
+  color: ${dark};
 `;

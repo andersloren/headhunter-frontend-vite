@@ -1,6 +1,6 @@
 // Libraris, functions, etc
 import { useEffect, useState } from "react";
-import { isEmailAvailable } from "./functions/isEmailAvailable.jsx";
+import { checkEmailUnique } from "./functions/checkEmailUnique.jsx";
 import { signUp } from "./functions/signUp.jsx";
 
 // Styled Components
@@ -8,6 +8,7 @@ import {
   S_FormBox,
   S_Input,
   S_Button,
+  S_RegisterLabel,
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -25,15 +26,10 @@ import {
 export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isEmailOk, setIsEmailOk] = useState(false);
-  /**
-   * emailStatus can take three values:
-   *    1) show check
-   *    0) show nothing
-   *   -1) show message
-   */
-  const [emailStatus, setIsEmailStatus] = useState(0);
-  const [isPasswordOk, setIsPasswordOk] = useState(false);
+  const [isEmailRegex, setIsEmailRegex] = useState(false);
+  const [isPasswordRegex, setIsPasswordRegex] = useState(false);
+  const [isEmailUnique, setIsEmailUnique] = useState(false);
+  const [isSubmitReady, setIsSubmitReady] = useState(false);
 
   /**
    * When the account enters an email in the input field, the value will be checked if it passes the regex criteria in this function.
@@ -44,29 +40,14 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
    * @param {String} email - This is the value that the regex criteria checks.
    */
 
-  function handleEmailChange(email) {
+  function handleEmailRegex(email) {
     const newEmail = email;
     setEmail(newEmail);
     const matcher = new RegExp(
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
     );
-    let boolean = matcher.test(newEmail);
-    setIsEmailOk(boolean);
+    setIsEmailRegex(matcher.test(newEmail));
   }
-
-  console.log("SignUpForm email:", email);
-  console.log("SignUpForm isEmailOk:", isEmailOk);
-  console.log("SignUpForm emailStatus:", emailStatus);
-  console.log("SignupForm Password: ", password);
-  console.log("SignUpForm isPasswordOk ", isPasswordOk);
-
-  useEffect(() => {
-    if (isEmailOk && isPasswordOk) {
-      isEmailAvailable(email, setIsEmailStatus);
-    } else {
-      setIsEmailStatus(0);
-    }
-  }, [email, isEmailOk, isPasswordOk]);
 
   /**
    * When the account enters a password in the input field, the value will be checked if it passes the regex criteria in this function.
@@ -77,13 +58,26 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
    * @param {String} password - This is the value that the regex criteria checks.
    */
 
-  function handlePasswordChange(password) {
+  function handlePasswordRegex(password) {
     const newPassword = password;
     setPassword(newPassword);
     const matcher = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     let boolean = matcher.test(newPassword);
-    setIsPasswordOk(boolean);
+    setIsPasswordRegex(boolean);
   }
+
+  useEffect(() => {
+    if (isEmailRegex) {
+      console.log("SignUpForm isEmailRegex = True");
+      checkEmailUnique(email, setIsEmailUnique);
+    }
+  }, [isEmailRegex, email]);
+
+  useEffect(() => {
+    isPasswordRegex && isEmailUnique
+      ? setIsSubmitReady(true)
+      : setIsSubmitReady(false);
+  }, [isPasswordRegex, isEmailUnique]);
 
   function handleSignUp(e) {
     e.preventDefault();
@@ -92,9 +86,17 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
     setSignUpVisible(false);
   }
 
+  console.log("SignUpForm email:", email);
+  console.log("SignUpForm isEmailRegex:", isEmailRegex);
+  console.log("SignUpForm isEmailUnique?", isEmailUnique);
+  console.log("SignupForm Password: ", password);
+  console.log("SignUpForm isPasswordRegex ", isPasswordRegex);
+  console.log("SignUpForm isSubmitReady?", isSubmitReady);
+
   return (
     <>
       <S_FormBox onSubmit={handleSignUp}>
+        <S_RegisterLabel>Register New Account</S_RegisterLabel>
         {/**
          * Input field for email
          */}
@@ -102,7 +104,10 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
           type="email"
           placeholder="Enter Email"
           value={email}
-          onChange={(e) => handleEmailChange(e.target.value)}
+          onChange={(e) => handleEmailRegex(e.target.value)}
+          $isInputValid={
+            isEmailUnique && isEmailRegex === true ? "true" : "false"
+          }
         />
         {/**
          * Input field for password
@@ -111,17 +116,20 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
           type="password"
           placeholder="Enter Password"
           value={password}
-          onChange={(e) => handlePasswordChange(e.target.value)}
+          onChange={(e) => handlePasswordRegex(e.target.value)}
+          $isInputValid={isPasswordRegex === true ? "true" : "false"}
         />
         {/**
          * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
          */}
-        <S_Button
-          type="submit"
-          $active={emailStatus === 1 && isPasswordOk ? "true" : "false"}
-        >
-          Sign Up
-        </S_Button>
+        {isSubmitReady === true && (
+          <S_Button
+            type="submit"
+            $active={isSubmitReady === true ? "true" : "false"}
+          >
+            Sign Up
+          </S_Button>
+        )}
       </S_FormBox>
     </>
   );

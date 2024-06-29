@@ -8,10 +8,8 @@ import { logIn } from "./functions/logIn.jsx";
 import {
   S_FormBox,
   S_Input,
-andersloren-42-style-Welcome.jsx
   S_Button,
   S_SignUpLink,
-
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -104,7 +102,7 @@ export default function LoginForm({
             setSignUpVisible(true);
           }}
         >
-          Don't have any account yet? Click here to sign up!
+          Don't have an account yet? Click here to sign up!
         </S_SignUpLink>
       </S_FormBox>
     </>
