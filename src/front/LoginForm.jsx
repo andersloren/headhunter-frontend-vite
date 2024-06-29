@@ -102,7 +102,7 @@ export default function LoginForm({
             setSignUpVisible(true);
           }}
         >
-          Don't have any account yet? Click here to sign up!
+          Don't have an account yet? Click here to sign up!
         </S_SignUpLink>
       </S_FormBox>
     </>

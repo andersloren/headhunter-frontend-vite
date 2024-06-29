@@ -15,7 +15,7 @@ import axios from "axios";
  */
 
 export async function findUserByEmail(email, setIsEmailStatus) {
-  const url = `http://localhost:8080/api/v1/users/findUser/${email}`;
+  const url = `http://localhost:8080/api/v1/user/findUser/${email}`;
 
   try {
     const response = await axios.get(url);

@@ -27,6 +27,7 @@ export const S_FrontContainer = styled.div`
 export const S_HeadingBox_Welcome = styled.div`
   font-family: Merriweather, sans-serif;
   text-transform: uppercase;
+  color: ${dark};
 `;
 
 export const S_Title_Welcome = styled.h1`
@@ -35,7 +36,6 @@ export const S_Title_Welcome = styled.h1`
   letter-spacing: 20px;
   margin-right: -20px;
   margin-bottom: 8px;
-  color: ${brightest};
   text-align: justify;
   text-align: center;
   vertical-align: text-bottom;
@@ -43,7 +43,6 @@ export const S_Title_Welcome = styled.h1`
 
 export const S_Subtitle_Welcome = styled.h2`
   font-size: ${big};
-  color: ${brightest};
   font-weight: 400;
   letter-spacing: 5px;
   text-align: center;
