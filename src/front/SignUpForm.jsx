@@ -9,6 +9,9 @@ import {
   S_Input,
   S_Button,
   S_RegisterLabel,
+  S_SignUpLink,
+  S_WarningLabel,
+  S_WarningLabelBox,
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -109,6 +112,15 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
             isEmailUnique && isEmailRegex === true ? "true" : "false"
           }
         />
+        {!isEmailRegex && email.length > 0 && (
+          <S_WarningLabelBox>
+            <S_WarningLabel
+              $isValid={!isEmailRegex && email.length > 0 ? "false" : "true"}
+            >
+              Email is invalid
+            </S_WarningLabel>
+          </S_WarningLabelBox>
+        )}
         {/**
          * Input field for password
          */}
@@ -119,6 +131,15 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
           onChange={(e) => handlePasswordRegex(e.target.value)}
           $isInputValid={isPasswordRegex === true ? "true" : "false"}
         />
+        {!isPasswordRegex && password !== "" && (
+          <S_WarningLabelBox>
+            <S_WarningLabel
+              $isValid={!isPasswordRegex && password !== "" ? "false" : "true"}
+            >
+              Password is invalid
+            </S_WarningLabel>
+          </S_WarningLabelBox>
+        )}
         {/**
          * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
          */}
@@ -130,6 +151,7 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
             Sign up
           </S_Button>
         )}
+        <S_SignUpLink>Go back to log in</S_SignUpLink>
       </S_FormBox>
     </>
   );

@@ -17,5 +17,6 @@ export const big = "30px";
 export const medium = "20px";
 export const mediumSmall = "16px";
 export const small = "12px";
+export const verySmall = "6px";
 
 // export const backgroundColor = RGB(255, 255, 255);

@@ -14,6 +14,7 @@ import {
   medium,
   mediumSmall,
   small,
+  verySmall,
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
@@ -31,7 +32,7 @@ export const S_FormBox = styled.form`
   align-items: center;
   font-size: ${medium};
   position: relative;
-  gap: 5px;
+  gap: 10px;
   animation-name: ${fadeIn};
   animation-duration: 1s;
 `;
@@ -42,6 +43,7 @@ export const S_RegisterLabel = styled.div`
   font-family: Aptos, sans-serif;
   letter-spacing: 2px;
   font-size: ${mediumSmall};
+  font-weight: lighter;
 `;
 
 export const S_Input = styled.input`
@@ -56,12 +58,23 @@ export const S_Input = styled.input`
   border-radius: ${border_radius};
   border: 0;
   font-weight: 500;
-  margin: 0px 0px 15px 0px;
+  /* margin: 15px 0px 0px 0px; */
   width: ${inputfield_width} "px";
   &:focus {
     outline: none;
     box-shadow: 0 0 7px ${darkest};
   }
+`;
+
+export const S_WarningLabelBox = styled.div`
+  display: flex;
+  /* align-self: flex-start; */
+`;
+
+export const S_WarningLabel = styled.div`
+  font-size: ${small};
+  color: ${(props) => (props.$isValid === "true" ? "transparent" : "red")};
+  justify-self: flex-start; /* Aligns items vertically to the top */
 `;
 
 export const S_ButtonBox_Submit = styled.div`
