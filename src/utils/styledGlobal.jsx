@@ -16,22 +16,16 @@ import {
 const width = "20px";
 const admin_width = "10px";
 
-// Main
-export const S_MainBase = styled.div`
-  min-height: 100vh;
-  /* background-color: ${neutral}; */
-  background: linear-gradient(to right, ${bright}, ${brighter});
-`;
-
 export const S_Main = styled.div`
   min-height: 100vh;
-  /* background-color: ${neutral}; */
-  background: ${neutral};
+  background: linear-gradient(to bottom, ${neutral}, ${dark});
+  font-family: Aptos, sans-serif;
 `;
 
 export const S_Header = styled.div`
   font-size: ${big};
-  color: ${brightest};
+  color: ${darkest};
+  text-align: center;
 `;
 
 export const S_FunctionalityButton_Box = styled.div`

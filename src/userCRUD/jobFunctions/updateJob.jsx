@@ -1,6 +1,5 @@
 // Libraries, functions, etc.
 import axios from "axios";
-import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
 /**
  * Updates a job by title, description, and instruction. If successful, resets window.confirm triggering state.
@@ -30,7 +29,7 @@ export async function updateJob(
   adPhone,
   applicationDeadline
 ) {
-  const url = `http://localhost:8080/api/v1/jobs/update/${jobId}`;
+  const url = `http://localhost:8080/api/v1/job/update/${jobId}`;
   try {
     const response = await axios.put(
       url,

@@ -9,10 +9,10 @@ import JobEdit from "./JobEdit.jsx";
 import Ad from "./Ad.jsx";
 
 // CSS
+import { S_Header } from "../utils/styledGlobal.jsx";
 import {
   S_JobList_Job_Ad_Container,
   S_FunctionalityButton_Box,
-  S_Header,
   S_JobEdit_Ad_Container,
 } from "./styledComponents/styledUserGlobal.jsx";
 
@@ -68,8 +68,8 @@ export default function MyJobs() {
   useEffect(() => {}, [jobId]);
 
   // TODO - Skip the handle-part and just put addJob() where the function should be invoked?
-  function handleAddJob() {
-    addJob(handleJobCRUDSuccess);
+  function handleAddJob(jobListLength) {
+    addJob(handleJobCRUDSuccess, jobListLength);
   }
 
   /**
@@ -170,7 +170,10 @@ export default function MyJobs() {
           {
             // Add New Job button
           }
-          <S_AddSvg onClick={handleAddJob} alt="add" />
+          <S_AddSvg
+            onClick={() => handleAddJob(jobList.length + 1)}
+            alt="add"
+          />
           {
             // Delete Job button
           }

@@ -6,10 +6,9 @@ import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
 import { finalizeInstruction } from "./jobFunctions/finalizeInstruction.jsx";
 
 // Styled Components
-import { S_Main } from "../utils/styledGlobal.jsx";
+import { S_Main, S_Header } from "../utils/styledGlobal.jsx";
 import {
   S_JobList_Job_Ad_Container,
-  S_Header,
   S_PreviewBox,
   S_FunctionalityButton_Box,
 } from "./styledComponents/styledUserGlobal.jsx";
@@ -43,6 +42,7 @@ import {
  */
 
 export default function JobEdit({
+  savedJobTitle,
   jobId,
   handleJobCRUDSuccess,
   handleAdCRUDSuccess,
@@ -51,6 +51,7 @@ export default function JobEdit({
   const [isGenerating, setIsGenerating] = useState(false);
 
   // States related to job
+  const [savedTitle] = useState(savedJobTitle);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -124,18 +125,23 @@ export default function JobEdit({
    */
 
   function handleUpdate() {
-    updateJob(
-      jobId,
-      handleJobCRUDSuccess,
-      title,
-      description,
-      instruction,
-      recruiterName,
-      adCompany,
-      adEmail,
-      adPhone,
-      applicationDeadline
-    );
+    if (title.length == 0) {
+      window.alert("Title cannot be empty");
+      setTitle(savedTitle);
+    } else {
+      updateJob(
+        jobId,
+        handleJobCRUDSuccess,
+        title,
+        description,
+        instruction,
+        recruiterName,
+        adCompany,
+        adEmail,
+        adPhone,
+        applicationDeadline
+      );
+    }
   }
 
   console.log("MyJobs, title", title);
@@ -158,6 +164,7 @@ export default function JobEdit({
           <S_Header>Title</S_Header>
           <S_Input
             value={title}
+            placeholder={"Add a title"}
             onChange={(e) => setTitle(e.target.value)}
           ></S_Input>
 
@@ -181,6 +188,7 @@ export default function JobEdit({
           <S_PreviewBox>
             <S_TextArea
               value={description}
+              placeholder={"Add a description"}
               onChange={(e) => {
                 setDescription(e.target.value);
               }}

@@ -17,7 +17,7 @@ export async function generateJobAd(
   handleAdCRUDSuccess,
   setIsGenerating
 ) {
-  const url = `http://localhost:8080/api/v1/jobs/generate/${jobId}`;
+  const url = `http://localhost:8080/api/v1/job/generate/${jobId}`;
 
   console.log("Communication with OpenAI API initialized");
 
