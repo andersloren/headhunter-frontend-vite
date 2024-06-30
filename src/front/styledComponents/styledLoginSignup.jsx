@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 import {
   brightest,
@@ -26,6 +26,12 @@ const fadeIn = keyframes`
   100% {opacity: 1;}
 `;
 
+const pulsingLight = keyframes`
+0% {box-shadow: 0 0 5px red;}
+50% {box-shadow: 0 0 20px red; }
+100% {box-shadow: 0 0 5px red;}
+`;
+
 export const S_FormBox = styled.form`
   display: flex;
   flex-direction: column;
@@ -51,8 +57,6 @@ export const S_Input = styled.input`
   &::placeholder {
     color: ${dark};
   }
-  color: ${(props) =>
-    props.$isInputValid === "true" ? "hsl(100 200% 25%)" : `${dark}`};
   padding: 15px;
   background: ${brightest};
   border-radius: ${border_radius};
@@ -64,6 +68,8 @@ export const S_Input = styled.input`
     outline: none;
     box-shadow: 0 0 7px ${darkest};
   }
+  animation: ${(props) =>
+    props.$isInvalid === "true" ? css`3s ${pulsingLight} infinite` : "none"};
 `;
 
 export const S_WarningLabelBox = styled.div`
@@ -73,7 +79,8 @@ export const S_WarningLabelBox = styled.div`
 
 export const S_WarningLabel = styled.div`
   font-size: ${small};
-  color: ${(props) => (props.$isValid === "true" ? "transparent" : "red")};
+  color: ${(props) =>
+    props.$isInvalid === "true" ? `${bright}` : "transparent"};
   justify-self: flex-start; /* Aligns items vertically to the top */
 `;
 
@@ -84,7 +91,8 @@ export const S_ButtonBox_Submit = styled.div`
 `;
 
 export const S_Button = styled.button`
-  pointer-events: ${(props) => (props.$active === "true" ? "auto" : "none")};
+  /* pointer-events: ${(props) =>
+    props.$active === "true" ? "auto" : "none"}; */
   font-size: ${small};
   padding: 12px;
   background-color: transparent;

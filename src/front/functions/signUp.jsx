@@ -1,6 +1,11 @@
 import axios from "axios";
 
-export async function signUp(email, password, setHasSignedUp) {
+export async function signUp(
+  email,
+  password,
+  setLoginVisible,
+  setSignUpVisible
+) {
   const url = "http://localhost:8080/api/v1/account/register";
 
   console.log("signUp before try");
@@ -20,7 +25,8 @@ export async function signUp(email, password, setHasSignedUp) {
       }
     );
     console.log("New Account Sign Up Success", response.data.data);
-    setHasSignedUp((is) => !is);
+    setLoginVisible(true);
+    setSignUpVisible(false);
   } catch (error) {
     console.error("Error signing up", error);
   }
