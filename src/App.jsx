@@ -38,7 +38,6 @@ export default function App() {
   }, [isAuthorized, setRoles]);
 
   console.log("App, isAuthorized:", isAuthorized);
-  console.log("Hello");
 
   if (isAuthorized)
     return (
