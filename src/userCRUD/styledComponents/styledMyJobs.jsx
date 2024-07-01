@@ -47,7 +47,7 @@ export const S_CheckboxLabel = styled.div`
 export const S_JobList_Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 `;
 
 export const S_JobCard = styled.div`
@@ -58,14 +58,15 @@ export const S_JobCard = styled.div`
   border: solid 1px;
   padding: 5px;
   border-radius: ${border_radius};
-  color: ${(props) =>
-    props.$active === "true" ? `${darkest}` : `${brightest}`};
-  width: ${(props) =>
-    props.$active === "true" ? `${expanded_joblist}` : `${compact_joblist}`};
+  color: ${(props) => (props.$active === "true" ? `${darkest}` : `${darkest}`)};
+  background-color: ${(props) =>
+    props.$active === "true" ? `${brighter}` : `${neutral}`};
+  box-shadow: ${(props) =>
+    props.$active === "true" ? `3px 5px 3px ${dark}` : "none"};
   &:hover {
     cursor: pointer;
-    background: ${brightest};
-    color: ${darker};
+    /* background: ${neutral};
+    color: ${darker}; */
   }
 `;
 
