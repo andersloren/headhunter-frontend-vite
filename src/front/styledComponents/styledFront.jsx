@@ -21,7 +21,7 @@ export const S_FrontContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 30px;
 `;
 
 export const S_HeadingBox_Welcome = styled.div`

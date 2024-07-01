@@ -11,6 +11,7 @@ import {
   S_Button,
   S_SignUpLink,
   S_WarningLabel,
+  S_FrontLabel,
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -59,11 +60,6 @@ export default function LoginForm({
   }, [logInError]);
 
   useEffect(() => {
-    console.log("logInError", logInError);
-    setIsErrorVisible(logInError);
-  }, [logInError]);
-
-  useEffect(() => {
     setLogInError(false);
   }, [email, password]);
 
@@ -91,6 +87,7 @@ export default function LoginForm({
   return (
     <>
       <S_FormBox onSubmit={handleClick}>
+        <S_FrontLabel>Log in</S_FrontLabel>
         {/**
          * Input field for the user's email.
          */}
