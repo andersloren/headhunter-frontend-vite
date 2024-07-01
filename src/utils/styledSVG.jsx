@@ -172,8 +172,9 @@ export const S_Decision_HtmlSvg = styled(HtmlSvg)`
   fill: ${fill};
   background-color: ${(props) =>
     props.$active === "true" ? `${brightest}` : `${neutral}`};
-  fill: ${(props) =>
-    props.$active === "true" ? `${darkest}` : `${brightest}`};
+  fill: ${(props) => (props.$active === "true" ? `${darker}` : `${brightest}`)};
+  box-shadow: 3px 5px 3px ${darker};
+  border: ${darker} solid 1px;
   &:hover {
     background-color: ${hover_background_color};
     fill: ${hover_fill};
