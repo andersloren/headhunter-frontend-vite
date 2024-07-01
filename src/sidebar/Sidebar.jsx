@@ -28,7 +28,7 @@ export default function Sidebar({ setIsAuthorized }) {
   const [isJobsVisible, setIsJobsVisible] = useState(false);
   const [isAdminVisible, setIsAdminVisible] = useState(false);
   const [roles, setRoles] = useState([""]);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded] = useState(false);
 
   function handleLogout() {
     localStorage.removeItem("headhunter-token");
