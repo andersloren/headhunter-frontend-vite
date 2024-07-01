@@ -1,7 +1,7 @@
 // Libraries, functions, etc.
 import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.jsx";
-import { getJobsTitleAndId } from "./jobFunctions/getJobsTitleAndId.jsx";
+import { getJobDtos } from "./jobFunctions/getJobDtos.jsx";
 import { deleteJob } from "./jobFunctions/deleteJob.jsx";
 
 // Custom components
@@ -19,14 +19,16 @@ import {
 import { S_AddSvg, S_DeleteSvg } from "../utils/styledSVG.jsx";
 
 import {
+  S_HorizontalLine,
   S_Preview,
   S_JobList_Container,
-  S_JobList,
+  S_JobCard,
+  S_JobTitle,
+  S_JobDetails,
   S_CheckboxContainer,
   S_CheckboxOptionContainer,
   S_Checkbox,
   S_CheckboxLabel,
-  S_HorizontalLine,
 } from "./styledComponents/styledMyJobs.jsx";
 import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
@@ -58,21 +60,15 @@ export default function MyJobs() {
 
   useEffect(() => {
     // getAllMyJobs(setJobList);
-    getJobsTitleAndId(setJobList);
+    getJobDtos(setJobList);
   }, []);
 
-  /**
-   * If a job is being successfully added, updated, or deleted, refreshTable triggers the fetching of an updated array of jobs.
-   */
-
   useEffect(() => {
-    // getAllMyJobs(setJobList);
-    getJobsTitleAndId(setJobList);
+    getJobDtos(setJobList);
   }, [refreshTable]);
 
   useEffect(() => {}, [jobId]);
 
-  // TODO - Skip the handle-part and just put addJob() where the function should be invoked?
   function handleAddJob(jobListLength) {
     addJob(handleJobCRUDSuccess, jobListLength);
   }
@@ -162,23 +158,22 @@ export default function MyJobs() {
         </S_CheckboxContainer>
         <S_JobList_Container>
           {jobList.map((job) => (
-            <S_JobList
+            <S_JobCard
               key={job.id}
+              $active={jobId === job.id ? "true" : "false"}
               onClick={() => {
                 isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
               }}
-              /**
-               * The selected job is highlighted in the list of jobs in the job UI.
-               */
-              $active={jobId === job.id ? "true" : "false"}
             >
-              {/**
-               * Only up to 20 characters of the job title is shown in the list of jobs in the job UI.
-               */}
-              {job.title.length > 20
-                ? job.title.slice(0, 20) + "..."
-                : job.title}
-            </S_JobList>
+              <S_JobTitle key={job.id}>
+                {job.title.length > 20
+                  ? job.title.slice(0, 20) + "..."
+                  : job.title}
+              </S_JobTitle>
+              <S_JobDetails key={job.id}>
+                {job.applicationDeadline}
+              </S_JobDetails>
+            </S_JobCard>
           ))}
         </S_JobList_Container>
 
