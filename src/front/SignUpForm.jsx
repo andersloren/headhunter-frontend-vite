@@ -11,7 +11,7 @@ import {
   S_FormBox,
   S_Input,
   S_Button,
-  S_RegisterLabel,
+  S_FrontLabel,
   S_SignUpLink,
   S_WarningLabel,
 } from "./styledComponents/styledLoginSignup.jsx";
@@ -85,7 +85,7 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
           handleValidation();
         }}
       >
-        <S_RegisterLabel>Register New Account</S_RegisterLabel>
+        <S_FrontLabel>Register New Account</S_FrontLabel>
         {/**
          * Input field for email
          */}

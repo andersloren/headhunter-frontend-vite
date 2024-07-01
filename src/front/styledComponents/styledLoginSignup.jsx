@@ -44,7 +44,7 @@ export const S_FormBox = styled.form`
   animation: ${fadeInDuration} ${fadeInAnimation};
 `;
 
-export const S_RegisterLabel = styled.div`
+export const S_FrontLabel = styled.div`
   padding: 15px;
   color: ${bright};
   font-family: Aptos, sans-serif;
