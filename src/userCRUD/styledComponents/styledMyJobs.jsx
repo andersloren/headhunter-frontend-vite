@@ -60,13 +60,15 @@ export const S_JobCard = styled.div`
   border-radius: ${border_radius};
   color: ${(props) => (props.$active === "true" ? `${darkest}` : `${darkest}`)};
   background-color: ${(props) =>
-    props.$active === "true" ? `${brighter}` : `${neutral}`};
+    props.$active === "true" ? `${brightest}` : `${neutral}`};
   box-shadow: ${(props) =>
     props.$active === "true" ? `3px 5px 3px ${dark}` : "none"};
   &:hover {
     cursor: pointer;
-    /* background: ${neutral};
-    color: ${darker}; */
+    box-shadow: ${(props) =>
+      props.$active === "true"
+        ? `3px 5px 3px ${darker}`
+        : `3px 5px 3px ${dark}`};
   }
 `;
 

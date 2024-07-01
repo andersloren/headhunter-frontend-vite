@@ -159,6 +159,7 @@ export default function MyJobs() {
               $active={jobId === job.id ? "true" : "false"}
               onClick={() => {
                 handlePreview(job.id);
+                $;
               }}
             >
               <S_JobTitle>
