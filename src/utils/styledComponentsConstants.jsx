@@ -1,4 +1,5 @@
 import { lighten, darken } from "./colors/colorPalette";
+import { keyframes } from "styled-components";
 
 const baseColor = "hsl(200 20% 90%)"; // Example: a shade of blue
 
@@ -20,3 +21,10 @@ export const small = "12px";
 export const verySmall = "6px";
 
 // export const backgroundColor = RGB(255, 255, 255);
+
+export const fadeInAnimation = keyframes`
+  0% {opacity: 0; }
+  100% {opacity: 1;}
+`;
+
+export const fadeInDuration = "1.2s";

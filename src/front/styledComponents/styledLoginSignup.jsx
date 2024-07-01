@@ -15,16 +15,13 @@ import {
   mediumSmall,
   small,
   verySmall,
+  fadeInAnimation,
+  fadeInDuration,
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "15px";
 const inputfield_width = 300;
 const button_border = "1px";
-
-const fadeIn = keyframes`
-  0% {opacity: 0; }
-  100% {opacity: 1;}
-`;
 
 const fadeOut = keyframes`
 0% {opacity: 1;}
@@ -44,8 +41,7 @@ export const S_FormBox = styled.form`
   font-size: ${medium};
   position: relative;
   gap: 10px;
-  animation-name: ${fadeIn};
-  animation-duration: 1s;
+  animation: ${fadeInDuration} ${fadeInAnimation};
 `;
 
 export const S_RegisterLabel = styled.div`
@@ -85,7 +81,9 @@ export const S_WarningLabel = styled.div`
   animation: ${(props) =>
     props.$isInvalid === "false"
       ? css`2s ${fadeOut} 1 forwards`
-      : css`0.5s ${fadeIn} 1 forwards`};
+      : css`
+          ${fadeInDuration} ${fadeInAnimation} 1 forwards
+        `};
 `;
 
 export const S_ButtonBox_Submit = styled.div`

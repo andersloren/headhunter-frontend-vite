@@ -1,11 +1,11 @@
+import { styled } from "styled-components";
+
 import AddSvg from "../../utils/svg-components/AddSvg.jsx";
 import DeleteSvg from "../../utils/svg-components/DeleteSvg.jsx";
 import UpdateSvg from "../../utils/svg-components/UpdateSvg.jsx";
 import GenerateSvg from "../../utils/svg-components/GenerateSvg.jsx";
-
 import PinSvg from "../../utils/icons/pin.svg";
 import UnpinSvg from "../../utils/icons/unpin.svg";
-import { styled } from "styled-components";
 
 import {
   brightest,
@@ -18,6 +18,8 @@ import {
   big,
   medium,
   small,
+  fadeInAnimation,
+  fadeInDuration,
 } from "../../utils/styledComponentsConstants";
 
 const border_radius = "5px";
@@ -44,11 +46,13 @@ export const S_JobList_Job_Ad_Container = styled.div`
   flex-direction: column;
   margin-top: 20px;
   gap: 20px;
+  animation: ${fadeInDuration} ${fadeInAnimation};
 `;
 
 export const S_JobEdit_Ad_Container = styled.div`
   display: flex;
   gap: 20px;
+  animation: ${fadeInDuration} ${fadeInAnimation};
 `;
 
 export const S_PreviewBox = styled.div`
