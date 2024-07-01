@@ -14,7 +14,7 @@ import axios from "axios";
  * @param {function} setDescription - Sets the description of the Job object. The description is later what the AI API will use as guidelines
  */
 
-export async function getJobById(
+export async function getJobDtoById(
   jobId,
   setTitle,
   setDescription,

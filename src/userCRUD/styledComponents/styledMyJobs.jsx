@@ -47,22 +47,32 @@ export const S_CheckboxLabel = styled.div`
 export const S_JobList_Container = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 4px;
 `;
 
-export const S_JobList = styled.div`
+export const S_JobCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   font-size: ${medium};
+  border: solid 1px;
+  padding: 5px;
+  border-radius: ${border_radius};
+  color: ${(props) =>
+    props.$active === "true" ? `${darkest}` : `${brightest}`};
+  width: ${(props) =>
+    props.$active === "true" ? `${expanded_joblist}` : `${compact_joblist}`};
   &:hover {
     cursor: pointer;
     background: ${brightest};
     color: ${darker};
   }
-  padding: 5px;
-  border-radius: ${border_radius};
-  background-color: ${(props) =>
-    props.$active === "true" ? `${brightest}` : `${bright}`};
-  color: ${(props) => (props.$active === "true" ? `${darkest}` : `${darkest}`)};
-  width: ${(props) =>
-    props.$active === "true" ? `${expanded_joblist}` : `${compact_joblist}`};
+`;
+
+export const S_JobTitle = styled.div``;
+
+export const S_JobDetails = styled.div`
+  font-size: ${small};
 `;
 
 // All Preview

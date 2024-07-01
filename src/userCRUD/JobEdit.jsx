@@ -1,7 +1,7 @@
 // Libraries, functions, etc...
 import { useEffect, useState } from "react";
 import { updateJob } from "./jobFunctions/updateJob.jsx";
-import { getJobById } from "./jobFunctions/getJobById.jsx";
+import { getJobDtoById } from "./jobFunctions/getJobDtoById.jsx";
 import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
 import { getInstruction } from "./jobFunctions/getInstruction.jsx";
 
@@ -89,7 +89,7 @@ export default function JobEdit({
    */
 
   useEffect(() => {
-    getJobById(
+    getJobDtoById(
       jobId,
       setTitle,
       setDescription,
