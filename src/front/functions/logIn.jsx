@@ -5,7 +5,8 @@ export async function logIn(
   password,
   handleAuthentication,
   setIsAuthorized,
-  authorize
+  authorize,
+  setLogInError
 ) {
   const url = "http://localhost:8080/api/v1/account/login";
 
@@ -28,8 +29,9 @@ export async function logIn(
     console.log("Account Log In Success");
     handleAuthentication(response.data.data.token);
     setIsAuthorized(authorize());
+    setLogInError(false);
   } catch (error) {
     console.error("Error logging in", error);
-    setLoginError(true);
+    setLogInError(true);
   }
 }

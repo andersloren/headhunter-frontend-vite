@@ -14,7 +14,6 @@ import {
   S_RegisterLabel,
   S_SignUpLink,
   S_WarningLabel,
-  S_WarningLabelBox,
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -34,15 +33,21 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
   const [isEmailInvalid, setIsEmailInvalid] = useState(false);
   const [isEmailRegistered, setIsEmailRegistered] = useState(false);
   const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+
+  useEffect(() => {
+    if (isEmailInvalid || isEmailRegistered || isPasswordInvalid) {
+      setIsErrorVisible(true);
+    } else {
+      setIsErrorVisible(false);
+    }
+  }, [isEmailInvalid, isEmailRegistered, isPasswordInvalid]);
 
   useEffect(() => {
     setIsEmailInvalid(false);
     setIsEmailRegistered(false);
-  }, [email]);
-
-  useEffect(() => {
     setIsPasswordInvalid(false);
-  }, [password]);
+  }, [email, password]);
 
   function handleValidation() {
     if (!validateEmailRegex(email)) {
@@ -93,7 +98,7 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
             isEmailInvalid || isEmailRegistered === true ? "true" : "false"
           }
         />
-        <S_WarningLabelBox>
+        {isErrorVisible && (
           <S_WarningLabel
             $isInvalid={
               isEmailInvalid || isEmailRegistered === true ? "true" : "false"
@@ -103,8 +108,7 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
               ? "Email is already registered"
               : "Email is invalid"}
           </S_WarningLabel>
-        </S_WarningLabelBox>
-
+        )}
         {/**
          * Input field for password
          */}
@@ -115,13 +119,13 @@ export default function SignUpForm({ setLoginVisible, setSignUpVisible }) {
           onChange={(e) => setPassword(e.target.value)}
           $isInvalid={isPasswordInvalid === true ? "true" : "false"}
         />
-        <S_WarningLabelBox>
+        {isErrorVisible && (
           <S_WarningLabel
             $isInvalid={isPasswordInvalid === true ? "true" : "false"}
           >
             Password is invalid
           </S_WarningLabel>
-        </S_WarningLabelBox>
+        )}
         {/**
          * If both email and password meets the regex criteria, a button for submitting the registration turns visible.
          */}

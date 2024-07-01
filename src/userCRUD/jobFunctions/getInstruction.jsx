@@ -1,4 +1,4 @@
-export const finalizeInstruction = (
+export const getInstruction = (
   recruiterName,
   adCompany,
   adEmail,
