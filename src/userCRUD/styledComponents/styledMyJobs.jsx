@@ -18,6 +18,32 @@ const border_radius = "5px";
 const compact_joblist = "auto";
 const expanded_joblist = "auto";
 
+export const S_HorizontalLine = styled.hr`
+  width: 100%;
+`;
+
+export const S_CheckboxContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+`;
+
+export const S_CheckboxOptionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+`;
+
+export const S_Checkbox = styled.input`
+  &:checkmark {
+    background-color: ${dark};
+  }
+`;
+
+export const S_CheckboxLabel = styled.div`
+  font-size: ${small};
+`;
+
 export const S_JobList_Container = styled.div`
   display: flex;
   flex-direction: column;

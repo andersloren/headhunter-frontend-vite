@@ -22,6 +22,11 @@ import {
   S_Preview,
   S_JobList_Container,
   S_JobList,
+  S_CheckboxContainer,
+  S_CheckboxOptionContainer,
+  S_Checkbox,
+  S_CheckboxLabel,
+  S_HorizontalLine,
 } from "./styledComponents/styledMyJobs.jsx";
 import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
@@ -144,6 +149,17 @@ export default function MyJobs() {
         }
 
         <S_Header>Jobs</S_Header>
+        <S_HorizontalLine />
+        <S_CheckboxContainer>
+          <S_CheckboxOptionContainer>
+            <S_Checkbox type="checkbox"></S_Checkbox>
+            <S_CheckboxLabel htmlFor="current">Current</S_CheckboxLabel>
+          </S_CheckboxOptionContainer>
+          <S_CheckboxOptionContainer>
+            <S_Checkbox type="checkbox"></S_Checkbox>
+            <S_CheckboxLabel htmlFor="archived">Archived</S_CheckboxLabel>
+          </S_CheckboxOptionContainer>
+        </S_CheckboxContainer>
         <S_JobList_Container>
           {jobList.map((job) => (
             <S_JobList

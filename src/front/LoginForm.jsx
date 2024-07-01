@@ -59,11 +59,6 @@ export default function LoginForm({
   }, [logInError]);
 
   useEffect(() => {
-    console.log("logInError", logInError);
-    setIsErrorVisible(logInError);
-  }, [logInError]);
-
-  useEffect(() => {
     setLogInError(false);
   }, [email, password]);
 
