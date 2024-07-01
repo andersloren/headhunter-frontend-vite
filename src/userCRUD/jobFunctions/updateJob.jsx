@@ -14,7 +14,6 @@ import axios from "axios";
  * @param {String} title - The updated title for the Job object.
  * @param {String} description - The updated description for the Job object.
  * @param {String} instruction - The updated instruction for the Job object.
- * @param {function} handleIsChange - If the update is successful, handleIsChange resets isChange (parent state) that prevents discarded change saves.
  */
 
 export async function updateJob(
@@ -52,7 +51,6 @@ export async function updateJob(
     );
     console.log("Update Job Success");
     handleJobCRUDSuccess();
-    handleIsChange();
   } catch (error) {
     console.error("Error updating job by jobId", error);
   }

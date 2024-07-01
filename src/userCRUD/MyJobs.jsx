@@ -1,7 +1,7 @@
 // Libraries, functions, etc.
 import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.jsx";
-import { getJobDtos } from "./jobFunctions/getJobDtos.jsx";
+import { getAllJobCardDtosByUserEmail } from "./jobFunctions/getAllJobCardDtosByUserEmail.jsx";
 import { deleteJob } from "./jobFunctions/deleteJob.jsx";
 
 // Custom components
@@ -40,7 +40,6 @@ import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
  * - 'jobId': The identifier for the job currently being selected in jobList.
  * - 'refreshTable': When a change is made to the jobList, this function triggers the fetching of an updated list of jobs from the backend.
  * - 'jobVisible': If a job is being selected, it shows in the child component that deals with job UI.
- * - 'isChange': If a different job is being selected while there are unsaved changes in the text area of the child component that handles the job UI, a window confirm alert sets off that asks the user if it wants to proceed without saving.
  * - 'adsExist' - Sets to true if the job has a number of ad objects being more than 0.
  */
 
@@ -49,7 +48,6 @@ export default function MyJobs() {
   const [jobId, setJobId] = useState(null);
   const [refreshTable, setRefreshTable] = useState(false);
   const [jobVisible, setJobVisible] = useState(false);
-  const [isChange, setIsChange] = useState(false);
   const [numberOfAds, setNumberOfAds] = useState(0);
 
   console.log("MyJobs", jobId);
@@ -60,11 +58,11 @@ export default function MyJobs() {
 
   useEffect(() => {
     // getAllMyJobs(setJobList);
-    getJobDtos(setJobList);
+    getAllJobCardDtosByUserEmail(setJobList);
   }, []);
 
   useEffect(() => {
-    getJobDtos(setJobList);
+    getAllJobCardDtosByUserEmail(setJobList);
   }, [refreshTable]);
 
   useEffect(() => {}, [jobId]);
@@ -92,9 +90,7 @@ export default function MyJobs() {
 
   // TODO - Remove 'id', also check where this function is being invoked
   function handleUnsavedChanges() {
-    if (window.confirm("Click OK to leave without saving?")) {
-      setIsChange(false);
-    }
+    window.confirm("Click OK to leave without saving?");
   }
 
   /**
@@ -162,17 +158,16 @@ export default function MyJobs() {
               key={job.id}
               $active={jobId === job.id ? "true" : "false"}
               onClick={() => {
-                isChange ? handleUnsavedChanges(job.id) : handlePreview(job.id);
+                handlePreview(job.id);
+                $;
               }}
             >
-              <S_JobTitle key={job.id}>
+              <S_JobTitle>
                 {job.title.length > 20
                   ? job.title.slice(0, 20) + "..."
                   : job.title}
               </S_JobTitle>
-              <S_JobDetails key={job.id}>
-                {job.applicationDeadline}
-              </S_JobDetails>
+              <S_JobDetails>{job.applicationDeadline}</S_JobDetails>
             </S_JobCard>
           ))}
         </S_JobList_Container>
@@ -207,7 +202,6 @@ export default function MyJobs() {
                   key={jobId}
                   handleJobCRUDSuccess={handleJobCRUDSuccess}
                   jobId={jobId}
-                  setIsChange={setIsChange}
                   setJobVisible={setJobVisible}
                   handleAdCRUDSuccess={handleAdCRUDSuccess}
                 />

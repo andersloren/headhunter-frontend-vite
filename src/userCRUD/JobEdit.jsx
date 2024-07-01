@@ -37,7 +37,7 @@ import {
  *
  * @param {function} handleJobCRUDSuccess - Callback function that is invoked upon successful deletion to refresh the UI.
  * @param {number} jobId - The id of the Job object currently being selected by the user.
- * @param {function} handleAdCRUDSuccess - When the user makes any changes in the job text area, this state sets to true. If the user clicks on a new job when isChange is true, a window confirm alert shows up asking the user if it wants to proceed before saving.
+ * @param {function} handleAdCRUDSuccess - When the user makes any changes in the job text area, this state sets to true.
  * @param {Function} handleAdCRUDSuccess - Callback function invoked to refresh the list of job ads in the UI upon successful ad generation.
  */
 
@@ -62,6 +62,12 @@ export default function JobEdit({
   const [applicationDeadline, setApplicationDeadline] = useState("");
 
   const [instruction, setInstruction] = useState("");
+
+  console.log("JobEdit: jobId", jobId);
+
+  useEffect(() => {
+    getJobDtoById(jobId);
+  }, [jobId]);
 
   useEffect(() => {
     setInstruction(
