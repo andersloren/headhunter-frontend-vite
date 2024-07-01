@@ -26,6 +26,11 @@ const fadeIn = keyframes`
   100% {opacity: 1;}
 `;
 
+const fadeOut = keyframes`
+0% {opacity: 1;}
+100% {opacity: 0;}
+`;
+
 const pulsingLight = keyframes`
 0% {box-shadow: 0 0 5px red;}
 50% {box-shadow: 0 0 20px red; }
@@ -72,16 +77,15 @@ export const S_Input = styled.input`
     props.$isInvalid === "true" ? css`3s ${pulsingLight} infinite` : "none"};
 `;
 
-export const S_WarningLabelBox = styled.div`
-  display: flex;
-  /* align-self: flex-start; */
-`;
-
 export const S_WarningLabel = styled.div`
   font-size: ${small};
-  color: ${(props) =>
-    props.$isInvalid === "true" ? `${bright}` : "transparent"};
+
   justify-self: flex-start; /* Aligns items vertically to the top */
+  color: ${bright};
+  animation: ${(props) =>
+    props.$isInvalid === "false"
+      ? css`2s ${fadeOut} 1 forwards`
+      : css`0.5s ${fadeIn} 1 forwards`};
 `;
 
 export const S_ButtonBox_Submit = styled.div`

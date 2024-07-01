@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { updateJob } from "./jobFunctions/updateJob.jsx";
 import { getJobById } from "./jobFunctions/getJobById.jsx";
 import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
-import { finalizeInstruction } from "./jobFunctions/finalizeInstruction.jsx";
+import { getInstruction } from "./jobFunctions/getInstruction.jsx";
 
 // Styled Components
 import { S_Main, S_Header } from "../utils/styledGlobal.jsx";
@@ -65,7 +65,7 @@ export default function JobEdit({
 
   useEffect(() => {
     setInstruction(
-      finalizeInstruction(
+      getInstruction(
         recruiterName,
         adCompany,
         adEmail,

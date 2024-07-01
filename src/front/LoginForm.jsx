@@ -1,5 +1,5 @@
 // Libraris, functions, etc
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authorize } from "../security/authorize.jsx";
 import { logIn } from "./functions/logIn.jsx";
@@ -10,6 +10,7 @@ import {
   S_Input,
   S_Button,
   S_SignUpLink,
+  S_WarningLabel,
 } from "./styledComponents/styledLoginSignup.jsx";
 
 /**
@@ -28,6 +29,8 @@ export default function LoginForm({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isErrorVisible, setIsErrorVisible] = useState(false);
+  const [logInError, setLogInError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,6 +53,20 @@ export default function LoginForm({
   console.log("Login, email", email);
   console.log("Login, password", password);
 
+  useEffect(() => {
+    console.log("logInError", logInError);
+    setIsErrorVisible(logInError);
+  }, [logInError]);
+
+  useEffect(() => {
+    console.log("logInError", logInError);
+    setIsErrorVisible(logInError);
+  }, [logInError]);
+
+  useEffect(() => {
+    setLogInError(false);
+  }, [email, password]);
+
   // TODO - Change myPage to whatever is more suitable
   function handleAuthentication(token) {
     console.log("Login, handleAuthentication()");
@@ -61,7 +78,14 @@ export default function LoginForm({
   function handleClick(e) {
     e.preventDefault();
     console.log("Login, handleClick()");
-    logIn(email, password, handleAuthentication, setIsAuthorized, authorize);
+    logIn(
+      email,
+      password,
+      handleAuthentication,
+      setIsAuthorized,
+      authorize,
+      setLogInError
+    );
   }
 
   return (
@@ -71,12 +95,17 @@ export default function LoginForm({
          * Input field for the user's email.
          */}
         <S_Input
-          type="email"
+          type="text"
           placeholder="Enter Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          $isInvalid={logInError === true ? "true" : "false"}
         />
-
+        {isErrorVisible && (
+          <S_WarningLabel $isInvalid={logInError === true ? "true" : "false"}>
+            Email or Password is invalid.
+          </S_WarningLabel>
+        )}
         {/**
          * Input field for the user's password
          */}
@@ -85,8 +114,13 @@ export default function LoginForm({
           placeholder="Enter Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          $isInvalid={logInError === true ? "true" : "false"}
         />
-
+        {isErrorVisible && (
+          <S_WarningLabel $isInvalid={logInError === true ? "true" : "false"}>
+            Email or Password is invalid.
+          </S_WarningLabel>
+        )}
         {/**
          * If the user has entered non-empty values to email and password, the Log in button can be clicked.
          */}
