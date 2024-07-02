@@ -28,6 +28,12 @@ export const S_Header = styled.div`
   text-align: center;
 `;
 
+export const S_SubHeader = styled.div`
+  font-size: ${medium};
+  color: ${darkest};
+  text-align: center;
+`;
+
 export const S_FunctionalityButton_Box = styled.div`
   display: flex;
   justify-content: center;

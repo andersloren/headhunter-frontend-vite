@@ -25,4 +25,4 @@ export const fadeInAnimation = keyframes`
   100% {opacity: 1;}
 `;
 
-export const fadeInDuration = "1.2s";
+export const fadeInDuration = "1s";

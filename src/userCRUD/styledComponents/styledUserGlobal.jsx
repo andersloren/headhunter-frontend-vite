@@ -24,6 +24,18 @@ import {
 
 const border_radius = "5px";
 
+export const S_JobList_Job_Ad_Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+  animation: ${fadeInDuration} ${fadeInAnimation};
+`;
+
+export const S_HorizontalLine = styled.hr`
+  width: 100%;
+`;
+
 export const S_FunctionalityButton_Box = styled.div`
   display: flex;
   gap: 20px;
@@ -39,20 +51,6 @@ export const S_FunctionalityButton = styled.button`
     background-color: ${neutral};
   }
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
-`;
-
-export const S_JobList_Job_Ad_Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  gap: 20px;
-  animation: ${fadeInDuration} ${fadeInAnimation};
-`;
-
-export const S_JobEdit_Ad_Container = styled.div`
-  display: flex;
-  gap: 20px;
-  animation: ${fadeInDuration} ${fadeInAnimation};
 `;
 
 export const S_PreviewBox = styled.div`

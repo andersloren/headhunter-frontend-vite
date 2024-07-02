@@ -63,6 +63,7 @@ const decision_height = "50px";
  */
 
 export const S_AddSvg = styled(AddSvg)`
+  border-radius: ${border_radius};
   border: ${border};
   width: ${(props) =>
     props.$admin === "true" ? `${admin_width}` : `${width}`};
