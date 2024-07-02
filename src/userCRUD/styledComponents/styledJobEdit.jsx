@@ -45,6 +45,7 @@ export const S_Input = styled.input`
   width: auto;
   background-color: ${brightest};
   font-size: ${medium};
+  color: ${darkest};
   border: 0;
   &:focus {
     outline: none;
