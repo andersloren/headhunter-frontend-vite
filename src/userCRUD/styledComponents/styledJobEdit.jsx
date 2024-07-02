@@ -12,6 +12,7 @@ import {
   darkest,
   big,
   medium,
+  mediumSmall,
   small,
   fadeInAnimation,
   fadeInDuration,
@@ -44,7 +45,7 @@ export const S_Input = styled.input`
   padding: 9px;
   width: auto;
   background-color: ${brightest};
-  font-size: ${medium};
+  font-size: ${mediumSmall};
   color: ${darkest};
   border: 0;
   &:focus {
@@ -57,7 +58,7 @@ export const S_TextArea = styled.textarea`
   margin-bottom: 10px;
   background-color: ${brightest};
   color: ${darkest};
-  font-size: ${medium};
+  font-size: ${mediumSmall};
   border-radius: ${border_preview_border_radius};
   min-width: 400px;
   min-height: 350px;
