@@ -13,13 +13,13 @@ import { S_Header } from "../utils/styledGlobal.jsx";
 import {
   S_JobList_Job_Ad_Container,
   S_FunctionalityButton_Box,
-  S_JobEdit_Ad_Container,
+  S_HorizontalLine,
 } from "./styledComponents/styledUserGlobal.jsx";
 
 import { S_AddSvg, S_DeleteSvg } from "../utils/styledSVG.jsx";
 
 import {
-  S_HorizontalLine,
+  S_MyJobs,
   S_Preview,
   S_JobList_Container,
   S_JobCard,
@@ -49,6 +49,9 @@ export default function MyJobs() {
   const [refreshTable, setRefreshTable] = useState(false);
   const [jobVisible, setJobVisible] = useState(false);
   const [numberOfAds, setNumberOfAds] = useState(0);
+
+  const [showArchived, setShowArchived] = useState(true);
+  const [showCurrent, setShowCurrent] = useState(true);
 
   console.log("MyJobs", jobId);
 
@@ -86,11 +89,6 @@ export default function MyJobs() {
     } else {
       console.log("User cancelled delete");
     }
-  }
-
-  // TODO - Remove 'id', also check where this function is being invoked
-  function handleUnsavedChanges() {
-    window.confirm("Click OK to leave without saving?");
   }
 
   /**
@@ -133,59 +131,79 @@ export default function MyJobs() {
     }
   }
 
+  function checkIfArchivedDate(jobDeadline) {
+    let today = new Date();
+    let jobDeadlineObject = new Date(jobDeadline);
+    return jobDeadlineObject < today;
+  }
+
   return (
     <>
-      <S_JobList_Job_Ad_Container>
-        {
-          // Joblist
-        }
-
-        <S_Header>Jobs</S_Header>
-        <S_HorizontalLine />
-        <S_CheckboxContainer>
-          <S_CheckboxOptionContainer>
-            <S_Checkbox type="checkbox"></S_Checkbox>
-            <S_CheckboxLabel htmlFor="current">Current</S_CheckboxLabel>
-          </S_CheckboxOptionContainer>
-          <S_CheckboxOptionContainer>
-            <S_Checkbox type="checkbox"></S_Checkbox>
-            <S_CheckboxLabel htmlFor="archived">Archived</S_CheckboxLabel>
-          </S_CheckboxOptionContainer>
-        </S_CheckboxContainer>
-        <S_JobList_Container>
-          {jobList.map((job) => (
-            <S_JobCard
-              key={job.id}
-              $active={jobId === job.id ? "true" : "false"}
-              onClick={() => {
-                handlePreview(job.id);
-                $;
-              }}
-            >
-              <S_JobTitle>
-                {job.title.length > 20
-                  ? job.title.slice(0, 20) + "..."
-                  : job.title}
-              </S_JobTitle>
-              <S_JobDetails>{job.applicationDeadline}</S_JobDetails>
-            </S_JobCard>
-          ))}
-        </S_JobList_Container>
-
-        <S_FunctionalityButton_Box>
-          {
-            // Add New Job button
-          }
-          <S_AddSvg
-            onClick={() => handleAddJob(jobList.length + 1)}
-            alt="add"
-          />
-          {
-            // Delete Job button
-          }
-          <S_DeleteSvg onClick={() => handleDeleteJob(jobId)} alt="delete" />
-        </S_FunctionalityButton_Box>
-      </S_JobList_Job_Ad_Container>
+      <S_MyJobs>
+        <S_JobList_Job_Ad_Container>
+          <S_Header>Jobs</S_Header>
+          <S_HorizontalLine />
+          <S_CheckboxContainer>
+            <S_CheckboxOptionContainer>
+              <S_Checkbox
+                type="checkbox"
+                checked={showCurrent}
+                value={showCurrent}
+                onChange={() => setShowCurrent((is) => !is)}
+              ></S_Checkbox>
+              <S_CheckboxLabel htmlFor="current">Current</S_CheckboxLabel>
+            </S_CheckboxOptionContainer>
+            <S_CheckboxOptionContainer>
+              <S_Checkbox
+                type="checkbox"
+                checked={showArchived}
+                value={showArchived}
+                onChange={() => setShowArchived((is) => !is)}
+              ></S_Checkbox>
+              <S_CheckboxLabel htmlFor="archived">Archived</S_CheckboxLabel>
+            </S_CheckboxOptionContainer>
+          </S_CheckboxContainer>
+          <S_JobList_Container>
+            {jobList.map((job) => {
+              if (
+                (showArchived &&
+                  checkIfArchivedDate(job.applicationDeadline)) ||
+                (showCurrent && !checkIfArchivedDate(job.applicationDeadline))
+              )
+                return (
+                  <S_JobCard
+                    key={job.id}
+                    $active={jobId === job.id ? "true" : "false"}
+                    onClick={() => {
+                      handlePreview(job.id);
+                    }}
+                  >
+                    <S_JobTitle>
+                      {job.title.length > 20
+                        ? job.title.slice(0, 20) + "..."
+                        : job.title}
+                    </S_JobTitle>
+                    <S_JobDetails>{job.applicationDeadline}</S_JobDetails>
+                  </S_JobCard>
+                );
+            })}
+            {/* }) */}
+          </S_JobList_Container>
+          <S_FunctionalityButton_Box>
+            {
+              // Add New Job button
+            }
+            <S_AddSvg
+              onClick={() => handleAddJob(jobList.length + 1)}
+              alt="add"
+            />
+            {
+              // Delete Job button
+            }
+            <S_DeleteSvg onClick={() => handleDeleteJob(jobId)} alt="delete" />
+          </S_FunctionalityButton_Box>
+        </S_JobList_Job_Ad_Container>
+      </S_MyJobs>
       {
         // Job and Ad components
       }
@@ -197,26 +215,24 @@ export default function MyJobs() {
            */}
           {jobVisible && (
             <>
-              <S_JobEdit_Ad_Container>
-                <JobEdit
-                  key={jobId}
-                  handleJobCRUDSuccess={handleJobCRUDSuccess}
+              <JobEdit
+                key={jobId}
+                handleJobCRUDSuccess={handleJobCRUDSuccess}
+                jobId={jobId}
+                setJobVisible={setJobVisible}
+                handleAdCRUDSuccess={handleAdCRUDSuccess}
+              />
+              {/**
+               * Only if the selected job has one or more ads will the ad UI show.
+               */}
+              {numberOfAds > 0 && (
+                <Ad
+                  numberOfAds={numberOfAds}
+                  setNumberOfAds={setNumberOfAds}
                   jobId={jobId}
-                  setJobVisible={setJobVisible}
                   handleAdCRUDSuccess={handleAdCRUDSuccess}
                 />
-                {/**
-                 * Only if the selected job has one or more ads will the ad UI show.
-                 */}
-                {numberOfAds > 0 && (
-                  <Ad
-                    numberOfAds={numberOfAds}
-                    setNumberOfAds={setNumberOfAds}
-                    jobId={jobId}
-                    handleAdCRUDSuccess={handleAdCRUDSuccess}
-                  />
-                )}
-              </S_JobEdit_Ad_Container>
+              )}
             </>
           )}
         </S_Preview>

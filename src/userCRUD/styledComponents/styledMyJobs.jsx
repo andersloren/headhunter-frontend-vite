@@ -15,11 +15,8 @@ import {
 
 const border_radius = "5px";
 
-const compact_joblist = "auto";
-const expanded_joblist = "auto";
-
-export const S_HorizontalLine = styled.hr`
-  width: 100%;
+export const S_MyJobs = styled.div`
+  width: 250px;
 `;
 
 export const S_CheckboxContainer = styled.div`
