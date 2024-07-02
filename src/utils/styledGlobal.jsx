@@ -31,7 +31,7 @@ export const S_Header = styled.div`
 export const S_SubHeader = styled.div`
   font-size: ${medium};
   color: ${darkest};
-  text-align: center;
+  /* text-align: center; */
 `;
 
 export const S_FunctionalityButton_Box = styled.div`

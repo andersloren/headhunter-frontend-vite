@@ -38,6 +38,7 @@ export const S_HorizontalLine = styled.hr`
 
 export const S_FunctionalityButton_Box = styled.div`
   display: flex;
+  justify-content: center;
   gap: 20px;
 `;
 

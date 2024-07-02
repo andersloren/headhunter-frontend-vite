@@ -188,31 +188,27 @@ export default function JobEdit({
               // Format decision buttons
               // As of right now, the only format option is HTML. The button is kept for the sake of clearity.
             }
-            <S_Header>Ad Format</S_Header>
-            <S_FunctionalityButton_Box>
-              <S_Decision_HtmlSvg
-                $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
-                alt="html"
-              />
-            </S_FunctionalityButton_Box>
+            <S_SubHeader>Ad Format</S_SubHeader>
+            <S_Decision_HtmlSvg
+              $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
+              alt="html"
+            />
+            <S_SubHeader>Job application deadlin</S_SubHeader>
+            <S_Input
+              type="date"
+              value={applicationDeadline}
+              onChange={(e) => setApplicationDeadline(e.target.value)}
+            ></S_Input>
             {
               // Description text area
             }
-            <S_Header>Job Description</S_Header>
-            <S_PreviewBox>
-              <S_TextArea
-                value={description}
-                placeholder={"Add a description"}
-                onChange={(e) => {
-                  setDescription(e.target.value);
-                }}
-              ></S_TextArea>
-            </S_PreviewBox>
+            <S_SubHeader>Job Description</S_SubHeader>
           </S_JobEdit_Details_Container>
           {/* </S_JobList_Job_Ad_Container> */}
           {/* <S_JobList_Job_Ad_Container> */}
           <S_JobEdit_Details_Container>
-            <S_Header>Job Details</S_Header>
+            <S_SubHeader>Job Details</S_SubHeader>
+
             <S_Input
               placeholder={"Name of recruiter"}
               value={recruiterName}
@@ -235,36 +231,9 @@ export default function JobEdit({
               value={adPhone}
               onChange={(e) => setAdPhone(e.target.value)}
             ></S_Input>
-            <S_Header>Job application deadline</S_Header>
-            <S_Input
-              type="date"
-              value={applicationDeadline}
-              onChange={(e) => setApplicationDeadline(e.target.value)}
-            ></S_Input>
             {
               // Save Job button
             }
-            <S_FunctionalityButton_Box>
-              {" "}
-              <S_UpdateSvg
-                alt="save job"
-                $blur={isGenerating === true ? "true" : "false"}
-                onClick={() => {
-                  handleUpdate();
-                }}
-              />
-              {
-                // Generate Ad button
-              }
-              <S_GenerateSvg
-                alt="generate ad"
-                $blur={isGenerating === true ? "true" : "false"}
-                onClick={() => {
-                  handleUpdate();
-                  handleGenerate(jobId);
-                }}
-              />
-            </S_FunctionalityButton_Box>
 
             {
               // Generate loader animation
@@ -283,6 +252,36 @@ export default function JobEdit({
             )}
           </S_JobEdit_Details_Container>
         </S_JobEdit_Container>
+        <S_PreviewBox>
+          <S_TextArea
+            value={description}
+            placeholder={"Add a description"}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          ></S_TextArea>
+        </S_PreviewBox>
+        <S_FunctionalityButton_Box>
+          {" "}
+          <S_UpdateSvg
+            alt="save job"
+            $blur={isGenerating === true ? "true" : "false"}
+            onClick={() => {
+              handleUpdate();
+            }}
+          />
+          {
+            // Generate Ad button
+          }
+          <S_GenerateSvg
+            alt="generate ad"
+            $blur={isGenerating === true ? "true" : "false"}
+            onClick={() => {
+              handleUpdate();
+              handleGenerate(jobId);
+            }}
+          />
+        </S_FunctionalityButton_Box>
       </S_Job_Container>
     </>
   );

@@ -12,6 +12,7 @@ import {
   darkest,
   big,
   medium,
+  mediumSmall,
   small,
   fadeInAnimation,
   fadeInDuration,
@@ -25,6 +26,7 @@ export const S_Job_Container = styled.div`
   flex-direction: column;
   margin-top: 20px;
   gap: 20px;
+  width: 450px;
   animation: ${fadeInDuration} ${fadeInAnimation};
 `;
 
@@ -44,7 +46,8 @@ export const S_Input = styled.input`
   padding: 9px;
   width: auto;
   background-color: ${brightest};
-  font-size: ${medium};
+  font-size: ${mediumSmall};
+  color: ${darkest};
   border: 0;
   &:focus {
     outline: none;
@@ -56,10 +59,11 @@ export const S_TextArea = styled.textarea`
   margin-bottom: 10px;
   background-color: ${brightest};
   color: ${darkest};
-  font-size: ${medium};
+  font-size: ${mediumSmall};
   border-radius: ${border_preview_border_radius};
-  min-width: 400px;
-  min-height: 350px;
+  width: 450px;
+  min-width: 200px;
+  min-height: 250px;
   &:focus {
     outline: none;
     box-shadow: 0 0 7px ${darkest};
