@@ -1,6 +1,6 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
-import { findAllAdsByJobId } from "./adFunctions/findAllAdsByJobId";
+import { findAllAdsByJobId } from "./adFunctions/findAdsByJobId.jsx";
 import { deleteAd } from "./adFunctions/deleteAd";
 import { downloadFile } from "./adFunctions/downloadFile.jsx";
 
@@ -39,10 +39,9 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
   const [activeAd, setActiveAd] = useState(null);
 
   useEffect(() => {
-    if (numberOfAds > 0 && jobId !== undefined) {
-      findAllAdsByJobId(jobId, setAdList);
+    getNumberOfAds
     }
-  }, [jobId, numberOfAds]);
+  }, [jobId]);
 
   /**
    * When the length of the adList changes, the current loaded HTML-code should be emptied to prevent that HTML-code from a deleted Ad object is being shown.

@@ -1,7 +1,7 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
 import { deleteAccount } from "./adminFunctions/deleteAccount.jsx";
-import { getAllAccountDtos } from "./adminFunctions/getAllAccountDtos.jsx";
+import { getAccountDtos } from "./adminFunctions/getAccountDtos.jsx";
 
 // Styled components
 import { S_Header, S_FunctionalityButton_Box } from "../utils/styledGlobal.jsx";
@@ -39,7 +39,7 @@ export default function Admin() {
    */
 
   useEffect(() => {
-    getAllAccountDtos(setAccountList);
+    getAccountDtos(setAccountList);
   }, []);
 
   /**
@@ -47,7 +47,7 @@ export default function Admin() {
    */
 
   useEffect(() => {
-    getAllAccountDtos(setAccountList);
+    getAccountDtos(setAccountList);
   }, [refreshAccountTable]);
 
   function handleDelete(email) {

@@ -24,9 +24,9 @@ export async function deleteAd(adId, handleAdCRUDSuccess) {
         "Content-Type": "application/json",
       },
     });
-    console.log("Ad Delete Success");
+    console.log("Success: Delete Ad");
     handleAdCRUDSuccess();
   } catch (error) {
-    console.error("Error deleting job by id", error);
+    console.error("Error: Delete Ad", error);
   }
 }

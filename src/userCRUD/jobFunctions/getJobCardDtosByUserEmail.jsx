@@ -2,10 +2,10 @@
 import axios from "axios";
 import { extractEmailFromToken } from "../../security/token/extractEmailFromToken";
 
-export async function getAllJobCardDtosByUserEmail(setJobList) {
+export async function getJobCardDtosByUserEmail(setJobList) {
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/job/getAllJobCardDtosByUserEmail/${email}`;
+  const url = `http://localhost:8080/api/v1/job/getJobCardDtosByUserEmail/${email}`;
 
   console.log("getJobsTitleAndId is loading");
 

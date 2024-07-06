@@ -10,10 +10,10 @@ export async function getAccountDtoByEmail(email, setRoles, setNumberOfJobs) {
         "Content-Type": "application/json",
       },
     });
-    console.log("Account Found Success");
+    console.log("Success: Get Account Dto");
     setRoles(response.data.data.roles);
     setNumberOfJobs(response.data.data.number_of_jobs);
   } catch (error) {
-    console.error("Error get account by email", error);
+    console.error("Error: Get Account Dto", error);
   }
 }

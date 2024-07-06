@@ -20,9 +20,9 @@ export async function deleteAccount(email, handleAccountCRUDSuccess) {
         "Content-Type": "application/json",
       },
     });
-    console.log("Account Delete Success");
+    console.log("Success: Delete Account");
     handleAccountCRUDSuccess();
   } catch (error) {
-    console.error("Error delete account by email", error);
+    console.error("Error: Delete Account", error);
   }
 }

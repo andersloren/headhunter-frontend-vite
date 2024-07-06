@@ -26,13 +26,13 @@ export async function findAllAdsByJobId(jobId, setAdList) {
         "Content-Type": "application/json",
       },
     });
-    // console.log("Find all ads by jobId success");
+    console.log("Success: Find All Ads");
     const returnedAdList = response.data.data;
     returnedAdList.sort((a, b) =>
       a.createdDateTime > b.createdDateTime ? 1 : -1
     );
     setAdList(returnedAdList);
   } catch (error) {
-    console.error("Error get all ads", error);
+    console.error("Error: Find All Ads", error);
   }
 }

@@ -14,10 +14,10 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
  * @param {Function} setJobList - Sets the list of jobs returned from the backend.
  */
 
-export async function getAllMyJobs(setJobList) {
+export async function getJobDtosByJobId(setJobList) {
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/jobs/findAllJobsByUserEmail/${email}`;
+  const url = `http://localhost:8080/api/v1/jobs/getJobDtosByJobId/${email}`;
 
   try {
     const response = await axios.get(url, {

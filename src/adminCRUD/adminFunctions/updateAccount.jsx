@@ -38,10 +38,10 @@ export async function updateAccount(
         },
       }
     );
-    console.log("Update Account Successful");
+    console.log("Success: Update Account");
     handleAccountCRUDSuccess();
     setIsBlur(false);
   } catch (error) {
-    console.error("Error updating account by email", error);
+    console.error("Erro: Updating Account", error);
   }
 }
