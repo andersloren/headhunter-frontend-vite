@@ -26,7 +26,6 @@ export async function addJob(handleJobCRUDSuccess, jobListLength) {
     const response = await axios.post(
       url,
       {
-        email: email,
         title: `New Job ${jobListLength}`,
         description: "Add a description",
         instruction: instruction,

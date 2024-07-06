@@ -137,6 +137,8 @@ export default function MyJobs() {
     return jobDeadlineObject < today;
   }
 
+  console.log("numberOfAds:", numberOfAds);
+
   return (
     <>
       <S_MyJobs>

@@ -10,8 +10,8 @@ import axios from "axios";
  * @param {Function} setAccountList - The state setter function for updating the user list in the UI.
  */
 
-export async function getAllAccountDtoViews(setAccountList) {
-  const url = "http://localhost:8080/api/v1/account/getAllAccountDtoViews";
+export async function getAllAccountDtos(setAccountList) {
+  const url = "http://localhost:8080/api/v1/account/getAllAccountDtos";
 
   try {
     const response = await axios.get(url, {

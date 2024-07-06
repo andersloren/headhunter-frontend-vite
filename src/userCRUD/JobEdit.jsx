@@ -193,7 +193,7 @@ export default function JobEdit({
               $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
               alt="html"
             />
-            <S_SubHeader>Job application deadlin</S_SubHeader>
+            <S_SubHeader>Job application deadline</S_SubHeader>
             <S_Input
               type="date"
               value={applicationDeadline}
@@ -238,18 +238,6 @@ export default function JobEdit({
             {
               // Generate loader animation
             }
-            {isGenerating && (
-              <>
-                <S_Animation_Rotate
-                  $blur={isGenerating === true ? "true" : "false"}
-                >
-                  <S_HourglassBottom />
-                </S_Animation_Rotate>
-                <S_Animation_Text>
-                  Ad is being generated. Please wait...
-                </S_Animation_Text>
-              </>
-            )}
           </S_JobEdit_Details_Container>
         </S_JobEdit_Container>
         <S_PreviewBox>
@@ -282,6 +270,18 @@ export default function JobEdit({
             }}
           />
         </S_FunctionalityButton_Box>
+        {isGenerating && (
+          <>
+            <S_Animation_Rotate
+              $blur={isGenerating === true ? "true" : "false"}
+            >
+              <S_HourglassBottom />
+            </S_Animation_Rotate>
+            <S_Animation_Text>
+              Ad is being generated. Please wait...
+            </S_Animation_Text>
+          </>
+        )}
       </S_Job_Container>
     </>
   );

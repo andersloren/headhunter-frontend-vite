@@ -63,7 +63,7 @@ export const S_TextArea = styled.textarea`
   border-radius: ${border_preview_border_radius};
   width: 450px;
   min-width: 200px;
-  min-height: 250px;
+  min-height: 100px;
   &:focus {
     outline: none;
     box-shadow: 0 0 7px ${darkest};
