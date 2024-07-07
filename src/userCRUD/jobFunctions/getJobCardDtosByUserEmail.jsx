@@ -7,8 +7,6 @@ export async function getJobCardDtosByUserEmail(setJobList) {
 
   const url = `http://localhost:8080/api/v1/job/getJobCardDtosByUserEmail/${email}`;
 
-  console.log("getJobsTitleAndId is loading");
-
   try {
     const response = await axios.get(url, {
       headers: {
@@ -17,8 +15,8 @@ export async function getJobCardDtosByUserEmail(setJobList) {
       },
     });
     setJobList(response.data.data);
-    console.log("getJobCardDtosByUserEmail is working");
+    console.log("Success: Get Job Card Dtos");
   } catch (error) {
-    console.error("Error get all JobCardDtosByUserEmail", error);
+    console.error("Error: Get Job Card Dtos", error);
   }
 }
