@@ -24,13 +24,25 @@ import {
 
 const border_radius = "5px";
 
-export const S_JobList_Job_Ad_Container = styled.div`
+export const S_JobList_JobEdit_JobAd_Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 20px;
-  gap: 20px;
+  gap: 30px;
   animation: ${fadeInDuration} ${fadeInAnimation};
 `;
+
+export const S_Container_Template = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const S_MyJobs_Container = styled(S_Container_Template)`
+  width: 250px;
+`;
+export const S_Job_Container = styled(S_Container_Template)``;
+export const S_Ad_Container = styled(S_Container_Template)``;
 
 export const S_HorizontalLine = styled.hr`
   width: 100%;
@@ -52,10 +64,6 @@ export const S_FunctionalityButton = styled.button`
     background-color: ${neutral};
   }
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
-`;
-
-export const S_PreviewBox = styled.div`
-  display: flex;
 `;
 
 export const S_AddSvg = styled(AddSvg)`

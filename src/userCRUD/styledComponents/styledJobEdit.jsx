@@ -21,14 +21,14 @@ import {
 const border_radius = "5px";
 const border_preview_border_radius = "5px 0px 0px 5px";
 
-export const S_Job_Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  gap: 20px;
-  width: 450px;
-  animation: ${fadeInDuration} ${fadeInAnimation};
-`;
+// export const S_Job_Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 20px;
+//   gap: 20px;
+//   width: 450px;
+//   animation: ${fadeInDuration} ${fadeInAnimation};
+// `;
 
 export const S_JobEdit_Container = styled.div`
   display: flex;

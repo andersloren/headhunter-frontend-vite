@@ -12,7 +12,8 @@ import Ad from "./Ad.jsx";
 // CSS
 import { S_Header } from "../utils/styledGlobal.jsx";
 import {
-  S_JobList_Job_Ad_Container,
+  S_JobList_JobEdit_JobAd_Container,
+  S_MyJobs_Container,
   S_FunctionalityButton_Box,
   S_HorizontalLine,
 } from "./styledComponents/styledUserGlobal.jsx";
@@ -20,8 +21,6 @@ import {
 import { S_AddSvg, S_DeleteSvg } from "../utils/styledSVG.jsx";
 
 import {
-  S_MyJobs,
-  S_Preview,
   S_JobList_Container,
   S_JobCard,
   S_JobTitle,
@@ -136,8 +135,8 @@ export default function MyJobs() {
 
   return (
     <>
-      <S_MyJobs>
-        <S_JobList_Job_Ad_Container>
+      <S_JobList_JobEdit_JobAd_Container>
+        <S_MyJobs_Container>
           <S_Header>Jobs</S_Header>
           <S_HorizontalLine />
           <S_CheckboxContainer>
@@ -199,40 +198,32 @@ export default function MyJobs() {
             }
             <S_DeleteSvg onClick={() => handleDeleteJob(jobId)} alt="delete" />
           </S_FunctionalityButton_Box>
-        </S_JobList_Job_Ad_Container>
-      </S_MyJobs>
-      {
-        // Job and Ad components
-      }
-      <>
+        </S_MyJobs_Container>
         {/* TODO - See if it's possible to remove S_Preview */}
-        <S_Preview>
-          {/**
-           * Only if a job is selected will the job UI show.
-           */}
-          {jobVisible && (
-            <>
-              <JobEdit
-                key={jobId}
-                handleJobCRUDSuccess={handleJobCRUDSuccess}
+        {/* <S_Preview> */}
+        {/**
+         * Only if a job is selected will the job UI show.
+         */}
+        {jobVisible && (
+          <>
+            <JobEdit
+              key={jobId}
+              handleJobCRUDSuccess={handleJobCRUDSuccess}
+              jobId={jobId}
+              setJobVisible={setJobVisible}
+              handleAdCRUDSuccess={handleAdCRUDSuccess}
+            />
+            {numberOfAds > 0 && (
+              <Ad
+                setNumberOfAds={setNumberOfAds}
                 jobId={jobId}
-                setJobVisible={setJobVisible}
                 handleAdCRUDSuccess={handleAdCRUDSuccess}
               />
-              {/**
-               * Only if the selected job has one or more ads will the ad UI show.
-               */}
-              {numberOfAds > 0 && (
-                <Ad
-                  setNumberOfAds={setNumberOfAds}
-                  jobId={jobId}
-                  handleAdCRUDSuccess={handleAdCRUDSuccess}
-                />
-              )}
-            </>
-          )}
-        </S_Preview>
-      </>
+            )}
+          </>
+        )}
+        {/* </S_Preview> */}
+      </S_JobList_JobEdit_JobAd_Container>
     </>
   );
 }

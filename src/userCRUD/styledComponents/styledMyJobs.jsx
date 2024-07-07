@@ -15,10 +15,6 @@ import {
 
 const border_radius = "5px";
 
-export const S_MyJobs = styled.div`
-  width: 250px;
-`;
-
 export const S_CheckboxContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -73,11 +69,4 @@ export const S_JobTitle = styled.div``;
 
 export const S_JobDetails = styled.div`
   font-size: ${small};
-`;
-
-// All Preview
-export const S_Preview = styled.div`
-  /* /* margin-top: 10px; */
-  display: flex;
-  /* width: 80%; */
 `;

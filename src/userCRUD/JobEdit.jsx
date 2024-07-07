@@ -8,7 +8,7 @@ import { getInstruction } from "./jobFunctions/getInstruction.jsx";
 // Styled Components
 import { S_Header, S_SubHeader } from "../utils/styledGlobal.jsx";
 import {
-  S_PreviewBox,
+  S_Job_Container,
   S_FunctionalityButton_Box,
   S_HorizontalLine,
 } from "./styledComponents/styledUserGlobal.jsx";
@@ -19,7 +19,6 @@ import {
   S_HourglassBottom,
 } from "../utils/styledSVG.jsx";
 import {
-  S_Job_Container,
   S_JobEdit_Container,
   S_JobEdit_Details_Container,
   S_Input,
@@ -230,15 +229,13 @@ export default function JobEdit({
             }
           </S_JobEdit_Details_Container>
         </S_JobEdit_Container>
-        <S_PreviewBox>
-          <S_TextArea
-            value={description}
-            placeholder={"Add a description"}
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          ></S_TextArea>
-        </S_PreviewBox>
+        <S_TextArea
+          value={description}
+          placeholder={"Add a description"}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        ></S_TextArea>
         <S_FunctionalityButton_Box>
           {" "}
           <S_UpdateSvg

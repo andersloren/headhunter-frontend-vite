@@ -5,16 +5,16 @@ import { deleteAd } from "./adFunctions/deleteAd";
 import { downloadFile } from "./adFunctions/downloadFile.jsx";
 
 // Styled Components
-import { S_Main, S_Header } from "../utils/styledGlobal";
+import { S_Header } from "../utils/styledGlobal";
 import {
+  S_Job_Container,
   S_FunctionalityButton_Box,
-  S_JobList_Job_Ad_Container,
-  S_PreviewBox,
+  S_HorizontalLine,
 } from "./styledComponents/styledUserGlobal";
 import { S_DeleteSvg, S_DownloadSvg } from "../utils/styledSVG.jsx";
 import {
   S_TopButtons_Box,
-  S_Buttons_Edit,
+  S_Ad_Tab,
   S_Iframe,
   S_IframeAndButtons_Container,
 } from "./styledComponents/styledAd";
@@ -93,18 +93,19 @@ export default function Ad({ jobId, handleAdCRUDSuccess }) {
   }
 
   return (
-    <S_Main>
-      <S_JobList_Job_Ad_Container>
+    <>
+      <S_Job_Container>
         <S_Header>Ad</S_Header>
+        <S_HorizontalLine></S_HorizontalLine>
 
         {
           // Ad list tabs
         }
         <S_IframeAndButtons_Container>
           <S_TopButtons_Box>
-            {adList > 0 &&
+            {adList.length > 0 &&
               adList.map((ad, index) => (
-                <S_Buttons_Edit
+                <S_Ad_Tab
                   key={ad.id}
                   /**
                    * These buttons appears as tabs above the iframe element. By clicking these tabs, the user can switch between ads in the adsList. When a tab is being clicked it turns active and is being highlighted.
@@ -117,16 +118,14 @@ export default function Ad({ jobId, handleAdCRUDSuccess }) {
                   $active={activeAd === index ? "true" : "false"}
                 >
                   Ad {index + 1}
-                </S_Buttons_Edit>
+                </S_Ad_Tab>
               ))}
           </S_TopButtons_Box>
           {
             // Iframe for Ad
           }
 
-          <S_PreviewBox>
-            <S_Iframe src={url} title={"Ad Content"}></S_Iframe>
-          </S_PreviewBox>
+          <S_Iframe src={url} title={"Ad Content"}></S_Iframe>
         </S_IframeAndButtons_Container>
         <S_FunctionalityButton_Box>
           {/* <S_FunctionalityButton> */}
@@ -143,7 +142,7 @@ export default function Ad({ jobId, handleAdCRUDSuccess }) {
           />
           {/* </S_FunctionalityButton> */}
         </S_FunctionalityButton_Box>
-      </S_JobList_Job_Ad_Container>
-    </S_Main>
+      </S_Job_Container>
+    </>
   );
 }
