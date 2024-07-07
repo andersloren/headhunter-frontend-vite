@@ -1,6 +1,6 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
-import { findAllAdsByJobId } from "./adFunctions/findAdsByJobId.jsx";
+import { getAdDtosByJobId } from "./adFunctions/getAdDtosByJobId.jsx";
 import { deleteAd } from "./adFunctions/deleteAd";
 import { downloadFile } from "./adFunctions/downloadFile.jsx";
 
@@ -31,17 +31,11 @@ import {
  * @param {function} handleAdCRUDSuccess - When front-end caused changes in the Ad database happens, the clickable tabs in the UI that allows the user to inspect different ads should update to show the available ads.
  */
 
-export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
-  // TODO - Change adList to adArray?
+export default function Ad({ jobId, handleAdCRUDSuccess }) {
   const [adList, setAdList] = useState([]);
   const [htmlCode, setHtmlCode] = useState("");
   const [adId, setAdId] = useState(0);
   const [activeAd, setActiveAd] = useState(null);
-
-  useEffect(() => {
-    getNumberOfAds
-    }
-  }, [jobId]);
 
   /**
    * When the length of the adList changes, the current loaded HTML-code should be emptied to prevent that HTML-code from a deleted Ad object is being shown.
@@ -49,18 +43,18 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
    */
 
   useEffect(() => {
+    console.log("Ad.jsx, adList", adList);
+  }, [adList]);
+
+  useEffect(() => {
+    getAdDtosByJobId(jobId, setAdList);
+  }, [jobId]);
+
+  useEffect(() => {
     if (!adList.length) {
       setHtmlCode("");
     }
   }, [setHtmlCode, adList.length]);
-
-  /**
-   * When a new Job object is being selected in the parent component, that jobId needs to be handed down to this component so its related ads chan be loaded and shown to the user.
-   */
-
-  useEffect(() => {
-    findAllAdsByJobId(jobId, setAdList);
-  }, [jobId]);
 
   /**
    * TODO - Write a comment for this useEffect
@@ -108,22 +102,23 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
         }
         <S_IframeAndButtons_Container>
           <S_TopButtons_Box>
-            {adList.map((ad, index) => (
-              <S_Buttons_Edit
-                key={ad.id}
-                /**
-                 * These buttons appears as tabs above the iframe element. By clicking these tabs, the user can switch between ads in the adsList. When a tab is being clicked it turns active and is being highlighted.
-                 */
-                onClick={() => {
-                  setHtmlCode(ad.htmlCode);
-                  setActiveAd(index);
-                  setAdId(ad.id);
-                }}
-                $active={activeAd === index ? "true" : "false"}
-              >
-                Ad {index + 1}
-              </S_Buttons_Edit>
-            ))}
+            {adList > 0 &&
+              adList.map((ad, index) => (
+                <S_Buttons_Edit
+                  key={ad.id}
+                  /**
+                   * These buttons appears as tabs above the iframe element. By clicking these tabs, the user can switch between ads in the adsList. When a tab is being clicked it turns active and is being highlighted.
+                   */
+                  onClick={() => {
+                    setHtmlCode(ad.htmlCode);
+                    setActiveAd(index);
+                    setAdId(ad.id);
+                  }}
+                  $active={activeAd === index ? "true" : "false"}
+                >
+                  Ad {index + 1}
+                </S_Buttons_Edit>
+              ))}
           </S_TopButtons_Box>
           {
             // Iframe for Ad

@@ -160,16 +160,6 @@ export default function JobEdit({
       );
     }
   }
-
-  console.log("MyJobs, title", title);
-  console.log("MyJobs, description", description);
-  console.log("MyJobs, instruction", instruction);
-  console.log("MyJobs recruiterName", recruiterName);
-  console.log("MyJobs company", adCompany);
-  console.log("MyJobs adEmail", adEmail);
-  console.log("MyJobs adPhone", adPhone);
-  console.log("JobEdit applicationDeadline", applicationDeadline);
-
   return (
     <>
       {/* <S_JobList_Job_Ad_Container> */}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.jsx";
 import { getJobCardDtosByUserEmail } from "./jobFunctions/getJobCardDtosByUserEmail.jsx";
 import { deleteJob } from "./jobFunctions/deleteJob.jsx";
+import { getNumberOfAdsByJobId } from "./adFunctions/getNumberOfAdsByJobId.jsx";
 
 // Custom components
 import JobEdit from "./JobEdit.jsx";
@@ -30,7 +31,6 @@ import {
   S_Checkbox,
   S_CheckboxLabel,
 } from "./styledComponents/styledMyJobs.jsx";
-import { getNumberOfAds } from "./adFunctions/getNumberOfAds.jsx";
 
 /**
  *
@@ -53,8 +53,6 @@ export default function MyJobs() {
   const [showArchived, setShowArchived] = useState(true);
   const [showCurrent, setShowCurrent] = useState(true);
 
-  console.log("MyJobs", jobId);
-
   /**
    * When the component mounts, all the jobs belonging to the user is being fetched from the backend.
    */
@@ -66,8 +64,6 @@ export default function MyJobs() {
   useEffect(() => {
     getJobCardDtosByUserEmail(setJobList);
   }, [refreshTable]);
-
-  useEffect(() => {}, [jobId]);
 
   function handleAddJob(jobListLength) {
     addJob(handleJobCRUDSuccess, jobListLength);
@@ -124,7 +120,7 @@ export default function MyJobs() {
   async function handleAdCRUDSuccess() {
     console.log("MyJobs, handleAdCRUDSuccess called");
 
-    const adsCount = await getNumberOfAds(jobId);
+    const adsCount = await getNumberOfAdsByJobId(jobId);
     if (adsCount !== undefined) {
       setNumberOfAds(adsCount);
     }
@@ -228,7 +224,6 @@ export default function MyJobs() {
                */}
               {numberOfAds > 0 && (
                 <Ad
-                  numberOfAds={numberOfAds}
                   setNumberOfAds={setNumberOfAds}
                   jobId={jobId}
                   handleAdCRUDSuccess={handleAdCRUDSuccess}

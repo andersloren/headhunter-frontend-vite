@@ -4,7 +4,7 @@ export async function findById(jobId) {
   const url = `http://localhost:8080/api/v1/job/findById/${jobId}`;
 
   try {
-    const response = await axios.findById(url, {
+    const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
       },

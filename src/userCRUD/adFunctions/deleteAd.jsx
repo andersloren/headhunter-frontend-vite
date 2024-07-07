@@ -2,7 +2,7 @@
 import axios from "axios";
 
 export async function deleteAd(adId, handleAdCRUDSuccess) {
-  const url = `http://localhost:8080/api/v1/ad/deleteAd/${adId}`;
+  const url = `http://localhost:8080/api/v1/ad/delete/${adId}`;
 
   try {
     const response = await axios.delete(url, {

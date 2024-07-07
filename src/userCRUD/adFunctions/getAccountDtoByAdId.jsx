@@ -4,7 +4,7 @@ export async function getAccountDtoByAdId(adId) {
   const url = `http://localhost/api/v1/ad/getAccountDtoByAdId/${adId}`;
 
   try {
-    const response = await axios.getAccountDtoByAdId(url, {
+    const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
       },

@@ -7,7 +7,7 @@ export async function getJobDtosByUserEmail() {
   const url = `http://localhost/api/v1/job/getJobDtosByUserEmail/${email}`;
 
   try {
-    const response = await axios.getJobDtosByUserEmail(url, {
+    const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
       },
