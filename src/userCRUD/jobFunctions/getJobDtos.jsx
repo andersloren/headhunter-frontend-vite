@@ -5,9 +5,7 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
 export async function getJobDtos(setJobList) {
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/job/getJobDtosByUserEmail/${email}`;
-
-  console.log("getJobsTitleAndId is loading");
+  const url = `http://localhost:8080/api/v1/job/getJobDtos`;
 
   try {
     const response = await axios.get(url, {
@@ -16,9 +14,8 @@ export async function getJobDtos(setJobList) {
         "Content-Type": "application/json",
       },
     });
-    setJobList(response.data.data);
-    console.log("getJobDtosByUserEmail is working");
+    console.log("Success: Get Job Dtos");
   } catch (error) {
-    console.error("Error get all Jobs", error);
+    console.error("Error: Get Job Dtos", error);
   }
 }

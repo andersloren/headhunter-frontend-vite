@@ -1,17 +1,6 @@
 // Libraries, functions, etc.
 import axios from "axios";
 
-/**
- * An HTTP request is send to the backend that is then send to the external AI API.
- *
- * @function
- * @async
- * @param {number} jobId - The id for the Job object that the Ad object will be based on and associate with.
- * @param {Function} handleAdCRUDSuccess - Callback function invoked to refresh the list of job ads in the UI upon successful ad generation.
- * @param {function} setIsGenerating - During the communication with the backend and the AI API an animation will show up in the UI to let the user know that things are happening behind the scenes.
- * @returns {Promise<void>} A promise that resolves when the ad has been saved.
- */
-
 export async function generateJobAd(
   jobId,
   handleAdCRUDSuccess,
@@ -28,11 +17,11 @@ export async function generateJobAd(
         "Content-Type": "application/json",
       },
     });
-    console.log("Generate Ad Success");
+    console.log("Success: Generate Ad");
     handleAdCRUDSuccess();
     setIsGenerating(false);
   } catch (error) {
-    console.error("Error generating job ad", error);
+    console.error("Error: Generate Ad", error);
     setIsGenerating(false);
   }
 }

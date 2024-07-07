@@ -1,16 +1,16 @@
 import axios from "axios";
 
-export async function findAllAds() {
-  const url = `http://localhost:8080/api/v1/ad/findAll`;
+export async function findAllJobs() {
+  const url = `http://localhost:8080/api/v1/job/findAllJob`;
 
   try {
-    const response = await axios.findAll(url, {
+    const response = await axios.findAllJobs(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
       },
     });
     console.log("Success: Find All Ads");
   } catch (error) {
-    console.error("Error: Find All Ads");
+    console.log("Error: Find All Ads");
   }
 }

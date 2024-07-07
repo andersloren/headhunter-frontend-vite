@@ -1,8 +1,8 @@
 // Libraries, functions, etc.
 import axios from "axios";
 
-export async function getNumberOfAds(jobId) {
-  const url = `http://localhost:8080/api/v1/ad/getNumberOfAds/${jobId}`;
+export async function getNumberOfAdsByJobId(jobId) {
+  const url = `http://localhost:8080/api/v1/ad/getNumberOfAdsByJobId/${jobId}`;
 
   try {
     const response = await axios.get(url, {
@@ -11,10 +11,10 @@ export async function getNumberOfAds(jobId) {
         "Content-Type": "application/json",
       },
     });
-    console.log("Get Number of Ads Success");
+    console.log("Success: Get Number of Ads");
     console.log("response.data.data", response.data.data);
     return response.data.data;
   } catch (error) {
-    console.error("Error getting number of ads", error);
+    console.error("Error: Get Number of Ads", error);
   }
 }
