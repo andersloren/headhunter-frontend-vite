@@ -41,10 +41,6 @@ export default function AdminForm({
     getAccountDtoByEmail(email, setRoles, setNumberOfJobs);
   }, [email]);
 
-  console.log("AdminForm, email", email);
-  console.log("AdminForm, roles", roles);
-  console.log("AdminForm, number of jobs", numberOfJobs);
-
   /**
    * When the save button is pressed, this function sends a request to the backend to save
    * the roles. Upon success, it triggers `handleAccountCRUDSuccess` to

@@ -37,8 +37,6 @@ export default function App() {
     }
   }, [isAuthorized, setRoles]);
 
-  console.log("App, isAuthorized:", isAuthorized);
-
   if (isAuthorized)
     return (
       <>

@@ -52,10 +52,6 @@ export default function MyJobs() {
   const [showArchived, setShowArchived] = useState(true);
   const [showCurrent, setShowCurrent] = useState(true);
 
-  /**
-   * When the component mounts, all the jobs belonging to the user is being fetched from the backend.
-   */
-
   useEffect(() => {
     getJobCardDtosByUserEmail(setJobList);
   }, []);
@@ -68,14 +64,6 @@ export default function MyJobs() {
     addJob(handleJobCRUDSuccess, jobListLength);
   }
 
-  /**
-   * When clicking the delete button, a window confirm alert is being shown to the user.
-   *
-   * If the user clicks ok, and the deletion is successful, the job component will be invisible until a new job has been selected from the job list in the parent component.
-   *
-   * @param {number} jobId - This is the identifier for the current Job being handled by the user.
-   */
-
   function handleDeleteJob(jobId) {
     if (window.confirm("Are you sure you want to delete this job?")) {
       deleteJob(jobId, handleJobCRUDSuccess);
@@ -85,13 +73,6 @@ export default function MyJobs() {
     }
   }
 
-  /**
-   * handlePreview compares the clicked id with the selected id. If it's not the same, the newly clicked job will be the new selected and a new job will show in the job UI. If it is the same, nothing happens.
-   *
-   * @param {number} id - The id of the job that was just clicked. It's not necessarily (but can be) the same as jobId, which is the job being selected.
-   */
-
-  // TODO - Look over the namings here. Is it still Preview we want to call it?
   function handlePreview(id) {
     if (jobId === null) {
       setJobId(id);
@@ -104,24 +85,17 @@ export default function MyJobs() {
     }
   }
 
-  /**
-   * When a job is successfully added, updated, or deleted, refreshTable toggles (which then triggers an update of jobList)
-   */
-
   function handleJobCRUDSuccess() {
     setRefreshTable((refresh) => !refresh);
   }
 
-  /**
-   * When a new job is selected, the ads related to that job needs to be shown in the ad UI.
-   */
-
   async function handleAdCRUDSuccess() {
-    console.log("MyJobs, handleAdCRUDSuccess called");
-
+    console.log("--> handleAdCrudSuccess");
+    console.log("--> Get number of Ads after Generate", numberOfAds);
     const adsCount = await getNumberOfAdsByJobId(jobId);
     if (adsCount !== undefined) {
       setNumberOfAds(adsCount);
+      console.log("--> Get number of Ads after setNumberOfAds", numberOfAds);
     }
   }
 
@@ -130,8 +104,6 @@ export default function MyJobs() {
     let jobDeadlineObject = new Date(jobDeadline);
     return jobDeadlineObject < today;
   }
-
-  console.log("numberOfAds:", numberOfAds);
 
   return (
     <>
@@ -183,27 +155,15 @@ export default function MyJobs() {
                   </S_JobCard>
                 );
             })}
-            {/* }) */}
           </S_JobList_Container>
           <S_FunctionalityButton_Box>
-            {
-              // Add New Job button
-            }
             <S_AddSvg
               onClick={() => handleAddJob(jobList.length + 1)}
               alt="add"
             />
-            {
-              // Delete Job button
-            }
             <S_DeleteSvg onClick={() => handleDeleteJob(jobId)} alt="delete" />
           </S_FunctionalityButton_Box>
         </S_MyJobs_Container>
-        {/* TODO - See if it's possible to remove S_Preview */}
-        {/* <S_Preview> */}
-        {/**
-         * Only if a job is selected will the job UI show.
-         */}
         {jobVisible && (
           <>
             <JobEdit
@@ -218,11 +178,11 @@ export default function MyJobs() {
                 setNumberOfAds={setNumberOfAds}
                 jobId={jobId}
                 handleAdCRUDSuccess={handleAdCRUDSuccess}
+                numberOfAds={numberOfAds}
               />
             )}
           </>
         )}
-        {/* </S_Preview> */}
       </S_JobList_JobEdit_JobAd_Container>
     </>
   );

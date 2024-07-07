@@ -64,8 +64,6 @@ export default function JobEdit({
 
   const [instruction, setInstruction] = useState("");
 
-  console.log("JobEdit: jobId", jobId);
-
   useEffect(() => {
     getJobDtoById(
       jobId,
@@ -98,12 +96,6 @@ export default function JobEdit({
     setInstruction,
   ]);
 
-  /**
-   * If jobId changes, that new job is being fetched from the backend.
-   *
-   * Instruction is also set to 1, meaning that the file format that will be asked from the AI API is set to HTML. To change this, the user has to make an active decision on what file type it wants.
-   */
-
   useEffect(() => {
     getJobDtoById(
       jobId,
@@ -118,12 +110,6 @@ export default function JobEdit({
     handleAdCRUDSuccess();
   }, [jobId, handleAdCRUDSuccess]);
 
-  /**
-   * When clicking the button for generating an ad, a window confirm alert will show to prevent unwanted credit usage and time consuming events.
-   *
-   * If the user clicks OK, the HTTP request is being sent to the backend and isGenerating is set to true. This means that a loading animation will show on the screen and the user won't be able to interact with the functionality buttons until the response from the backend comes.
-   */
-
   function handleGenerate() {
     if (
       window.confirm(
@@ -136,9 +122,6 @@ export default function JobEdit({
       console.log("User cancelled generation");
     }
   }
-
-  /* Since the job is already being saved when the job is updated, there is no need for a window confirm alert to show unless the user changes the text areas again.
-   */
 
   function handleUpdate() {
     if (title.length == 0) {
@@ -161,7 +144,6 @@ export default function JobEdit({
   }
   return (
     <>
-      {/* <S_JobList_Job_Ad_Container> */}
       <S_Job_Container>
         <S_Header>Edit Job</S_Header>
         <S_HorizontalLine></S_HorizontalLine>
@@ -173,10 +155,6 @@ export default function JobEdit({
               placeholder={"Add a title"}
               onChange={(e) => setTitle(e.target.value)}
             ></S_Input>
-            {
-              // Format decision buttons
-              // As of right now, the only format option is HTML. The button is kept for the sake of clearity.
-            }
             <S_SubHeader>Ad Format</S_SubHeader>
             <S_Decision_HtmlSvg
               $active={"true"} // Should the possibility to add more document types be implemented, change this to: $active={activeFormat === "1" ? "true" : "false"} where activeFormat handles which button is selected, hence which format type should be used.
@@ -188,13 +166,8 @@ export default function JobEdit({
               value={applicationDeadline}
               onChange={(e) => setApplicationDeadline(e.target.value)}
             ></S_Input>
-            {
-              // Description text area
-            }
             <S_SubHeader>Job Description</S_SubHeader>
           </S_JobEdit_Details_Container>
-          {/* </S_JobList_Job_Ad_Container> */}
-          {/* <S_JobList_Job_Ad_Container> */}
           <S_JobEdit_Details_Container>
             <S_SubHeader>Job Details</S_SubHeader>
 
@@ -220,13 +193,6 @@ export default function JobEdit({
               value={adPhone}
               onChange={(e) => setAdPhone(e.target.value)}
             ></S_Input>
-            {
-              // Save Job button
-            }
-
-            {
-              // Generate loader animation
-            }
           </S_JobEdit_Details_Container>
         </S_JobEdit_Container>
         <S_TextArea
@@ -245,9 +211,6 @@ export default function JobEdit({
               handleUpdate();
             }}
           />
-          {
-            // Generate Ad button
-          }
           <S_GenerateSvg
             alt="generate ad"
             $blur={isGenerating === true ? "true" : "false"}

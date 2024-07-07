@@ -10,11 +10,10 @@ export async function getUserInfo(email, setName, setOrganization) {
         "Content-Type": "application/json",
       },
     });
-    console.log("User Found Success");
-    console.log("getUserInfo", response.data);
+    console.log("Success: User Info");
     setName(response.data.data.name);
     setOrganization(response.data.data.organization);
   } catch (error) {
-    console.error("Error get user by email", error);
+    console.error("Error: User Info", error);
   }
 }
