@@ -20,8 +20,7 @@ export async function getJobDtoById(
         "Content-Type": "application/json",
       },
     });
-    console.log("Get Job By Id Success");
-    console.log("getJobById, response.data", response.data);
+    console.log("Success: Get Job Dto");
     setTitle(response.data.data.title);
     setDescription(response.data.data.description);
     setRecruiteName(response.data.data.recruiterName);
@@ -30,6 +29,6 @@ export async function getJobDtoById(
     setAdPhone(response.data.data.adPhone);
     setApplicationDeadline(response.data.data.applicationDeadline);
   } catch (error) {
-    console.error("Error getting job by id", error);
+    console.error("Error: Get Job Dto", error);
   }
 }

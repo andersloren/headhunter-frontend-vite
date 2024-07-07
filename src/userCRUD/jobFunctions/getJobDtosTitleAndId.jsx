@@ -7,8 +7,6 @@ export async function getJobDtosTitleAndId(setJobList) {
 
   const url = `http://localhost:8080/api/v1/job/getJobIdAndTitlesDtosByEmail/${email}`;
 
-  console.log("getJobsTitleAndId is loading");
-
   try {
     const response = await axios.get(url, {
       headers: {

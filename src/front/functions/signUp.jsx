@@ -8,8 +8,6 @@ export async function signUp(
 ) {
   const url = "http://localhost:8080/api/v1/account/register";
 
-  console.log("signUp before try");
-
   try {
     const response = await axios.post(
       url,

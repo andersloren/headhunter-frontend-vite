@@ -51,10 +51,10 @@ export default function Admin() {
   }, [refreshAccountTable]);
 
   function handleDelete(email) {
-    deleteAccount(email, handleAccountCRUDSuccess);
+    if (window.confirm("Are you sure you want to delete this account?")) {
+      deleteAccount(email, handleAccountCRUDSuccess);
+    }
   }
-
-  console.log(refreshAccountTable);
 
   /**
    * If updating or deleting a account is successful, the handleAccountCRUDSuccess is being toggled, which then triggers the useEffect aboce.

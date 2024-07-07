@@ -8,7 +8,7 @@ export async function generateJobAd(
 ) {
   const url = `http://localhost:8080/api/v1/job/generate/${jobId}`;
 
-  console.log("Communication with OpenAI API initialized");
+  console.log("Communication with OpenAI API initialized, for job ", jobId);
 
   try {
     const response = await axios.get(url, {

@@ -1,70 +1,37 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
-import { findAllAdsByJobId } from "./adFunctions/findAdsByJobId.jsx";
+import { getAdDtosByJobId } from "./adFunctions/getAdDtosByJobId.jsx";
 import { deleteAd } from "./adFunctions/deleteAd";
 import { downloadFile } from "./adFunctions/downloadFile.jsx";
 
 // Styled Components
-import { S_Main, S_Header } from "../utils/styledGlobal";
+import { S_Header } from "../utils/styledGlobal";
 import {
+  S_Job_Container,
   S_FunctionalityButton_Box,
-  S_JobList_Job_Ad_Container,
-  S_PreviewBox,
+  S_HorizontalLine,
 } from "./styledComponents/styledUserGlobal";
 import { S_DeleteSvg, S_DownloadSvg } from "../utils/styledSVG.jsx";
 import {
   S_TopButtons_Box,
-  S_Buttons_Edit,
+  S_Ad_Tab,
   S_Iframe,
   S_IframeAndButtons_Container,
 } from "./styledComponents/styledAd";
 
-/**
- * The UI for showing and deleting ads.
- *
- * States:
- * - 'adList': Array of ads belonging to a certain Job object.
- * - 'htmlCode': HTML-code in string format that makes up a publishable ad.
- * - 'adId': The String identifier for the ad.
- * - 'activeAd': The ad that is currently being shown in the UI.
- * @param {number} jobId - The number identifier for the Job object that the adList belongs to.
- * @param {function} handleAdCRUDSuccess - When front-end caused changes in the Ad database happens, the clickable tabs in the UI that allows the user to inspect different ads should update to show the available ads.
- */
-
 export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
-  // TODO - Change adList to adArray?
   const [adList, setAdList] = useState([]);
   const [htmlCode, setHtmlCode] = useState("");
   const [adId, setAdId] = useState(0);
   const [activeAd, setActiveAd] = useState(null);
 
   useEffect(() => {
-    getNumberOfAds
-    }
+    getAdDtosByJobId(jobId, setAdList);
   }, [jobId]);
 
-  /**
-   * When the length of the adList changes, the current loaded HTML-code should be emptied to prevent that HTML-code from a deleted Ad object is being shown.
-   *
-   */
-
   useEffect(() => {
-    if (!adList.length) {
-      setHtmlCode("");
-    }
-  }, [setHtmlCode, adList.length]);
-
-  /**
-   * When a new Job object is being selected in the parent component, that jobId needs to be handed down to this component so its related ads chan be loaded and shown to the user.
-   */
-
-  useEffect(() => {
-    findAllAdsByJobId(jobId, setAdList);
-  }, [jobId]);
-
-  /**
-   * TODO - Write a comment for this useEffect
-   */
+    getAdDtosByJobId(jobId, setAdList);
+  }, [jobId, numberOfAds]);
 
   useEffect(() => {
     if (adList.length > 0) {
@@ -75,80 +42,48 @@ export default function Ad({ jobId, handleAdCRUDSuccess, numberOfAds }) {
     }
   }, [adList]);
 
-  /**
-   * An ad can be be handed a string value in a the htmlcode field. That string is passed a backend test for truly being in HTML-format.
-   *
-   * In order to turn htmlCode into a viewable HTML-page, we need to convert it to a blob that can be read by the iframe-element.
-   */
+  function handleDeleteAd(adId) {
+    if (window.confirm("Are you sure you want to delete this ad?")) {
+      deleteAd(adId, handleAdCRUDSuccess);
+      setAdList(getAdDtosByJobId);
+    }
+  }
 
   const blob = new Blob([htmlCode], { type: "text/html" });
   const url = URL.createObjectURL(blob);
 
-  /**
-   * If the user clicks the delete button, an window alert asks the user to continue the process or cancel it.
-   *
-   * @function
-   */
-
-  function handleDeleteAd(adId) {
-    if (window.confirm("Are you sure you want to delete this ad?")) {
-      deleteAd(adId, handleAdCRUDSuccess);
-    } else {
-      console.log("User cancelled delete");
-    }
-  }
-
   return (
-    <S_Main>
-      <S_JobList_Job_Ad_Container>
+    <>
+      <S_Job_Container>
         <S_Header>Ad</S_Header>
-
-        {
-          // Ad list tabs
-        }
+        <S_HorizontalLine></S_HorizontalLine>
         <S_IframeAndButtons_Container>
           <S_TopButtons_Box>
-            {adList.map((ad, index) => (
-              <S_Buttons_Edit
-                key={ad.id}
-                /**
-                 * These buttons appears as tabs above the iframe element. By clicking these tabs, the user can switch between ads in the adsList. When a tab is being clicked it turns active and is being highlighted.
-                 */
-                onClick={() => {
-                  setHtmlCode(ad.htmlCode);
-                  setActiveAd(index);
-                  setAdId(ad.id);
-                }}
-                $active={activeAd === index ? "true" : "false"}
-              >
-                Ad {index + 1}
-              </S_Buttons_Edit>
-            ))}
+            {adList.length > 0 &&
+              adList.map((ad, index) => (
+                <S_Ad_Tab
+                  key={ad.id}
+                  onClick={() => {
+                    setHtmlCode(ad.htmlCode);
+                    setActiveAd(index);
+                    setAdId(ad.id);
+                  }}
+                  $active={activeAd === index ? "true" : "false"}
+                >
+                  Ad {index + 1}
+                </S_Ad_Tab>
+              ))}
           </S_TopButtons_Box>
-          {
-            // Iframe for Ad
-          }
-
-          <S_PreviewBox>
-            <S_Iframe src={url} title={"Ad Content"}></S_Iframe>
-          </S_PreviewBox>
+          <S_Iframe src={url} title={"Ad Content"}></S_Iframe>
         </S_IframeAndButtons_Container>
         <S_FunctionalityButton_Box>
-          {/* <S_FunctionalityButton> */}
-          {
-            // Delete Ad button
-          }
           <S_DeleteSvg onClick={() => handleDeleteAd(adId)} alt="delete" />
-          {
-            // Download Ad button
-          }
           <S_DownloadSvg
             onClick={() => downloadFile(htmlCode)}
             alt="download html file"
           />
-          {/* </S_FunctionalityButton> */}
         </S_FunctionalityButton_Box>
-      </S_JobList_Job_Ad_Container>
-    </S_Main>
+      </S_Job_Container>
+    </>
   );
 }

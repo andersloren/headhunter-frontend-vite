@@ -4,7 +4,7 @@ export async function findAllAds() {
   const url = `http://localhost:8080/api/v1/ad/findAll`;
 
   try {
-    const response = await axios.findAll(url, {
+    const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
       },

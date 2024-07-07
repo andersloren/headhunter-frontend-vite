@@ -4,7 +4,7 @@ export async function findAllAccounts() {
   const url = `http://localhost:8080/api/v1/account/findAll`;
 
   try {
-    const response = await axios.findAll(url, {
+    const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
         "Content-type": "application/json",
