@@ -6,7 +6,7 @@ export async function getJobCardDtosByUserEmail(setJobList) {
   const email = extractEmailFromToken();
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  const url = `${apiUrl}/api/v1/ad/getJobCardDtosByUserEmail/${email}`;
+  const url = `${apiUrl}/api/v1/job/getJobCardDtosByUserEmail/${email}`;
 
   try {
     const response = await axios.get(url, {
