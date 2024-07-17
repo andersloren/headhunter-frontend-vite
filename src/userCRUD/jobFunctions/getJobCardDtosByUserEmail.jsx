@@ -5,7 +5,9 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
 export async function getJobCardDtosByUserEmail(setJobList) {
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/job/getJobCardDtosByUserEmail/${email}`;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const url = `${apiUrl}/api/v1/ad/getJobCardDtosByUserEmail/${email}`;
+  console.log(apiUrl);
 
   try {
     const response = await axios.get(url, {

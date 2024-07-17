@@ -5,7 +5,9 @@ import { extractEmailFromToken } from "../../security/token/extractEmailFromToke
 export async function deleteJob(jobId, handleJobCRUDSuccess) {
   const email = extractEmailFromToken();
 
-  const url = `http://localhost:8080/api/v1/job/delete/${email}/${jobId}`;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const url = `${apiUrl}/api/v1/ad/delete/${email}/${jobId}`;
+  console.log(apiUrl);
 
   try {
     const response = await axios.delete(url, {

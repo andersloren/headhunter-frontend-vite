@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export async function findById(jobId) {
-  const url = `http://localhost:8080/api/v1/job/findById/${jobId}`;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const url = `${apiUrl}/api/v1/ad/findById/${jobId}`;
+  console.log(apiUrl);
 
   try {
     const response = await axios.get(url, {

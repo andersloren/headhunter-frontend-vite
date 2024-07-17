@@ -6,7 +6,9 @@ export async function generateJobAd(
   handleAdCRUDSuccess,
   setIsGenerating
 ) {
-  const url = `http://localhost:8080/api/v1/job/generate/${jobId}`;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const url = `${apiUrl}/api/v1/ad/generate/${jobId}`;
+  console.log(apiUrl);
 
   console.log("Communication with OpenAI API initialized, for job ", jobId);
 
