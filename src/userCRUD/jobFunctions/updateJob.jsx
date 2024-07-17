@@ -14,7 +14,7 @@ export async function updateJob(
   applicationDeadline
 ) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  const url = `${apiUrl}/api/v1/ad/update/${jobId}`;
+  const url = `${apiUrl}/api/v1/job/update/${jobId}`;
 
   try {
     const response = await axios.put(
