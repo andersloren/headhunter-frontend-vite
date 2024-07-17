@@ -8,7 +8,10 @@ export async function logIn(
   authorize,
   setLogInError
 ) {
-  const url = "http://localhost:8080/api/v1/account/login";
+  // const url = "http://localhost:8080/api/v1/account/login";
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
+  const url = `${apiUrl}/api/v1/account/login`;
+  console.log(apiUrl);
 
   const basicAuth = btoa(`${email}:${password}`);
 
