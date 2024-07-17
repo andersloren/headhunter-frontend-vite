@@ -10,7 +10,6 @@ export async function logIn(
 ) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/account/login`;
-  console.log(apiUrl);
 
   const basicAuth = btoa(`${email}:${password}`);
 

@@ -13,7 +13,6 @@ import axios from "axios";
 export async function deleteAccount(email, handleAccountCRUDSuccess) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/account/delete/${email}`;
-  console.log(apiUrl);
 
   try {
     const response = await axios.delete(url, {

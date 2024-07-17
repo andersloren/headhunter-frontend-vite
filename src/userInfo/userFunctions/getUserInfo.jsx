@@ -3,7 +3,6 @@ import axios from "axios";
 export async function getUserInfo(email, setName, setOrganization) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/userInfo/getUserInfo/${email}`;
-  console.log(apiUrl);
 
   try {
     const response = await axios.get(url, {

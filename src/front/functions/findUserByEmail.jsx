@@ -17,7 +17,6 @@ import axios from "axios";
 export async function findUserByEmail(email, setIsEmailStatus) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/account/findUser/${email}`;
-  console.log(apiUrl);
 
   try {
     const response = await axios.get(url);

@@ -19,7 +19,6 @@ export async function getJobDtosByJobId(setJobList) {
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/ad/getJobDtosByJobId/${email}`;
-  console.log(apiUrl);
 
   try {
     const response = await axios.get(url, {

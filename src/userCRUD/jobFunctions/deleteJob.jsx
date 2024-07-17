@@ -7,7 +7,6 @@ export async function deleteJob(jobId, handleJobCRUDSuccess) {
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/ad/delete/${email}/${jobId}`;
-  console.log(apiUrl);
 
   try {
     const response = await axios.delete(url, {

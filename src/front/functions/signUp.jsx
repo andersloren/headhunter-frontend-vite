@@ -8,7 +8,6 @@ export async function signUp(
 ) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/account/register`;
-  console.log(apiUrl);
 
   try {
     const response = await axios.post(
