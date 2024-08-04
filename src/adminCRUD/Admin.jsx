@@ -1,12 +1,13 @@
 // Functions, libraries, etc.
 import { useEffect, useState } from "react";
 import { deleteAccount } from "./adminFunctions/deleteAccount.jsx";
-import { getAccountDtos } from "./adminFunctions/getAccountDtos.jsx";
+import { getAccountDtos } from "../adminCRUD/adminFunctions/getAccountDtos.jsx";
 
 // Styled components
 import { S_Header, S_FunctionalityButton_Box } from "../utils/styledGlobal.jsx";
 import {
   S_Accountlist_Table,
+  S_HorizontalLine,
   S_AccountList_Row,
   S_Accountlist_Data,
   S_th,
@@ -51,10 +52,10 @@ export default function Admin() {
   }, [refreshAccountTable]);
 
   function handleDelete(email) {
-    if (window.confirm("Are you sure you want to delete this account?")) {
-      deleteAccount(email, handleAccountCRUDSuccess);
-    }
+    deleteAccount(email, handleAccountCRUDSuccess);
   }
+
+  console.log(refreshAccountTable);
 
   /**
    * If updating or deleting a account is successful, the handleAccountCRUDSuccess is being toggled, which then triggers the useEffect aboce.

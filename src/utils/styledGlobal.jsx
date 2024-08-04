@@ -36,8 +36,6 @@ export const S_SubHeader = styled.div`
 
 export const S_FunctionalityButton_Box = styled.div`
   display: flex;
-  justify-content: center;
-  gap: ${(props) => (props.$admin === "true" ? `${admin_width}` : `${width}`)};
 `;
 
 export const S_OpenAI_Box = styled.div`
