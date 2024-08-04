@@ -11,6 +11,7 @@ import {
   big,
   medium,
   small,
+  slightly_dark,
 } from "../../utils/styledComponentsConstants";
 
 // Border radius for input fields.
@@ -33,11 +34,19 @@ export const S_Form_FloatingDiv = styled.div`
   align-items: center;
   gap: 20px;
   top: 10%;
-  left: 50%;
+  left: 25%;
   padding: 20px;
   border: ${border};
   border-radius: ${border_radius};
-  background-color: ${dark};
+  background-color: ${slightly_dark};
+`;
+
+export const S_Label_Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: ${darkest};
 `;
 
 export const S_Form_Input = styled.input`
@@ -47,8 +56,7 @@ export const S_Form_Input = styled.input`
   font-weight: 500;
   margin-top: 5px;
   margin-bottom: 12px;
-  color: ${(props) =>
-    props.$readOnly === "true" ? `${neutral}` : `${darkest}`};
+  color: ${(props) => (props.$readOnly === "true" ? `${dark}` : `${darkest}`)};
   font-weight: bold;
 `;
 
@@ -58,7 +66,7 @@ export const S_Form_Select = styled.select`
   background: ${brighter};
   padding: 5px;
   border-radius: 15px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 `;
 
 export const S_Form_Button_Box = styled.div`

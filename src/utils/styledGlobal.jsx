@@ -26,6 +26,7 @@ export const S_Header = styled.div`
   font-size: ${big};
   color: ${darkest};
   text-align: center;
+  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
 
 export const S_SubHeader = styled.div`

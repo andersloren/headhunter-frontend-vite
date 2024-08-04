@@ -65,10 +65,12 @@ export default function Admin() {
     setRefreshAccountTable((refresh) => !refresh);
   }
 
+  console.log("isblur", isBlur);
+
   return (
     <>
       <S_Account_Box>
-        <S_Header>Accounts</S_Header>
+        <S_Header $blur={isBlur === true ? "true" : "false"}>Accounts</S_Header>
         <S_Accountlist_Table $blur={isBlur === true ? "true" : "false"}>
           <thead>
             <S_AccountList_Row $background={"neutral"}>
