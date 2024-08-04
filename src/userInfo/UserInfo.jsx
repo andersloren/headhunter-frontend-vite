@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getAccountDtoByEmail } from "../adminCRUD/adminFunctions/getAccountDtoByEmail";
 import {
+  S_Label_Container,
   S_UserInfo_Column,
   S_UserInfo_Input,
   S_Label,
@@ -33,27 +34,34 @@ export default function UserInfo() {
     <>
       <S_UserInfo_Column>
         <S_Header>Account Details</S_Header>
-        <S_Label>Email</S_Label>
-        <S_UserInfo_Input
-          value={email}
-          disabled="true"
-          readOnly
-          $readOnly={"true"}
-        />
-        <S_Label>Roles</S_Label>
-        <S_UserInfo_Input
-          value={roles}
-          disabled="true"
-          readOnly
-          $readOnly={"true"}
-        />
-        <S_Label>Number of jobs</S_Label>
-        <S_UserInfo_Input
-          value={numberOfJobs}
-          disabled="true"
-          readOnly
-          $readOnly={"true"}
-        />
+        <S_Label_Container>
+          <S_Label>Email</S_Label>
+          <S_UserInfo_Input
+            value={email}
+            S_Label_Container
+            disabled="true"
+            readOnly
+            $readOnly={"true"}
+          />
+        </S_Label_Container>
+        <S_Label_Container>
+          <S_Label>Roles</S_Label>
+          <S_UserInfo_Input
+            value={roles}
+            disabled="true"
+            readOnly
+            $readOnly={"true"}
+          />
+        </S_Label_Container>
+        <S_Label_Container>
+          <S_Label>Number of jobs</S_Label>
+          <S_UserInfo_Input
+            value={numberOfJobs}
+            disabled="true"
+            readOnly
+            $readOnly={"true"}
+          />
+        </S_Label_Container>
       </S_UserInfo_Column>
     </>
   );

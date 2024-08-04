@@ -8,6 +8,7 @@ export const brightest = lighten(baseColor, 0.75);
 export const brighter = lighten(baseColor, 0.6);
 export const bright = lighten(baseColor, 0.6);
 export const neutral = baseColor;
+export const slightly_dark = darken(baseColor, 0.3);
 export const dark = darken(baseColor, 0.5);
 export const darker = darken(baseColor, 0.6);
 export const darkest = darken(baseColor, 0.75);
