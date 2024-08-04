@@ -11,6 +11,7 @@ import {
   big,
   medium,
   small,
+  slightly_dark,
 } from "../../utils/styledComponentsConstants";
 
 // Border radius for input fields.
@@ -26,16 +27,23 @@ export const S_UserInfo_Column = styled.div`
   gap: 20px;
   border: ${border};
   border-radius: ${border_radius};
-  background-color: ${dark};
-  left: 10%;
-  top: 5%;
+  background-color: ${neutral};
+  left: 200px;
+  top: 100px;
   padding: 20px;
-  margin: 20px 0px 20px 0px;
+  margin: 20px 200px 20px 0px;
+`;
+
+export const S_Label_Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 `;
 
 export const S_Label = styled.label`
-  margin-left: 5px;
+  margin-left: 10px;
   font-weight: bold;
+  color: ${darker};
 `;
 
 export const S_UserInfo_Input = styled.input`
@@ -47,7 +55,7 @@ export const S_UserInfo_Input = styled.input`
   margin-bottom: 12px;
   font-weight: bold;
   color: ${(props) =>
-    props.$readOnly === "true" ? `${neutral}` : `${darkest}`};
+    props.$readOnly === "true" ? `${slightly_dark}` : `${darkest}`};
   &:hover {
     cursor: ${(props) => (props.$readOnly === "true" ? "not-allowed" : "text")};
   }
