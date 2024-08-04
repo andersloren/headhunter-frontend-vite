@@ -91,3 +91,9 @@ export const S_Form_Button = styled.button`
     cursor: pointer;
   }
 `;
+
+export const S_FunctionalityButton_Box = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;

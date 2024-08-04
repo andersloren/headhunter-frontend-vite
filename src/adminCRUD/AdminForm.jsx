@@ -8,9 +8,10 @@ import {
   S_Form_Input,
   S_Form_Select,
   S_Label_Container,
+  S_FunctionalityButton_Box,
 } from "./styledComponents/styledAdminForm";
 import { S_UpdateSvg, S_CancelSvg } from "../utils/styledSVG";
-import { S_FunctionalityButton_Box, S_Header } from "../utils/styledGlobal";
+import { S_Header } from "../utils/styledGlobal";
 import { useEffect, useState } from "react";
 
 /**

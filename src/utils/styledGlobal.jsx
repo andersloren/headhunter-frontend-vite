@@ -35,10 +35,6 @@ export const S_SubHeader = styled.div`
   /* text-align: center; */
 `;
 
-export const S_FunctionalityButton_Box = styled.div`
-  display: flex;
-`;
-
 export const S_OpenAI_Box = styled.div`
   width: auto;
   vertical-align: middle;
