@@ -31,18 +31,24 @@ export const S_Account_Box = styled.div`
 export const S_Accountlist_Table = styled.table`
   opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
   border-spacing: 0px 0rem;
+  border-radius: 10px;
 `;
 
 export const S_th = styled.th`
   width: auto;
   padding-right: 100px;
-  color: ${darker};
+  color: ${darkest};
   font-size: ${medium};
 `;
 
+export const S_HorizontalLine = styled.hr`
+  width: 100%;
+`;
+
 export const S_AccountList_Row = styled.tr`
-  background-color: ${(props) =>
-    props.$even === "true" ? `${dark}` : `${bright}`};
+  /* background-color: ${(props) =>
+    props.$even === "true" ? `${dark}` : `${bright}`};*/
+  background-color: none;
   color: ${darkest};
 `;
 

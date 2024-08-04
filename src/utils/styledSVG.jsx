@@ -334,10 +334,16 @@ export const S_ReturnSvg = styled(ReturnSvg)`
 
 export const S_CancelSvg = styled(CancelSvg)`
   border: ${border};
-  border-radius: ${border_radius};
-  width: ${width};
-  height: ${height};
-  fill: ${fill};
+  width: ${(props) =>
+    props.$admin === "true" ? `${admin_width}` : `${width}`};
+  height: ${(props) =>
+    props.$admin === "true" ? `${admin_height}` : `${height}`};
+  fill: ${(props) => (props.$even === "true" ? `${brightest}` : `${darkest}`)};
+  border: ${(props) =>
+    props.$even === "true" ? `${border}` : `${admin_border}`};
+  margin: ${(props) => (props.$admin === "true" ? "10px" : "")};
+  background-color: ${(props) =>
+    props.$even === "true" ? `${darkest}` : `${brighter}`};
   &:hover {
     background-color: ${brightest};
     fill: ${darker};

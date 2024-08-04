@@ -26,18 +26,13 @@ export const S_Header = styled.div`
   font-size: ${big};
   color: ${darkest};
   text-align: center;
+  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
 `;
 
 export const S_SubHeader = styled.div`
   font-size: ${medium};
   color: ${darkest};
   /* text-align: center; */
-`;
-
-export const S_FunctionalityButton_Box = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: ${(props) => (props.$admin === "true" ? `${admin_width}` : `${width}`)};
 `;
 
 export const S_OpenAI_Box = styled.div`

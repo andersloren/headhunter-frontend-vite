@@ -54,18 +54,6 @@ export const S_FunctionalityButton_Box = styled.div`
   gap: 20px;
 `;
 
-export const S_FunctionalityButton = styled.button`
-  margin-top: 15px;
-  height: 50px;
-  width: 50px;
-  border-radius: ${border_radius};
-  background-color: ${neutral};
-  &:hover {
-    background-color: ${neutral};
-  }
-  opacity: ${(props) => (props.$blur === "true" ? "0.3" : "1")};
-`;
-
 export const S_AddSvg = styled(AddSvg)`
   border: 1px solid ${brighter};
   border-radius: 5px;
