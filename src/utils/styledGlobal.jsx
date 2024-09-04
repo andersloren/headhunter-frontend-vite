@@ -49,3 +49,9 @@ export const S_OpenAI_Badge = styled.img`
   height: 32px;
   color: ${dark};
 `;
+
+export const S_FunctionalityButton_Box = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;
