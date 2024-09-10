@@ -19,4 +19,4 @@ COPY . .
 
 # Start the app
 # CMD ["npm", "start"] 
-CMD ["npm", "run", "dev", "--", "--host"] 
+CMD ["npm", "run", "production", "--", "--host"] 
