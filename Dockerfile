@@ -11,7 +11,7 @@ COPY package.json .
 RUN npm install
 
 # ARG REACT_PROFILE: ${REACT_PROFILE}
-ARG REACT_PROFILE 
+ARG REACT_PROFILE
 
 COPY .env.$REACT_PROFILE .env
 
@@ -19,4 +19,4 @@ COPY . .
 
 # Start the app
 # CMD ["npm", "start"] 
-CMD ["npm", "run", "production", "--", "--host"] 
+CMD ["npm", "run", "dev", "--", "--host"] 

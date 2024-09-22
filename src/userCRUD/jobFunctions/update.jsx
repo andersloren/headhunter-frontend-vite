@@ -1,7 +1,7 @@
 // Libraries, functions, etc.
 import axios from "axios";
 
-export async function updateJob(
+export async function update(
   jobId,
   handleJobCRUDSuccess,
   title,
@@ -11,7 +11,7 @@ export async function updateJob(
   adCompany,
   adEmail,
   adPhone,
-  applicationDeadline
+  applicationDeadline,
 ) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/job/update/${jobId}`;
@@ -34,7 +34,7 @@ export async function updateJob(
           Authorization: `Bearer ${localStorage.getItem("headhunter-token")}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     console.log("Succes: Update Job");
     handleJobCRUDSuccess();

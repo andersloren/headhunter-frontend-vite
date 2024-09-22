@@ -1,7 +1,7 @@
 // Libraries, functions, etc.
 import axios from "axios";
 
-export async function getJobDtoById(
+export async function getJobDto(
   jobId,
   setTitle,
   setDescription,
@@ -9,10 +9,10 @@ export async function getJobDtoById(
   setAdCompany,
   setAdEmail,
   setAdPhone,
-  setApplicationDeadline
+  setApplicationDeadline,
 ) {
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  const url = `${apiUrl}/api/v1/job/getJobDtoById/${jobId}`;
+  const url = `${apiUrl}/api/v1/job/getJobDto/${jobId}`;
 
   try {
     const response = await axios.get(url, {

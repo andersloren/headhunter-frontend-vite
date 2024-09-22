@@ -1,7 +1,7 @@
 // Libraries, functions, etc...
 import { useEffect, useState } from "react";
-import { updateJob } from "./jobFunctions/updateJob.jsx";
-import { getJobDtoById } from "./jobFunctions/getJobDtoById.jsx";
+import { update } from "./jobFunctions/update.jsx";
+import { getJobDto } from "./jobFunctions/getJobDto.jsx";
 import { generateJobAd } from "./jobFunctions/generateJobAd.jsx";
 import { getInstruction } from "./jobFunctions/getInstruction.jsx";
 
@@ -65,7 +65,7 @@ export default function JobEdit({
   const [instruction, setInstruction] = useState("");
 
   useEffect(() => {
-    getJobDtoById(
+    getJobDto(
       jobId,
       setTitle,
       setDescription,
@@ -73,7 +73,7 @@ export default function JobEdit({
       setAdCompany,
       setAdEmail,
       setAdPhone,
-      setApplicationDeadline
+      setApplicationDeadline,
     );
   }, [jobId]);
 
@@ -84,8 +84,8 @@ export default function JobEdit({
         adCompany,
         adEmail,
         adPhone,
-        applicationDeadline
-      )
+        applicationDeadline,
+      ),
     );
   }, [
     recruiterName,
@@ -97,7 +97,7 @@ export default function JobEdit({
   ]);
 
   useEffect(() => {
-    getJobDtoById(
+    getJobDto(
       jobId,
       setTitle,
       setDescription,
@@ -105,7 +105,7 @@ export default function JobEdit({
       setAdCompany,
       setAdEmail,
       setAdPhone,
-      setApplicationDeadline
+      setApplicationDeadline,
     );
     handleAdCRUDSuccess();
   }, [jobId, handleAdCRUDSuccess]);
@@ -113,7 +113,7 @@ export default function JobEdit({
   function handleGenerate() {
     if (
       window.confirm(
-        "Are you sure you want to generate a new ad? Remember, generating a new ad consumes credits."
+        "Are you sure you want to generate a new ad? Remember, generating a new ad consumes credits.",
       )
     ) {
       setIsGenerating(true);
@@ -128,7 +128,7 @@ export default function JobEdit({
       window.alert("Title cannot be empty");
       setTitle(savedTitle);
     } else {
-      updateJob(
+      update(
         jobId,
         handleJobCRUDSuccess,
         title,
@@ -138,7 +138,7 @@ export default function JobEdit({
         adCompany,
         adEmail,
         adPhone,
-        applicationDeadline
+        applicationDeadline,
       );
     }
   }

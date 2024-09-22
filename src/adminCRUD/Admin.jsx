@@ -92,23 +92,21 @@ export default function Admin() {
                 {/**
                  * Button for updating the account. Displays a child component and blurs the background.
                  */}
-                <S_FunctionalityButton_Box $admin={"true"}>
-                  <S_EditSvg
-                    // $even={index % 2 === 0 ? "true" : "false"}
-                    $admin={"true"}
-                    onClick={() => {
-                      if (!isBlur) {
-                        setIsBlur(true);
-                        setAccountEmail(account.email);
-                      }
-                    }}
-                  />
-                  <S_DeleteSvg
-                    // $even={index % 2 === 0 ? "true" : "false"}
-                    onClick={() => (isBlur ? "" : handleDelete(account.email))}
-                    $admin={"true"}
-                  />
-                </S_FunctionalityButton_Box>
+                <S_EditSvg
+                  // $even={index % 2 === 0 ? "true" : "false"}
+                  $admin={"true"}
+                  onClick={() => {
+                    if (!isBlur) {
+                      setIsBlur(true);
+                      setAccountEmail(account.email);
+                    }
+                  }}
+                />
+                <S_DeleteSvg
+                  // $even={index % 2 === 0 ? "true" : "false"}
+                  onClick={() => (isBlur ? "" : handleDelete(account.email))}
+                  $admin={"true"}
+                />
                 <S_Accountlist_Data $even={index % 2 === 0 ? "true" : "false"}>
                   {account.email}
                 </S_Accountlist_Data>

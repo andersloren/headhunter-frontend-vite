@@ -1,7 +1,7 @@
 // Libraries, functions, etc.
 import { useEffect, useState } from "react";
 import { addJob } from "./jobFunctions/addJob.jsx";
-import { getJobCardDtosByUserEmail } from "./jobFunctions/getJobCardDtosByUserEmail.jsx";
+import { getJobCardDtosByEmail } from "./jobFunctions/getJobCardDtosByEmail.jsx";
 import { deleteJob } from "./jobFunctions/deleteJob.jsx";
 import { getNumberOfAdsByJobId } from "./adFunctions/getNumberOfAdsByJobId.jsx";
 
@@ -53,11 +53,11 @@ export default function MyJobs() {
   const [showCurrent, setShowCurrent] = useState(true);
 
   useEffect(() => {
-    getJobCardDtosByUserEmail(setJobList);
+    getJobCardDtosByEmail(setJobList);
   }, []);
 
   useEffect(() => {
-    getJobCardDtosByUserEmail(setJobList);
+    getJobCardDtosByEmail(setJobList);
   }, [refreshTable]);
 
   function handleAddJob(jobListLength) {
