@@ -6,8 +6,10 @@ export async function logIn(
   handleAuthentication,
   setIsAuthorized,
   authorize,
-  setLogInError
+  setLogInError,
 ) {
+  console.log("base url: ", import.meta.env.VITE_API_BASE_URL);
+
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const url = `${apiUrl}/api/v1/account/login`;
 
@@ -25,14 +27,19 @@ export async function logIn(
           Authorization: `Basic ${basicAuth}`,
           "Content-Type": "application/json",
         },
-      }
+      },
     );
     console.log("Account Log In Success");
     handleAuthentication(response.data.data.token);
     setIsAuthorized(authorize());
     setLogInError(false);
   } catch (error) {
-    console.error("Error logging in", error);
-    setLogInError(true);
+    if (error.response) {
+      console.log("Error logging in. Response data:", error.response.data);
+    } else if (error.requst) {
+      console.log("No response received:", error.request);
+    } else {
+      console.log("Error setting up the request:", error.message);
+    }
   }
 }
